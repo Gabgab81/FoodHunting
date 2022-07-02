@@ -1,14 +1,30 @@
 <h1> <%= @restaurant.name %> </h1>
 
+<h4>From: <%= User.find(@restaurant.user_id).nickname  %> </h4>
+
 <p>Adress: <%= @restaurant.address %> </p>
 
 <p>Call us: <%= @restaurant.phone %> </p>
 
 <p>Rating: <%= @restaurant.rating %> </p>
 
+<p>Menu: </p>
+<% @meal.each do |meal| %>
+    <p> <%="#{meal.name}, price: #{meal.price}$, #{meal.rating}/5"  %> 
+    <% if current_user.id == @restaurant.user_id %>
+    <%= link_to "Modify the meal", edit_restaurant_meal_path(meal.restaurant_id, meal.id)  %> 
+    <%= link_to "Delete #{meal.name}",
+                meal_path(meal),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+    <% end %></p>
+<% end %>
+
 <%= link_to "Back", restaurants_path  %>
+
 <% if current_user.id == @restaurant.user_id %>
-    <%= link_to "Update", edit_restaurant_path(@restaurant)  %>
+    <%= link_to "Create new meal", new_restaurant_meal_path(@restaurant)  %>
+    <%= link_to "Modifiy #{@restaurant.name}", edit_restaurant_path(@restaurant)  %>
     <%= link_to "Delete #{@restaurant.name}",
                 restaurant_path(@restaurant),
                 method: :delete,

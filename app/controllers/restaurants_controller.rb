@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
     end
 
     def show
-        
+        @meal = Meal.where(restaurant_id: @restaurant)
     end
 
     def new
