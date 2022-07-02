@@ -5,8 +5,10 @@
 <p>Rating: <%= @restaurant.rating %> </p>
 
 <%= link_to "Back", restaurants_path  %>
-<%= link_to "Update", edit_restaurant_path(@restaurant)  %>
-<%= link_to "Delete #{@restaurant.name}",
-            restaurant_path(@restaurant),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
+<% if current_user.id == @restaurant.user_id %>
+    <%= link_to "Update", edit_restaurant_path(@restaurant)  %>
+    <%= link_to "Delete #{@restaurant.name}",
+                restaurant_path(@restaurant),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+<% end %>
