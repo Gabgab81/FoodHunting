@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :restaurants do
-    resources :meals, only: [ :new, :create, :edit, :update]
+    resources :meals, only: [ :new, :create, :edit, :update] do
+      resources :ingredients
+    end
   end
 
   resources :meals, only: :destroy
