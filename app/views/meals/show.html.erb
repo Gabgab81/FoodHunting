@@ -27,4 +27,8 @@
         <p>---------------------------------------</p>
     <% end %>
 <% end %>
+
+<p>Proteins: <%= @ingredients.inject(0) {|sum, x| sum + x.info["proteins_100g"]} %>g</p>
+<p>Carbohydrates: <%= @ingredients.inject(0) {|sum, x| sum + x.info["carbohydrates_100g"]} %>g</p>
+
 <%= link_to "Back to the restaurant", restaurant_path(@meal.restaurant)  %>
