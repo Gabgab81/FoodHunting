@@ -11,6 +11,7 @@
 <p>Menu: </p>
 <% @meal.each do |meal| %>
     <p> <%="#{meal.name}, price: #{meal.price}$, #{meal.rating}/5"  %> 
+    <%= link_to "Show the meal", meal_path(meal)  %> 
     <% if current_user.id == @restaurant.user_id %>
     <%= link_to "Modify the meal", edit_restaurant_meal_path(meal.restaurant_id, meal.id)  %> 
     <%= link_to "Delete #{meal.name}",

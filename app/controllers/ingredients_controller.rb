@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+    before_action :set_meal, only: [:new, :create, :edit, :update]
 
     def index
         @ingredients = Ingredient.all
@@ -23,6 +24,7 @@ class IngredientsController < ApplicationController
         # raise
         # @ingredient.info = param
         @product = Openfoodfacts::Product.get(@ingredient.code, locale: 'fr')
+        @ingredient.meal = @meal
         @ingredient.name = @product.product_name
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
@@ -30,10 +32,20 @@ class IngredientsController < ApplicationController
         redirect_to ingredient_path(@ingredient)
     end
 
+    def destroy
+        @ingredient = Ingredient.find(params[:id])
+        @ingredient.destroy
+        redirect_to meal_path(@ingredient.meal_id)
+    end
+
     private
+
+    def set_meal
+        @meal = Meal.find(params[:meal_id])
+    end
 
     def ingredient_params
         params.require(:ingredient).permit(:code)
     end
-    
+
 end
