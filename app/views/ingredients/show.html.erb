@@ -1,0 +1,21 @@
+<h1>Show</h1>
+
+<p><%= @ingredient.code %> </p>
+
+<p><%= @ingredient.name %> </p>
+
+<p><%= @ingredient.info %> </p>
+
+<% if @ingredient.image.nil? %>
+    <p>No picture available</p>
+<% else %>
+    <%= image_tag(@ingredient.image) %>
+<% end %>
+<p>---------------------------</p>
+<%= link_to "Delete #{@ingredient.name}",
+            ingredient_path(@ingredient),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+<p></p>
+
+<%= link_to "Back to the meal", meal_path(@ingredient.meal_id) %>

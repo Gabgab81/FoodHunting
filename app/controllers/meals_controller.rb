@@ -18,6 +18,12 @@ class MealsController < ApplicationController
         end
     end
 
+    def show
+        @meal = Meal.find(params[:id])
+        @ingredients = Ingredient.where(meal_id: @meal)
+        # raise
+    end
+
     def edit
         # @restaurant = Restaurant.find(params[:restaurant_id])
         @meal = Meal.find(params[:id])

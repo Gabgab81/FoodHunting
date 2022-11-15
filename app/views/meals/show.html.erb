@@ -1,0 +1,30 @@
+<h1> <%= @meal.name %></h1>
+
+<p> <%="Price: #{@meal.price}$, #{@meal.rating}/5"  %>
+
+<p><%= link_to "add new ingredient", new_restaurant_meal_ingredient_path(@meal.restaurant, @meal) %></p>
+
+<% if @ingredients.nil? %>
+    <p>No ingredient added yet.</p>
+<% else %>
+    <% @ingredients.each do |ingredient| %>
+        <br>
+        <p>---------------------------------------</p>
+        <p><%= ingredient.name %> </p>
+        <p><%= ingredient.code %> </p>
+        <p><%= ingredient.info["proteins_100g"] %> </p>
+        <% if ingredient.image.nil? %>
+            <p>No picture available</p>
+        <% else %>
+            <%= image_tag(ingredient.image) %>
+        <% end %>
+        <p>---------------------------------------</p>
+        <%= link_to "Show #{ingredient.name}", ingredient_path(ingredient)  %>
+        <%= link_to "Delete #{ingredient.name}",
+                    ingredient_path(ingredient),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>
+        <p>---------------------------------------</p>
+    <% end %>
+<% end %>
+<%= link_to "Back to the restaurant", restaurant_path(@meal.restaurant)  %>
