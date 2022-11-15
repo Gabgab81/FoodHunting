@@ -1,10 +1,6 @@
 class IngredientsController < ApplicationController
     before_action :set_meal, only: [:new, :create, :edit, :update]
 
-    def index
-        @ingredients = Ingredient.all
-    end
-
     def show
         @ingredient = Ingredient.find(params[:id])
     end
