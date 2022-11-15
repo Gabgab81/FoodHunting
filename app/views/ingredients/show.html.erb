@@ -1,10 +1,10 @@
 <h1>Show</h1>
 
-<p><%= @ingredient.code %> </p>
-
 <p><%= @ingredient.name %> </p>
 
-<p><%= @ingredient.info %> </p>
+<p>Proteins (100g): <%= @ingredient.info["proteins_100g"] %>g </p>
+<p>Carbohydrates (100g): <%= @ingredient.info["carbohydrates_100g"] %>g </p>
+<p>Fat (100g): <%= @ingredient.info["fat_100g"] %>g </p>
 
 <% if @ingredient.image.nil? %>
     <p>No picture available</p>
