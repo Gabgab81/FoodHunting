@@ -11,8 +11,9 @@
         <br>
         <p>---------------------------------------</p>
         <p><%= ingredient.name %> </p>
-        <p><%= ingredient.code %> </p>
-        <p><%= ingredient.info["proteins_100g"] %> </p>
+        <p>Proteins(100g): <%= ingredient.info["proteins_100g"] %>g</p>
+        <p>Carbohydrates(100g)<%= ingredient.info["carbohydrates_100g"] %>g</p>
+        <p><%= ingredient.weight %>g </p>
         <% if ingredient.image.nil? %>
             <p>No picture available</p>
         <% else %>
@@ -28,7 +29,8 @@
     <% end %>
 <% end %>
 
-<p>Proteins: <%= @ingredients.inject(0) {|sum, x| sum + x.info["proteins_100g"]} %>g</p>
-<p>Carbohydrates: <%= @ingredients.inject(0) {|sum, x| sum + x.info["carbohydrates_100g"]} %>g</p>
+<h2>Info protein</h2>
+<p>Total proteins : <%= @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100} %>g</p>
+<p>Total carbohydrates : <%= @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100} %>g</p>
 
 <%= link_to "Back to the restaurant", restaurant_path(@meal.restaurant)  %>

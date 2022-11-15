@@ -24,8 +24,12 @@ class IngredientsController < ApplicationController
         @ingredient.name = @product.product_name
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
-        @ingredient.save
-        redirect_to ingredient_path(@ingredient)
+        if @ingredient.save
+            redirect_to ingredient_path(@ingredient)
+        else
+            flash[:ingredient_errors] = @ingredient.errors.full_messages
+            redirect_to new_restaurant_meal_ingredient_path(@meal.restaurant, @meal)
+        end
     end
 
     def destroy
@@ -41,7 +45,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-        params.require(:ingredient).permit(:code)
+        params.require(:ingredient).permit(:code, :weight)
     end
 
 end
