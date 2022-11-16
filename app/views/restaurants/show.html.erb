@@ -9,8 +9,8 @@
 <p>Rating: <%= @restaurant.rating %> </p>
 
 <p>Menu: </p>
-<% @meal.each do |meal| %>
-    <p> <%="#{meal.name}, price: #{meal.price}$, #{meal.rating}/5"  %> 
+<% @restaurant.meals.each do |meal| %>
+    <p> <%="#{meal.name}, price: #{meal.price}$"  %> 
     <%= link_to "Show the meal", meal_path(meal)  %> 
     <% if current_user.id == @restaurant.user_id %>
     <%= link_to "Modify the meal", edit_restaurant_meal_path(meal.restaurant_id, meal.id)  %> 
@@ -30,4 +30,19 @@
                 restaurant_path(@restaurant),
                 method: :delete,
                 data: { confirm: "Are you sure?" } %>
+<% end %>
+<p></p>
+<% @restaurant.comments.each do |comment| %>
+    <p><%= comment.content %>, from <%= comment.user.nickname %>  
+    (<% if comment.user == current_user %>
+        <%= link_to "Delete",
+                comment_path(comment),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+    <% end %>)</p>
+<% end %>
+
+<%= simple_form_for [@restaurant, @comment] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit %>
 <% end %>

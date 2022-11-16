@@ -7,6 +7,7 @@ class RestaurantsController < ApplicationController
 
     def show
         @meal = Meal.where(restaurant_id: @restaurant)
+        @comment = Comment.new
     end
 
     def new
