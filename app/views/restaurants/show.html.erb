@@ -5,8 +5,21 @@
 <p>Adress: <%= @restaurant.address %> </p>
 
 <p>Call us: <%= @restaurant.phone %> </p>
+<% if @restaurant.rating.nil? %>
+  <p>No rated yet.</p>
+<% else %>
+  <p>Rating: <%= @restaurant.rating %> </p>
+<% end %>
 
-<p>Rating: <%= @restaurant.rating %> </p>
+<p>Rate this restaurant</p>
+<% if Ratingr.find_by(user_id: current_user, restaurant_id: @restaurant).nil? %>
+  <%= simple_form_for [@restaurant, @ratingr] do |f| %>
+    <%= f.input :content, collection: (1..5).to_a, label: "Rate the restaurant" %>
+    <%= f.submit "Submit yout rating" %>
+  <% end %>
+<% else %>
+  <p>Your rating is <%= Ratingr.find_by(user_id: current_user, restaurant_id: @restaurant).content %>/5</p>
+<% end %>
 
 <p>Menu: </p>
 <% @restaurant.meals.each do |meal| %>

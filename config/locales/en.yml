@@ -29,5 +29,17 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
+# en:
+#   hello: "Hello world"
+# en:
+#   activerecord:
+#     errors:
+#       models:
+#         ratingr:
+#           attribubes:
+#           content:
+#             blank: "Need a number"
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{message}"
+# Default is format: %{attribute} %{message}

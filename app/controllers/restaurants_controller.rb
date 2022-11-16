@@ -8,6 +8,9 @@ class RestaurantsController < ApplicationController
     def show
         @meal = Meal.where(restaurant_id: @restaurant)
         @comment = Comment.new
+        # if Ratingr.find(user_id: current_user)
+        @ratingr = Ratingr.new
+        # raise
     end
 
     def new
