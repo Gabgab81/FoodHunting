@@ -25,6 +25,10 @@ class IngredientsController < ApplicationController
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
         if @ingredient.save
+            @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
+            @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
+            @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+            @meal.save
             redirect_to ingredient_path(@ingredient)
         else
             flash[:ingredient_errors] = @ingredient.errors.full_messages
@@ -35,6 +39,10 @@ class IngredientsController < ApplicationController
     def destroy
         @ingredient = Ingredient.find(params[:id])
         @ingredient.destroy
+        @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
+        @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
+        @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+        @meal.save
         redirect_to meal_path(@ingredient.meal_id)
     end
 
