@@ -25,9 +25,15 @@ class IngredientsController < ApplicationController
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
         if @ingredient.save
-            @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
-            @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
-            @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+            if @meal.ingredients.count > 0
+                @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
+                @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
+                @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+            else
+                @meal.protein = 0
+                @meal.carbohydrate = 0
+                @meal.fat =0
+            end
             @meal.save
             redirect_to ingredient_path(@ingredient)
         else
@@ -38,10 +44,17 @@ class IngredientsController < ApplicationController
 
     def destroy
         @ingredient = Ingredient.find(params[:id])
+        @meal = @ingredient.meal
         @ingredient.destroy
-        @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
-        @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
-        @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+        if @meal.ingredients.count > 0
+            @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
+            @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
+            @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+        else
+            @meal.protein = 0
+            @meal.carbohydrate = 0
+            @meal.fat =0
+        end
         @meal.save
         redirect_to meal_path(@ingredient.meal_id)
     end
