@@ -1,6 +1,6 @@
 <h1> <%= @meal.name %></h1>
 
-<p> <%="Price: #{@meal.price}$, #{@meal.rating}/5"  %>
+<p> <%="Price: #{@meal.price}$"  %>
 
 <p><%= link_to "add new ingredient", new_restaurant_meal_ingredient_path(@meal.restaurant, @meal) %></p>
 
@@ -29,8 +29,11 @@
     <% end %>
 <% end %>
 
-<h2>Info protein</h2>
+<h2>Info nutriments</h2>
 <p>Total proteins : <%= @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100} %>g</p>
 <p>Total carbohydrates : <%= @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100} %>g</p>
 
+<p>Proteins: <%= @meal.protein %>g </p>
+<p>Carbohydrates: <%= @meal.carbohydrate %>g </p>
+<p>Fat: <%= @meal.fat %>g </p>
 <%= link_to "Back to the restaurant", restaurant_path(@meal.restaurant)  %>
