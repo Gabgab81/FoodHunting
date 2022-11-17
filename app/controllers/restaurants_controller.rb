@@ -2,7 +2,15 @@ class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
     def index
-        @restaurant = Restaurant.all
+        @restaurants = Restaurant.all
+
+        @markers = @restaurants.geocoded.map do |restaurant|
+            {
+                lat: restaurant.latitude,
+                lng: restaurant.longitude,
+                info_window: render_to_string(partial: "info_window", locals: {restaurant: restaurant})
+            }
+        end
     end
 
     def show
@@ -10,6 +18,14 @@ class RestaurantsController < ApplicationController
         @comment = Comment.new
         # if Ratingr.find(user_id: current_user)
         @ratingr = Ratingr.new
+        restaurant = Restaurant.where(id: @restaurant.id)
+        @markers = restaurant.geocoded.map do |restaurant|
+            {
+                lat: restaurant.latitude,
+                lng: restaurant.longitude,
+                info_window: render_to_string(partial: "info_window", locals: {restaurant: restaurant})
+            }
+        end
         # raise
     end
 
