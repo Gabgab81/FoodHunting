@@ -1,8 +1,17 @@
 <h1> <%= @meal.name %></h1>
 
 <p> <%="Price: #{@meal.price}$"  %>
+<p></p>
 
-<p><%= link_to "add new ingredient", new_restaurant_meal_ingredient_path(@meal.restaurant, @meal) %></p>
+<% if @meal.photo.attached? %>
+    <%= cl_image_tag @meal.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+    <p>No picture available.</p>
+<% end %>
+
+<% if current_user == @meal.restaurant.user %>
+    <p><%= link_to "add new ingredient", new_restaurant_meal_ingredient_path(@meal.restaurant, @meal) %></p>
+<% end %>
 
 <% if @ingredients.nil? %>
     <p>No ingredient added yet.</p>
