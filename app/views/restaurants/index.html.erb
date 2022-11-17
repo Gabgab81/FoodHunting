@@ -1,7 +1,42 @@
 <h1>All the restaurants</h1>
 
-<% @restaurants.each do |restaurant| %>
-    <li><%= link_to restaurant.name, restaurant_path(restaurant)  %> </li>
+<%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>
+  <%= form.text_field :query,
+    # params[:query],
+    class: "form-control",
+    placeholder: "Find a restaurant"
+  %>
+
+  <select name="type" id="type">
+    <option value="restaurants">Restaurants</option>
+    <option value="meals">Meals</option>
+    <optgroup label="Proteins">
+      <option value="proteins+">+</option>
+      <option value="proteins-">-</option>
+    </optgroup>
+    <optgroup label="Carbs">
+      <option value="carbs+">+</option>
+      <option value="carbs-">-</option>
+    </optgroup>
+    <optgroup label="Fats">
+      <option value="fats+">+</option>
+      <option value="fats-">-</option>
+    </optgroup>
+  </select>
+
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<% if !@restaurants.nil? %>
+  <% @restaurants.each do |restaurant| %>
+      <li><%= link_to restaurant.name, restaurant_path(restaurant)  %> </li>
+  <% end %>
+<% end %>
+
+<% if !@meals.nil? %>
+  <% @meals.each do |meal| %>
+      <li><%= link_to meal.name, meal_path(meal)  %> </li>
+  <% end %>
 <% end %>
 
 <div style="width: 50%; height: 200px;"

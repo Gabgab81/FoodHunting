@@ -2,14 +2,53 @@ class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
     def index
-        @restaurants = Restaurant.all
-
-        @markers = @restaurants.geocoded.map do |restaurant|
-            {
-                lat: restaurant.latitude,
-                lng: restaurant.longitude,
-                info_window: render_to_string(partial: "info_window", locals: {restaurant: restaurant})
-            }
+        if params[:query].present?
+            case params[:type]
+            when "restaurants"
+                sql_query = <<~SQL
+                    restaurants.name ILIKE :query
+                    OR restaurants.address ILIKE :query
+                    OR meals.name ILIKE :query
+                    OR ingredients.name ILIKE :query
+                SQL
+                @restaurants = Restaurant.joins(meals: [:ingredients]).where(sql_query, query: "%#{params[:query]}%")
+            when "meals"
+                sql_query = <<~SQL
+                    meals.name ILIKE :query
+                    OR ingredients.name ILIKE :query
+                SQL
+                @meals = Meal.joins(:ingredients).where(sql_query, query: "%#{params[:query]}%")
+            when "proteins+"
+                @restaurants = Restaurant.joins(:meals).where("meals.protein > ?", params[:query])
+            when "proteins-"
+                @restaurants = Restaurant.joins(:meals).where("meals.protein < ?", params[:query])
+            when "carbs+"
+                @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate > ?", params[:query])
+            when "carbs-"
+                @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate < ?", params[:query])
+            when "fats+"
+                @restaurants = Restaurant.joins(:meals).where("meals.fat > ?", params[:query])
+            when "fats-"
+                @restaurants = Restaurant.joins(:meals).where("meals.fat < ?", params[:query])
+            else
+                
+            end
+        else
+            if params[:type] == "restaurants" || params[:type].nil?
+                @restaurants = Restaurant.all
+            else
+                @meals = Meal.all
+            end
+        end
+        # raise
+        if !@restaurants.nil? && !@restaurants.empty?
+            @markers = @restaurants.geocoded.map do |restaurant|
+                {
+                    lat: restaurant.latitude,
+                    lng: restaurant.longitude,
+                    info_window: render_to_string(partial: "info_window", locals: {restaurant: restaurant})
+                }
+            end
         end
     end
 
