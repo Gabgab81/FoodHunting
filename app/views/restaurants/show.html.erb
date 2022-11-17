@@ -1,5 +1,12 @@
 <h1> <%= @restaurant.name %> </h1>
 
+<% if @restaurant.photos.attached? %>
+  <% @restaurant.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+<% else %>
+  <p>No picture available</p>
+<% end %>
 <h4>From: <%= User.find(@restaurant.user_id).nickname  %> </h4>
 
 <p>Adress: <%= @restaurant.address %> </p>
@@ -11,7 +18,6 @@
   <p>Rating: <%= @restaurant.rating %> </p>
 <% end %>
 
-<p>Rate this restaurant</p>
 <% if Ratingr.find_by(user_id: current_user, restaurant_id: @restaurant).nil? %>
   <%= simple_form_for [@restaurant, @ratingr] do |f| %>
     <%= f.input :content, collection: (1..5).to_a, label: "Rate the restaurant" %>

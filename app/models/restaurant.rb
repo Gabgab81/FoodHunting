@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   has_many :meals, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :ratingrs, dependent: :destroy
+  has_many_attached :photos
 
   validates :name, presence: true
   validates :address, presence: true, length: { minimum: 5 }
