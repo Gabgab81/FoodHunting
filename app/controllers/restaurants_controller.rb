@@ -67,7 +67,7 @@ class RestaurantsController < ApplicationController
             end
         else
             if params[:type] == "restaurants" || params[:type].nil?
-                @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                @restaurants = Restaurant.near("Montreal", 5)
 
                 flash[:query_errors] = []
             elsif params[:type] == "meals"
@@ -79,6 +79,16 @@ class RestaurantsController < ApplicationController
             end
         end
         # raise
+        if @meals
+            # raise
+            @markers = @meals.geocoded.map do |meal|
+                {
+                    lat: meal.latitude,
+                    lng: meal.longitude,
+                    info_window: render_to_string(partial: "/meals/info_window_meal", locals: {meal: meal})
+                }
+            end
+        end
         if !@restaurants.nil? && !@restaurants.empty?
             @markers = @restaurants.geocoded.map do |restaurant|
                 {
