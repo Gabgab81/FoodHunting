@@ -10,6 +10,7 @@ class MealsController < ApplicationController
         @meal = Meal.new(meal_params)
         # @restaurant = Restaurant.find(params[:restaurant_id])
         @meal.restaurant = @restaurant
+        @meal.address = @restaurant.address
         @meal.protein = 0
         @meal.carbohydrate = 0
         @meal.fat = 0
