@@ -13,6 +13,7 @@ class RestaurantsController < ApplicationController
                     OR ingredients.name ILIKE :query
                 SQL
                 @restaurants = Restaurant.joins(meals: [:ingredients]).where(sql_query, query: "%#{params[:query]}%")
+                .near(params[:address], params[:distance].to_i)
             when "meals"
                 sql_query = <<~SQL
                     meals.name ILIKE :query
@@ -22,42 +23,42 @@ class RestaurantsController < ApplicationController
             when "proteins+"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.protein > ?", params[:query])
                 end
             when "proteins-"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.protein < ?", params[:query])
                 end
             when "carbs+"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.carbohydrate > ?", params[:query])
                 end
             when "carbs-"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.carbohydrate < ?", params[:query])
                 end
             when "fats+"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.fat > ?", params[:query])
                 end
             when "fats-"
                 if /^\d*$/.match(params[:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.all
+                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
                 else
                     @meals = Meal.where("meals.fat < ?", params[:query])
                 end
@@ -66,7 +67,8 @@ class RestaurantsController < ApplicationController
             end
         else
             if params[:type] == "restaurants" || params[:type].nil?
-                @restaurants = Restaurant.all
+                @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+
                 flash[:query_errors] = []
             elsif params[:type] == "meals"
                 @meals = Meal.all
