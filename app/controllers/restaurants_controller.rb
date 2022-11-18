@@ -3,6 +3,7 @@ class RestaurantsController < ApplicationController
 
     def index
         if params[:query].present?
+            flash[:query_errors] = []
             case params[:type]
             when "restaurants"
                 sql_query = <<~SQL
@@ -19,24 +20,59 @@ class RestaurantsController < ApplicationController
                 SQL
                 @meals = Meal.joins(:ingredients).where(sql_query, query: "%#{params[:query]}%")
             when "proteins+"
-                @restaurants = Restaurant.joins(:meals).where("meals.protein > ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.protein > ?", params[:query])
+                end
             when "proteins-"
-                @restaurants = Restaurant.joins(:meals).where("meals.protein < ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.protein < ?", params[:query])
+                end
             when "carbs+"
-                @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate > ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate > ?", params[:query])
+                end
             when "carbs-"
-                @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate < ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.carbohydrate < ?", params[:query])
+                end
             when "fats+"
-                @restaurants = Restaurant.joins(:meals).where("meals.fat > ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.fat > ?", params[:query])
+                end
             when "fats-"
-                @restaurants = Restaurant.joins(:meals).where("meals.fat < ?", params[:query])
+                if /^\d*$/.match(params[:query]).nil?
+                    flash[:query_errors] = ["Enter a number"]
+                    @restaurants = Restaurant.all
+                else
+                    @restaurants = Restaurant.joins(:meals).where("meals.fat < ?", params[:query])
+                end
             else
                 
             end
         else
             if params[:type] == "restaurants" || params[:type].nil?
                 @restaurants = Restaurant.all
+                flash[:query_errors] = []
+            elsif params[:type] == "meals"
+                @meals = Meal.all
+                flash[:query_errors] = []
             else
+                flash[:query_errors] = ["Enter a number"]
                 @meals = Meal.all
             end
         end
