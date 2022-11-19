@@ -2,78 +2,81 @@ class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
     def index
-        if params[:query].present?
+        if !params[:queries].nil? && !params[:queries][:query].empty?
             flash[:query_errors] = []
-            case params[:type]
-            when "restaurants"
+            case params[:queries][:type]
+            when "Restaurants"
                 sql_query = <<~SQL
                     restaurants.name ILIKE :query
                     OR restaurants.address ILIKE :query
                     OR meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @restaurants = Restaurant.joins(meals: [:ingredients]).where(sql_query, query: "%#{params[:query]}%")
-                .near(params[:address], params[:distance].to_i)
-            when "meals"
+                @restaurants = Restaurant.joins(meals: [:ingredients]).where(sql_query, query: "%#{params[:queries][:query]}%")
+                .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance])).distinct
+                # raise
+            when "Meals"
                 sql_query = <<~SQL
                     meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @meals = Meal.joins(:ingredients).where(sql_query, query: "%#{params[:query]}%").near(params[:address], params[:distance].to_i)
-            when "proteins+"
-                if /^\d*$/.match(params[:query]).nil?
+                @meals = Meal.joins(:ingredients).where(sql_query, query: "%#{params[:queries][:query]}%").near(s_a(params[:queries][:address]), s_d(params[:queries][:distance])).distinct
+                # meal = Meal.where("meals.name ILIKE ?", params[:queries][:query])
+            when "Proteins+"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.protein > ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.protein > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
-            when "proteins-"
-                if /^\d*$/.match(params[:query]).nil?
+            when "Proteins-"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.nnear(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.protein < ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.protein < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
-            when "carbs+"
-                if /^\d*$/.match(params[:query]).nil?
+            when "Carbs+"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.carbohydrate > ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.carbohydrate > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
-            when "carbs-"
-                if /^\d*$/.match(params[:query]).nil?
+            when "Carbs-"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.carbohydrate < ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.carbohydrate < ?", params[:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
-            when "fats+"
-                if /^\d*$/.match(params[:query]).nil?
+            when "Fats+"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.fat > ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.fat > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
-            when "fats-"
-                if /^\d*$/.match(params[:query]).nil?
+            when "Fats-"
+                if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.fat < ?", params[:query]).near(params[:address], params[:distance].to_i)
+                    @meals = Meal.where("meals.fat < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             else
                 
             end
         else
-            if params[:type].nil?
-                @restaurants = Restaurant.near("Montreal", 5)
+            if params[:queries].nil?
+                # @restaurants = Restaurant.near("Montreal", 5)
+                @restaurants = Restaurant.all
                 flash[:query_errors] = []
-            elsif params[:type] == "restaurants"
-                @restaurants = Restaurant.near(params[:address], params[:distance].to_i)
+            elsif params[:queries][:type] == "Restaurants"
+                @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 flash[:query_errors] = []
-            elsif params[:type] == "meals"
-                @meals = Meal.near(params[:address], params[:distance].to_i)
+            elsif params[:queries][:type] == "Meals"
+                @meals = Meal.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 flash[:query_errors] = []
             else
                 flash[:query_errors] = ["Enter a number"]
@@ -82,7 +85,6 @@ class RestaurantsController < ApplicationController
         end
         # raise
         if @meals
-            # raise
             @markers = @meals.geocoded.map do |meal|
                 {
                     lat: meal.latitude,
@@ -157,6 +159,14 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
         params.require(:restaurant).permit(:name, :address, :phone, photos: [])
+    end
+
+    def s_a(v)
+        v.empty? ? "Montreal" : v
+    end
+
+    def s_d(v)
+        v.empty? ? 10 : v.to_i
     end
 
 end
