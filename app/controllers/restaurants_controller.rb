@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
                     OR meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @restaurants = order(Restaurant, params[:queries][:order])
+                @restaurants = ordForR(params[:queries][:order])
                 .joins(meals: [:ingredients])
                 .where(sql_query, query: "%#{params[:queries][:query]}%")
                 .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
@@ -76,7 +76,7 @@ class RestaurantsController < ApplicationController
                 @restaurants = Restaurant.all
                 flash[:query_errors] = []
             elsif params[:queries][:type] == "Restaurants"
-                @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                @restaurants = ordForR(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 flash[:query_errors] = []
             elsif params[:queries][:type] == "Meals"
                 @meals = Meal.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
@@ -144,6 +144,12 @@ class RestaurantsController < ApplicationController
 
     def update
         if @restaurant.update(restaurant_params)
+            if @restaurant.previous_changes["address"]
+                @restaurant.meals.each do |meal|
+                    meal.address = @restaurant.address
+                    meal.save
+                end
+            end
             redirect_to restaurant_path(@restaurant)
         else
             render :edit
@@ -173,14 +179,26 @@ class RestaurantsController < ApplicationController
         v.empty? ? 10 : v.to_i
     end
 
-    def order(model, ord)
+    def ordForR(ord)
         case ord
         when 'best'
-            model.order('rating DESC')
+            Restaurant.order('rating DESC')
         when 'new'
-            model.order('created_at DESC')
+            Restaurant.order('created_at DESC')
         when 'old'
-            model.order('created_at ASC')
+            Restaurant.order('created_at ASC')
+        else
+        end
+    end
+
+    def ordForM(ord)
+        case ord
+        when 'best'
+            Meal.joins(:restaurant).order('restaurant.rating DESC')
+        when 'new'
+            Meal.order('created_at DESC')
+        when 'old'
+            Meal.order('created_at ASC')
         else
         end
     end
