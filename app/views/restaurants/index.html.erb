@@ -2,20 +2,50 @@
 
 <% if true %>
   <%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
-    <%= f.input :query, placeholder: "Find a restaurant" %>
+    <%= f.input :query, placeholder: "Find a restaurant", input_html: {value: params[:queries].nil? ? "" : params[:queries][:query]} %>
     <% if flash[:query_errors] %>
       <% flash[:query_errors].each do |msg| %>
         <p> <%= msg %> </p>
       <% end %>
     <% end %>
+   <%= f.hidden_field :order, value: params[:queries].nil? ? "best" : params[:queries][:order] %>
     <%= f.input :address,
     input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
     wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-    <%= f.input :distance, input_html: {value: "10"} , placeholder: "Distance in km" %>
-    <%= f.input :type, collection: ["Restaurants", "Meals", "Proteins+", "Proteins-", "Carbs+", "Carbs-", "Fats+",  "Fats-"], selected: "Restaurants" %>
+    <%= f.input :distance, input_html: {value: params[:queries].nil? ? "" : params[:queries][:distance]} , placeholder: "Distance in km" %>
+    <%= f.input :type, collection: ["Restaurants", "Meals", "Proteins+", "Proteins-", "Carbs+", "Carbs-", "Fats+",  "Fats-"], selected: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
     <%= f.button :submit, "Search" %>
   <% end %>
 <% end %>
+
+<% if false %>
+  <%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>
+
+    <%= form.radio_button :order, "new" %>
+    <%= form.label :new, "Newer restaurants" %>
+    <%= form.radio_button :order, "old" %>
+    <%= form.label :old, "Older restaurants" %>
+    <%= form.radio_button :order, "best" %>
+    <%= form.label :best, "Better rating" %>
+    <%= form.hidden_field :queries, value: params[:queries] %>
+    <%= submit_tag "Change order", class: "btn btn-primary" %>
+
+  <% end %>
+<% end %>
+<% if true %>
+<%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
+    <%= f.input :order, as: :radio_buttons, collection: [
+      ['Newer restaurants', 'new'], 
+    ['Older restaurants', 'old'],
+    ['Better rating', 'best']], 
+    label_method: :first, value_method: :second, selected: "Newer restaurants" %>
+    <%= f.hidden_field :query, value: params[:queries].nil? ? "" : params[:queries][:query] %>
+    <%= f.hidden_field :address, value: params[:queries].nil? ? "" : params[:queries][:address] %>
+    <%= f.hidden_field :distance, value: params[:queries].nil? ? "" : params[:queries][:distance] %>
+    <%= f.hidden_field :type, value: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
+    <%= f.button :submit, "Change order" %>
+  <% end %>
+  <% end %>
 
 <% if false %>
 <%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>

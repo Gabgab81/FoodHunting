@@ -12,8 +12,11 @@ class RestaurantsController < ApplicationController
                     OR meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @restaurants = Restaurant.joins(meals: [:ingredients]).where(sql_query, query: "%#{params[:queries][:query]}%")
-                .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance])).distinct
+                @restaurants = order(Restaurant, params[:queries][:order])
+                .joins(meals: [:ingredients])
+                .where(sql_query, query: "%#{params[:queries][:query]}%")
+                .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                .distinct
                 # raise
             when "Meals"
                 sql_query = <<~SQL
@@ -32,7 +35,7 @@ class RestaurantsController < ApplicationController
             when "Proteins-"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.nnear(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
                     @meals = Meal.where("meals.protein < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
@@ -127,6 +130,7 @@ class RestaurantsController < ApplicationController
     def create
         @restaurant = Restaurant.new(restaurant_params)
         @restaurant.user_id = current_user.id
+        @restaurant.rating = 0
         if @restaurant.save
             redirect_to restaurant_path(@restaurant)
         else
@@ -167,6 +171,18 @@ class RestaurantsController < ApplicationController
 
     def s_d(v)
         v.empty? ? 10 : v.to_i
+    end
+
+    def order(model, ord)
+        case ord
+        when 'best'
+            model.order('rating DESC')
+        when 'new'
+            model.order('created_at DESC')
+        when 'old'
+            model.order('created_at ASC')
+        else
+        end
     end
 
 end
