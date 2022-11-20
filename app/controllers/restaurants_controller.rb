@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
                     OR meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @restaurants = order(Restaurant, params[:queries][:order])
+                @restaurants = ordForR(params[:queries][:order])
                 .joins(meals: [:ingredients])
                 .where(sql_query, query: "%#{params[:queries][:query]}%")
                 .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
@@ -23,49 +23,53 @@ class RestaurantsController < ApplicationController
                     meals.name ILIKE :query
                     OR ingredients.name ILIKE :query
                 SQL
-                @meals = Meal.joins(:ingredients).where(sql_query, query: "%#{params[:queries][:query]}%").near(s_a(params[:queries][:address]), s_d(params[:queries][:distance])).distinct
+                @meals = ordForM(params[:queries][:order])
+                .joins(:ingredients)
+                .where(sql_query, query: "%#{params[:queries][:query]}%")
+                .near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                .distinct
                 # meal = Meal.where("meals.name ILIKE ?", params[:queries][:query])
             when "Proteins+"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.protein > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.protein > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             when "Proteins-"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.protein < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.protein < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             when "Carbs+"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.carbohydrate > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.carbohydrate > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             when "Carbs-"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.carbohydrate < ?", params[:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.carbohydrate < ?", params[:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             when "Fats+"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.fat > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.fat > ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             when "Fats-"
                 if /^\d*$/.match(params[:queries][:query]).nil?
                     flash[:query_errors] = ["Enter a number"]
-                    @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @restaurants = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 else
-                    @meals = Meal.where("meals.fat < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                    @meals = ordForM(params[:queries][:order]).where("meals.fat < ?", params[:queries][:query]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 end
             else
                 
@@ -76,14 +80,14 @@ class RestaurantsController < ApplicationController
                 @restaurants = Restaurant.all
                 flash[:query_errors] = []
             elsif params[:queries][:type] == "Restaurants"
-                @restaurants = Restaurant.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                @restaurants = ordForR(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 flash[:query_errors] = []
             elsif params[:queries][:type] == "Meals"
-                @meals = Meal.near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
+                @meals = ordForM(params[:queries][:order]).near(s_a(params[:queries][:address]), s_d(params[:queries][:distance]))
                 flash[:query_errors] = []
             else
                 flash[:query_errors] = ["Enter a number"]
-                @meals = Meal.all
+                @meals = ordForM(params[:queries][:order])
             end
         end
         # raise
@@ -144,6 +148,12 @@ class RestaurantsController < ApplicationController
 
     def update
         if @restaurant.update(restaurant_params)
+            if @restaurant.previous_changes["address"]
+                @restaurant.meals.each do |meal|
+                    meal.address = @restaurant.address
+                    meal.save
+                end
+            end
             redirect_to restaurant_path(@restaurant)
         else
             render :edit
@@ -173,14 +183,26 @@ class RestaurantsController < ApplicationController
         v.empty? ? 10 : v.to_i
     end
 
-    def order(model, ord)
+    def ordForR(ord)
         case ord
         when 'best'
-            model.order('rating DESC')
+            Restaurant.order('rating DESC')
         when 'new'
-            model.order('created_at DESC')
+            Restaurant.order('created_at DESC')
         when 'old'
-            model.order('created_at ASC')
+            Restaurant.order('created_at ASC')
+        else
+        end
+    end
+
+    def ordForM(ord)
+        case ord
+        when 'best'
+            Meal.order('rating DESC')
+        when 'new'
+            Meal.order('created_at DESC')
+        when 'old'
+            Meal.order('created_at ASC')
         else
         end
     end

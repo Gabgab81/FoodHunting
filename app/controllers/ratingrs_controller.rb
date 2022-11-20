@@ -10,6 +10,10 @@ class RatingrsController < ApplicationController
         if @ratingr.save
             @restaurant.rating = @restaurant.ratingrs.inject(0) {|sum, rate| sum + rate.content} / @restaurant.ratingrs.count
             @restaurant.save
+            @restaurant.meals.each do |meal|
+                meal.rating = @restaurant.rating
+                meal.save
+            end
             redirect_to restaurant_path(@restaurant)
         else
             render "restaurants/show"
