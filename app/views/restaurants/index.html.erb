@@ -22,9 +22,9 @@
   <%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>
 
     <%= form.radio_button :order, "new" %>
-    <%= form.label :new, "Newer restaurants" %>
+    <%= form.label :new, "Newer" %>
     <%= form.radio_button :order, "old" %>
-    <%= form.label :old, "Older restaurants" %>
+    <%= form.label :old, "Older" %>
     <%= form.radio_button :order, "best" %>
     <%= form.label :best, "Better rating" %>
     <%= form.hidden_field :queries, value: params[:queries] %>
