@@ -191,7 +191,8 @@ class RestaurantsController < ApplicationController
             Restaurant.order('created_at DESC')
         when 'old'
             Restaurant.order('created_at ASC')
-        else
+        when 'comment'
+            Restaurant.left_joins(:comments).group("restaurants.id").order("count(restaurants.id) DESC")
         end
     end
 
