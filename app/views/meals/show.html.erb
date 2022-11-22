@@ -11,6 +11,7 @@
 <% end %>
 
 <% if current_user == @meal.restaurant.user %>
+    <p><%= link_to "edit the meal", edit_restaurant_meal_path(@meal.restaurant, @meal) %></p>
     <p><%= link_to "add new ingredient", new_restaurant_meal_ingredient_path(@meal.restaurant, @meal) %></p>
 <% end %>
 
