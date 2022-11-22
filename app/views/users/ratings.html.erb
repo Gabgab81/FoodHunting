@@ -1,0 +1,7 @@
+<h1>All raitings created by <%= current_user.nickname %></h1>
+
+<% @ratingrs.each do |ratingr| %>
+    <%= link_to restaurant_path(ratingr.restaurant) do %>
+        <p><%= ratingr.content %>/5 for <%= ratingr.restaurant.name %></p>
+    <% end %>
+<% end %>
