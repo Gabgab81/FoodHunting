@@ -9,6 +9,14 @@ Rails.application.routes.draw do
     resources :ratingrs, only: [:new, :create]
   end
 
+  resources :users, only: [] do
+    member do
+      get :restaurants
+      get :ratings
+      get :comments
+    end
+  end
+
   resources :meals, only: [:show, :destroy]
   resources :ingredients, only: [:show, :destroy]
   resources :comments, only: :destroy

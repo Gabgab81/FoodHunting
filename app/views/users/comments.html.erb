@@ -1,0 +1,8 @@
+<h1>All comments created by <%= current_user.nickname %></h1>
+
+<% @comments.each do |comment| %>
+    <%= link_to restaurant_path(comment.restaurant) do %>
+        <p><%= comment.restaurant.name %></p>
+        <p><%= comment.content %> </p>
+    <% end %>
+<% end %>
