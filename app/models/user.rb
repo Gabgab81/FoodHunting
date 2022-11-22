@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :restaurants, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :ratingrs, dependent: :destroy
+  has_one_attached :photo
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
