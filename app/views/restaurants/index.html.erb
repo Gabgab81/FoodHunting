@@ -18,34 +18,30 @@
   <% end %>
 <% end %>
 
-<% if false %>
-  <%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>
-
-    <%= form.radio_button :order, "new" %>
-    <%= form.label :new, "Newer" %>
-    <%= form.radio_button :order, "old" %>
-    <%= form.label :old, "Older" %>
-    <%= form.radio_button :order, "best" %>
-    <%= form.label :best, "Better rating" %>
-    <%= form.hidden_field :queries, value: params[:queries] %>
-    <%= submit_tag "Change order", class: "btn btn-primary" %>
-
-  <% end %>
-<% end %>
 <% if true %>
-<%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
-    <%= f.input :order, as: :radio_buttons, collection: [
-      ['Newer restaurants', 'new'], 
-    ['Older restaurants', 'old'],
-    ['Better rating', 'best']], 
-    label_method: :first, value_method: :second, selected: "Newer restaurants" %>
+  <%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
+    <% if params[:queries].nil? || params[:queries][:type] == "Restaurants" %>
+      <%= f.input :order, as: :radio_buttons, collection: [
+        ['Newer', 'new'], 
+      ['Older', 'old'],
+      ['More comments', 'comment'],
+      ['Better rating', 'best']], 
+      label_method: :first, value_method: :second %>
+    <% else %>
+      <%= f.input :order, as: :radio_buttons, collection: [
+          ['Newer', 'new'], 
+        ['Older', 'old'],
+        ['Better rating', 'best']], 
+        label_method: :first, value_method: :second %>
+    <% end %>
+
     <%= f.hidden_field :query, value: params[:queries].nil? ? "" : params[:queries][:query] %>
     <%= f.hidden_field :address, value: params[:queries].nil? ? "" : params[:queries][:address] %>
     <%= f.hidden_field :distance, value: params[:queries].nil? ? "" : params[:queries][:distance] %>
     <%= f.hidden_field :type, value: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
     <%= f.button :submit, "Change order" %>
   <% end %>
-  <% end %>
+<% end %>
 
 <% if false %>
 <%= form_with url: restaurants_path, method: :get, class: "d-flex" do |form| %>
