@@ -35,6 +35,18 @@ class ApplicationPolicy
   def destroy?
     false
   end
+  
+  def restaurants?
+    false
+  end
+
+  def ratings?
+    false
+  end
+
+  def comments?
+    false
+  end
 
   class Scope
     def initialize(user, scope)

@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     def new
         # @restaurant = Restaurant.find(params[:restaurant_id])
         @comment = Comment.new
+        authorize @comment
     end
 
     def create
@@ -11,6 +12,7 @@ class CommentsController < ApplicationController
         # @restaurant = Restaurant.find(params[:restaurant_id])
         @comment.restaurant = @restaurant
         @comment.user = current_user
+        authorize @comment
 
         if @comment.save
             redirect_to restaurant_path(@restaurant)
@@ -22,6 +24,7 @@ class CommentsController < ApplicationController
     def destroy
         @comment = Comment.find(params[:id])
         @restaurant = @comment.restaurant
+        authorize @comment
         @comment.destroy
         redirect_to restaurant_path(@restaurant)
     end

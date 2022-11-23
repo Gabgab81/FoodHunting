@@ -6,6 +6,7 @@ class RatingrsController < ApplicationController
         @ratingr.restaurant = @restaurant
         @ratingr.user_id = current_user.id
         @comment = Comment.new
+        authorize @ratingr
         # raise
         if @ratingr.save
             @restaurant.rating = @restaurant.ratingrs.inject(0) {|sum, rate| sum + rate.content} / @restaurant.ratingrs.count
