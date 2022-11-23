@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'stimulus-rails'
 
 gem 'devise'
+gem "pundit"
 
 gem "cloudinary"
 

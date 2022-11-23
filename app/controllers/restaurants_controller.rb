@@ -2,6 +2,11 @@ class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
     def index
+        if params[:queries].nil? || params[:queries][:type] == "Restaurants"
+            @restaurants = policy_scope(Restaurant)
+        else
+            @meals = policy_scope(Meal)
+        end
         if !params[:queries].nil? && !params[:queries][:query].empty?
             flash[:query_errors] = []
             case params[:queries][:type]
@@ -109,6 +114,10 @@ class RestaurantsController < ApplicationController
                 }
             end
         end
+        # authorize @restaurants if @meals.nil?
+        # @restaurants = policy_scope(Restaurant)
+        # @meals = policy_scope(Meal) if @restaurants.nil?
+        # authorize @meals if @restaurants.nil?
     end
 
     def show
@@ -124,11 +133,13 @@ class RestaurantsController < ApplicationController
                 info_window: render_to_string(partial: "info_window", locals: {restaurant: restaurant})
             }
         end
+        authorize @restaurant
         # raise
     end
 
     def new
         @restaurant = Restaurant.new
+        authorize @restaurant
     end
 
     def create
@@ -140,10 +151,11 @@ class RestaurantsController < ApplicationController
         else
             render :new
         end
+        authorize @restaurant
     end
 
     def edit
-        
+        authorize @restaurant
     end
 
     def update
@@ -158,10 +170,12 @@ class RestaurantsController < ApplicationController
         else
             render :edit
         end
+        authorize @restaurant
     end
 
     def destroy
         @restaurant.destroy
+        authorize @restaurant
         redirect_to restaurants_path
     end
 

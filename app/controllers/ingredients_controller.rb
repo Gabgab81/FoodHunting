@@ -3,9 +3,11 @@ class IngredientsController < ApplicationController
 
     def show
         @ingredient = Ingredient.find(params[:id])
+        authorize @ingredient
     end
 
     def new
+        # raise
         if params[:query].present?
             @products =  Openfoodfacts::Product.search(params[:query], locale: 'world', page_size: 3)
           else
@@ -13,6 +15,8 @@ class IngredientsController < ApplicationController
         end
         # raise
         @ingredient = Ingredient.new
+        @ingredient.meal = Meal.find(params[:meal_id])
+        authorize @ingredient
     end
 
     def create
@@ -24,6 +28,7 @@ class IngredientsController < ApplicationController
         @ingredient.name = @product.product_name
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
+        authorize @ingredient
         if @ingredient.save
             if @meal.ingredients.count > 0
                 @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
@@ -56,6 +61,7 @@ class IngredientsController < ApplicationController
             @meal.fat =0
         end
         @meal.save
+        authorize @ingredient
         redirect_to meal_path(@ingredient.meal_id)
     end
 

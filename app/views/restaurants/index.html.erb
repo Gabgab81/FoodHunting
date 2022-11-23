@@ -29,11 +29,13 @@
       label_method: :first, value_method: :second %>
     </div>
     <% else %>
-      <%= f.input :order, as: :radio_buttons, collection: [
-          ['Newer', 'new'], 
-        ['Older', 'old'],
-        ['Better rating', 'best']], 
-        label_method: :first, value_method: :second %>
+      <div data-action = 'click->submit-item#submit'>
+        <%= f.input :order, as: :radio_buttons, collection: [
+            ['Newer', 'new'], 
+          ['Older', 'old'],
+          ['Better rating', 'best']], 
+          label_method: :first, value_method: :second %>
+        </div>
     <% end %>
 
     <%= f.hidden_field :query, value: params[:queries].nil? ? "" : params[:queries][:query] %>

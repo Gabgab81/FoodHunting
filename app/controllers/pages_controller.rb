@@ -3,4 +3,17 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def userRestaurants
+    @restaurants = Restaurant.where(user_id: current_user).order('created_at DESC')
+  end
+
+  def userRatings
+      @ratingrs = Ratingr.where(user_id: current_user).order('created_at DESC')
+  end
+
+  def userComments
+      @comments = Comment.where(user_id: current_user).order('created_at DESC')
+  end
+
 end
