@@ -7,5 +7,6 @@ class Meal < ApplicationRecord
   has_one_attached :photo
 
   validates :name, presence: true
+  validates :description, presence: true, length: { minimum: 5 }
   validates :price, presence: true
 end
