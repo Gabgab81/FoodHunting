@@ -58,17 +58,12 @@
                 data: { confirm: "Are you sure?" } %>
 <% end %>
 <p></p>
-<% @restaurant.comments.each do |comment| %>
-    <p><%= comment.content %>, from <%= comment.user.nickname %>  
-    (<% if comment.user == current_user %>
-        <%= link_to "Delete",
-                comment_path(comment),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-    <% end %>)</p>
-<% end %>
+<div data-controller="insert-in-list">
+  <div data-insert-in-list-target="items">
+    <% @restaurant.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  </div>
 
-<%= simple_form_for [@restaurant, @comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>
+  <%= render 'comments/form', restaurant: @restaurant, comment: @comment %>
+</div>

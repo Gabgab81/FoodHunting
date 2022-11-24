@@ -14,10 +14,14 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         authorize @comment
 
-        if @comment.save
-            redirect_to restaurant_path(@restaurant)
-        else
-            render "restaurants/show"
+        respond_to do |format|
+            if @comment.save
+                format.html { redirect_to restaurant_path(@restaurant) }
+                format.json # Follow the classic Rails flow and look for a create.json view
+            else
+                format.html { render "restaurants/show", status: :unprocessable_entity }
+                format.json # Follow the classic Rails flow and look for a create.json view
+            end
         end
     end
 
