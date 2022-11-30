@@ -13,7 +13,7 @@ class Restaurant < ApplicationRecord
   validates :schedules, presence: true
   validates :name, presence: true
   validates :address, presence: true, length: { minimum: 5 }
-  validates :description, presence: true, length: { minimum: 5 }
+  validates :description, presence: true
   validates :phone, presence: true, format: { with: /\A\d{1}-\d{3}-\d{3}-\d{4}\z/ }
 
   def open?
@@ -72,7 +72,7 @@ class Restaurant < ApplicationRecord
               if amOpen > time
                   hourSecond(amOpen) - durationTime
               else
-                  hourSecond(amOpen) - durationTime
+                  hourSecond(pmOpen) - durationTime
               end
           else
               nday * 3600 * 24 - durationTime + hourSecond(amOpen)
