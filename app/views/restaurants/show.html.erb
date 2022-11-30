@@ -13,6 +13,24 @@
 
 <p>Call us: <%= @restaurant.phone %> </p>
 
+
+<% @restaurant.schedules.each do |schedule| %>
+    <% if schedule.am_closes_at.nil? %>
+        <p><%= weekdays[schedule.weekday - 1][:label] %> : <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
+    <% else %>
+    <p><%= weekdays[schedule.weekday - 1][:label] %>:
+        <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.am_closes_at.strftime("%H:%M") %> / 
+        <%= schedule.pm_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %>
+    </p>
+    <% end %>
+<% end %>
+
+<% if @restaurant.open? %>
+    <p><%= @restaurant.name %> is open. It will close in <%= ActiveSupport::Duration.build(@restaurant.whenClose).inspect  %></p>
+<% else %>
+    <p><%= @restaurant.name %> is closed. It will open in <%= ActiveSupport::Duration.build(@restaurant.whenOpen).inspect  %></p>
+<% end %>
+
 <div style="width: 50%; height: 200px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
