@@ -186,7 +186,15 @@ class RestaurantsController < ApplicationController
     end
 
     def restaurant_params
-        params.require(:restaurant).permit(:name, :address, :phone, photos: [])
+        params.require(:restaurant).permit(:name, :address, :phone, photos: [],schedules_attributes:[
+            :id,
+            :am_opens_at,
+            :am_closes_at,
+            :pm_opens_at,
+            :pm_closes_at,
+            :weekday,
+            :_destroy
+        ])
     end
 
     def s_a(v)

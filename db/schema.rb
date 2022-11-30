@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_24_210206) do
+ActiveRecord::Schema.define(version: 2022_11_30_144022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,18 @@ ActiveRecord::Schema.define(version: 2022_11_24_210206) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.time "am_opens_at"
+    t.time "am_closes_at"
+    t.time "pm_opens_at"
+    t.time "pm_closes_at"
+    t.integer "weekday"
+    t.bigint "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_schedules_on_restaurant_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -128,4 +140,5 @@ ActiveRecord::Schema.define(version: 2022_11_24_210206) do
   add_foreign_key "ratingrs", "restaurants"
   add_foreign_key "ratingrs", "users"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "schedules", "restaurants"
 end
