@@ -1,0 +1,29 @@
+<div class="smallcard" 
+data-controller="defilement-img" 
+data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
+    <div class="imgcard" >
+        <button data-action="click->defilement-img#previous"><</button>
+            <% restaurant.photos.each do |photo| %>
+                <div data-defilement-img-target="img">
+                    <%= cl_image_tag photo.key, height: 100, width: 200, crop: :fill %>
+                </div>
+            <% end %>
+        <button data-action="click->defilement-img#next">></button>
+        <% (restaurant.photos.count > 5 ? 5 : restaurant.photos.count).times do %>
+            <i data-defilement-img-target="dot" class="fa-solid fa-circle"></i>
+        <% end %>
+    </div>
+    <div class="infocard">
+        <p><%= restaurant.name %></p>
+        <p><%= restaurant.address %></p>
+        <% if restaurant.open? %>
+            <p><span class="open">Open</span></p>
+        <% else %>
+            <p><span class="closed">Closed</span></p>
+        <% end %>
+    </div>
+    <div class="ratingcard">
+        <%= restaurant.rating %>
+    </div>
+    
+</div>

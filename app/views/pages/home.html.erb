@@ -1,6 +1,6 @@
 <h2>Best Restaurants</h2>
 <% @bestRestaurants.each do |restaurant| %>
-    <p><%= restaurant.name %>: <%= restaurant.rating %></p>
+    <%= render "components/smallcard", restaurant: restaurant %>
 <% end %>
 
 <h2>Newer Restaurants</h2>

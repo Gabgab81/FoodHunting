@@ -26,9 +26,9 @@
 <% end %>
 
 <% if @restaurant.open? %>
-    <p><%= @restaurant.name %> is open. It will close in <%= ActiveSupport::Duration.build(@restaurant.whenClose).inspect  %></p>
+    <p><%= @restaurant.name %> is open. It will close in <%= @restaurant.whenClose  %></p>
 <% else %>
-    <p><%= @restaurant.name %> is closed. It will open in <%= ActiveSupport::Duration.build(@restaurant.whenOpen).inspect  %></p>
+    <p><%= @restaurant.name %> is closed. It will open in <%= @restaurant.whenOpen  %></p>
 <% end %>
 
 <div style="width: 50%; height: 200px;"
