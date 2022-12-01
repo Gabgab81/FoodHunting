@@ -65,7 +65,7 @@ private
     end
 
     def meal_params
-        params.require(:meal).permit(:name, :price, :photo)
+        params.require(:meal).permit(:name, :price, :description, :photo)
     end
 
 end
