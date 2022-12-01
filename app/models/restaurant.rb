@@ -6,6 +6,7 @@ class Restaurant < ApplicationRecord
   has_many :meals, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :ratingrs, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many_attached :photos
   has_many :schedules, dependent: :destroy
   accepts_nested_attributes_for :schedules, allow_destroy: true

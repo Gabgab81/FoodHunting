@@ -36,6 +36,16 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
+<% if current_user.favorites.where(restaurant_id: @restaurant).empty? %>
+  <%= simple_form_for [@restaurant, @favorite] do |f| %>
+    <%= f.submit "Favorite" %>
+  <% end %>
+<% else %>
+  <%= link_to "Favorite",
+                favorite_path(@favorite),
+                method: :delete %>
+<% end %>
+<p>Favorite? : <%= @favorite.id.nil? ? "no" : "yes" %></p>
 
 <% if @restaurant.rating.nil? %>
   <p>No rated yet.</p>

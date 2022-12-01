@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get "userRestaurants", to: "pages#userRestaurants"
   get "userRatings", to: "pages#userRatings"
   get "userComments", to: "pages#userComments"
+  get "userFavorites", to: "pages#userFavorites"
 
   resources :restaurants do
+    resources :favorites, only: :create
     resources :meals, only: [ :new, :create, :edit, :update] do
       resources :ingredients, only: [ :new, :create, :edit, :update]
     end
@@ -17,5 +19,6 @@ Rails.application.routes.draw do
   resources :meals, only: [:show, :destroy]
   resources :ingredients, only: [:show, :destroy]
   resources :comments, only: :destroy
+  resources :favorites, only: :destroy
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
