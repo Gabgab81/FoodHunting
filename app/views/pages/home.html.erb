@@ -1,3 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h2>Best Restaurants</h2>
+<% @bestRestaurants.each do |restaurant| %>
+    <p><%= restaurant.name %>: <%= restaurant.rating %></p>
+<% end %>
+
+<h2>Newer Restaurants</h2>
+<% @newerRestaurants.each do |restaurant| %>
+    <p><%= restaurant.name %></p>
+<% end %>
+
+<h2>Popular Restaurants</h2>
+<% @popularRestaurants.each do |restaurant| %>
+    <p><%= restaurant.name %>: <%= restaurant.comments.count %></p>
+<% end %>
+
+<h2>Last comments</h2>
+<% @lastComments.each do |comment| %>
+    <p><%= comment.user.nickname %>: <%= comment.content%> for <%= comment.restaurant.name %></p>
+<% end %>
+
+<h2>Last meals</h2>
+<% @lastMeals.each do |meal| %>
+    <p><%= meal.name %> from <%= meal.restaurant.name %></p>
+<% end %>
+
 <p> <%= link_to "Check restaurants", restaurants_path %>
