@@ -2,6 +2,15 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    @bestRestaurants = Restaurant.order('rating DESC')
+    @newerRestaurants = Restaurant.order('created_at DESC')
+    @popularRestaurants = Restaurant.left_joins(:comments)
+    .group("restaurants.id")
+    .order("count(restaurants.id) DESC")
+    .reject {|restaurant| restaurant.comments.count == 0}
+    @lastComments = Comment.order('created_at DESC')
+    @lastMeals = Meal.order('created_at DESC')
+    # raise  
   end
 
   def userRestaurants
