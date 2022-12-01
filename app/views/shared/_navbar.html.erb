@@ -8,6 +8,52 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+  <div>
+    <%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
+      <%= f.input :query, placeholder: "Find a restaurant", input_html: {value: params[:queries].nil? ? "" : params[:queries][:query]} %>
+      <% if flash[:query_errors] %>
+        <% flash[:query_errors].each do |msg| %>
+          <p> <%= msg %> </p>
+        <% end %>
+      <% end %>
+    <%= f.hidden_field :order, value: "best" %>
+      <%= f.input :address,
+      input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
+      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+      <%= f.input :distance, input_html: {value: params[:queries].nil? ? "" : params[:queries][:distance]} , placeholder: "Distance in km" %>
+      <%= f.input :type, collection: ["Restaurants", "Meals", "Proteins+", "Proteins-", "Carbs+", "Carbs-", "Fats+",  "Fats-"], selected: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
+      <%= f.button :submit, "Search" %>
+  <% end %>
+</div>
+<div data-controller="submit-item">
+  <%= simple_form_for :queries, url: restaurants_path, method: :get, data:{submit_item_target: "form"}  do |f| %>
+    <% if params[:queries].nil? || params[:queries][:type] == "Restaurants" %>
+    <div data-action = 'click->submit-item#submit'>
+      <%= f.input :order, as: :radio_buttons, collection: [
+        ['Newer', 'new'], 
+      ['Older', 'old'],
+      ['More comments', 'comment'],
+      ['Better rating', 'best']], 
+      label_method: :first, value_method: :second %>
+    </div>
+    <% else %>
+      <div data-action = 'click->submit-item#submit'>
+        <%= f.input :order, as: :radio_buttons, collection: [
+            ['Newer', 'new'], 
+          ['Older', 'old'],
+          ['Better rating', 'best']], 
+          label_method: :first, value_method: :second %>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :query, value: params[:queries].nil? ? "" : params[:queries][:query] %>
+    <%= f.hidden_field :address, value: params[:queries].nil? ? "" : params[:queries][:address] %>
+    <%= f.hidden_field :distance, value: params[:queries].nil? ? "" : params[:queries][:distance] %>
+    <%= f.hidden_field :type, value: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
+    
+  <% end %>
+</div>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
