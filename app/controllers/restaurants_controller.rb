@@ -125,6 +125,13 @@ class RestaurantsController < ApplicationController
         @comment = Comment.new
         # if Ratingr.find(user_id: current_user)
         @ratingr = Ratingr.new
+
+        if current_user.favorites.where(restaurant_id: @restaurant).empty?
+            @favorite = Favorite.new
+        else
+            @favorite = current_user.favorites.where(restaurant_id: @restaurant).first
+        end
+
         restaurant = Restaurant.where(id: @restaurant.id)
         @markers = restaurant.geocoded.map do |restaurant|
             {
