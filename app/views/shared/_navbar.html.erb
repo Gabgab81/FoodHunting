@@ -69,6 +69,7 @@
               <%= link_to "Your restaurants", userRestaurants_path, class: "dropdown-item" %>
               <%= link_to "Your raitings", userRatings_path, class: "dropdown-item" %>
               <%= link_to "Your comments", comments_path, class: "dropdown-item" %>
+              <%= link_to "Your favorites", userFavorites_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           <% else %>
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -77,6 +78,7 @@
               <%= link_to "Your restaurants", userRestaurants_path, class: "dropdown-item" %>
               <%= link_to "Your raitings", userRatings_path, class: "dropdown-item" %>
               <%= link_to "Your comments", userComments_path, class: "dropdown-item" %>
+              <%= link_to "Your favorites", userFavorites_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           <% end %>
