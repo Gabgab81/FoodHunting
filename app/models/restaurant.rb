@@ -44,9 +44,11 @@ class Restaurant < ApplicationRecord
           timeMached = /(\d*):(\d*)/.match(time)
           durationTime = timeMached[1].to_i * 3600 + timeMached[2].to_i * 60
           if !schedule.am_closes_at.nil? && time < schedule.am_closes_at.strftime("%H:%M")
-              hourSecond(schedule.am_closes_at.strftime("%H:%M")) - durationTime
+            ActiveSupport::Duration.build(hourSecond(schedule.am_closes_at.strftime("%H:%M")) - durationTime).inspect
+            #   hourSecond(schedule.am_closes_at.strftime("%H:%M")) - durationTime
           else
-              hourSecond(schedule.pm_closes_at.strftime("%H:%M")) - durationTime
+            ActiveSupport::Duration.build(hourSecond(schedule.pm_closes_at.strftime("%H:%M")) - durationTime).inspect
+            # hourSecond(schedule.pm_closes_at.strftime("%H:%M")) - durationTime
           end
       else
           0
@@ -71,12 +73,15 @@ class Restaurant < ApplicationRecord
           durationTime = timeMached[1].to_i * 3600 + timeMached[2].to_i * 60
           if !todayOpen.empty? && (amOpen > time || (!pmOpen.nil? && pmOpen > time)) 
               if amOpen > time
-                  hourSecond(amOpen) - durationTime
+                ActiveSupport::Duration.build(hourSecond(amOpen) - durationTime).inspect
+                # hourSecond(amOpen) - durationTime
               else
-                  hourSecond(pmOpen) - durationTime
+                ActiveSupport::Duration.build(hourSecond(pmOpen) - durationTime).inspect
+                # hourSecond(pmOpen) - durationTime
               end
           else
-              nday * 3600 * 24 - durationTime + hourSecond(amOpen)
+            ActiveSupport::Duration.build(nday * 3600 * 24 - durationTime + hourSecond(amOpen)).inspect
+            # nday * 3600 * 24 - durationTime + hourSecond(amOpen)
           end
       else
           0

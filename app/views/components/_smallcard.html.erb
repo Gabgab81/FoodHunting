@@ -1,0 +1,178 @@
+<div class="smallcard" 
+data-controller="defilement-img" 
+data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
+
+    <% if restaurant.photos.empty? %>
+
+        <div class="imgcard" style="background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.2)), url(' <%=  image_path 'LogoHuntingFoodWithBg' %>'); background-size: cover; background-position: center;">
+            
+            <div class="fav">
+                <% if !current_user.nil? && !current_user.favorites.where(restaurant_id: restaurant).empty?  %>
+                    <div class="redheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% else %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="btn-img">
+            </div>
+
+            <div class="spacedot">
+            </div>
+        </div> 
+
+    <% elsif restaurant.photos.count == 1 %>
+
+        <% restaurant.photos.each do |photo| %>
+            <div class="imgcard" style="background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.2)), url('<%= cl_image_path photo.key %>'); background-size: cover; background-position: center;">
+            <div class="fav">
+                <% if !current_user.nil? && !current_user.favorites.where(restaurant_id: restaurant).empty?  %>
+                    <div class="redheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% else %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div> 
+                <% end %>
+            </div>
+
+            <div class="btn-img">
+            </div>
+
+            <div class="spacedot">
+            </div>
+        <% end %>
+
+    <% else %>
+
+        <% restaurant.photos.each do |photo| %>
+            <div class="imgcard" data-defilement-img-target="img" 
+            style="background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.2)), url('<%= cl_image_path photo.key %>'); background-size: cover; background-position: center;">
+                
+                <div class="fav">
+                    <% if !current_user.nil? && !current_user.favorites.where(restaurant_id: restaurant).empty?  %>
+                        <div class="redheart">
+                            <i class="fa-sharp fa-solid fa-heart"></i>
+                        </div>
+                        
+                   
+                    <% else %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                        
+                    <% end %>
+                </div>
+                <div class="btn-img">
+
+                    <div>
+                        <button class="left" data-action="click->defilement-img#previous">
+                                <i class="fa-sharp fa-solid fa-circle-chevron-left"></i>
+                        </button>
+                    </div>
+                    
+                    <div>
+                        <button class="right" data-action="click->defilement-img#next">
+                            <i class="fa-sharp fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+                <div class="spacedot">
+                </div>
+            </div>
+        <% end %>
+        <div class="dots-img">
+            <% (restaurant.photos.count > 5 ? 5 : restaurant.photos.count).times do %>
+                    <i data-defilement-img-target="dot" class="fa-solid fa-circle"></i>   
+            <% end %>
+        </div>
+    <% end %>
+    <div class="infocard">
+        <h2 class="cutoff-text"><%= restaurant.name %></h2>
+        <p class="cutoff-text"><%= restaurant.address %></p>
+        <div class="openrate">
+            <% if restaurant.open? %>
+                <p><span class="open">Open</span></p>
+            <% else %>
+                <p><span class="closed">Closed</span></p>
+            <% end %>
+            <div class="ratingcard">
+                <%= restaurant.rating %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<% if false %>
+
+    <div class="imgcard" >
+        <% if restaurant.photos.empty? %>
+            <%= image_tag("LogoHuntingFoodWithBg.jpg", height: "100%", width: "100%") %>
+
+        <% elsif restaurant.photos.count == 1%>
+            <% restaurant.photos.each do |photo| %>
+                <%= cl_image_tag photo.key, height: 100, width: "100%" %>
+            <% end %>
+        <% else %>
+
+            <button class="btn-img" data-action="click->defilement-img#previous">
+                <i class="fa-sharp fa-solid fa-circle-chevron-left"></i>
+            </button>
+
+                <% restaurant.photos.each do |photo| %>
+                    <div data-defilement-img-target="img">
+                        <%= cl_image_tag photo.key, height: 100, width: 200, crop: :fill %>
+                    </div>
+                <% end %>
+
+            <button class="btn-img" data-action="click->defilement-img#next">
+                <i class="fa-sharp fa-solid fa-circle-chevron-right"></i>
+            </button>
+
+            <div class="fav">
+                <% if !current_user.nil? && !current_user.favorites.where(restaurant_id: restaurant).empty?  %>
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                <% else %>
+                    <i class="fa-regular fa-heart"></i>
+                <% end %>
+            </div>
+            
+            <div class="dots-img">
+                <% (restaurant.photos.count > 5 ? 5 : restaurant.photos.count).times do %>
+                    <i data-defilement-img-target="dot" class="fa-solid fa-circle"></i>
+                <% end %>
+            </div>
+           
+        <% end %>
+    </div>
+    <div class="infocard">
+        <p><%= restaurant.name %></p>
+        <p><%= restaurant.address %></p>
+        <% if restaurant.open? %>
+            <p><span class="open">Open</span></p>
+        <% else %>
+            <p><span class="closed">Closed</span></p>
+        <% end %>
+    </div>
+    <div class="ratingcard">
+        <%= restaurant.rating %>
+    </div>
+<% end %>    
+</div>
