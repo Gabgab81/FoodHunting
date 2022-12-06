@@ -42,7 +42,8 @@ export default class extends Controller {
   }
   showCurrentDot() {
     this.dotTargets.forEach((element, index) => {
-      index == this.index? element.classList.add("red") : element.classList.remove("red")
+      // console.log("Dot", element, index )
+      index == this.index? element.classList.add("white" ) : element.classList.remove("white")
     })
   }
 }
