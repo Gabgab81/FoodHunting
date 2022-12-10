@@ -73,6 +73,38 @@
         } 
     }
     
+    .commentmeal{
+        display: flex;
+        width: 90%;
+
+        .commentside > h2{
+            text-align: center;
+        }
+
+        .mealside > h2{
+            text-align: center;
+        }
+
+        .commentside{
+            width: 60%;
+            // padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+            margin-right: 10px;
+        }
+
+        .mealside{
+            width: 40%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+            margin-left: 10px;
+        }
+    }
 }
 
 

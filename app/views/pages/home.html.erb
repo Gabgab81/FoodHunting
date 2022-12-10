@@ -56,15 +56,26 @@
         </button>
     </div>
 
-    <h2>The last comments</h2>
-    <% @lastComments.each do |comment| %>
-        <%= render "components/commentcardhome", comment: comment %>
-    <% end %>
+    <div class="commentmeal">
 
-    <h2>The last new meals</h2>
-    <% @lastMeals.each do |meal| %>
-        <%= render "components/cardproduct", meal: meal %>
-    <% end %>
+        <div class="commentside">
+            <h2>The last comments</h2>
+            <% @lastComments.each do |comment| %>
+                <%= render "components/commentcardhome", comment: comment %>
+            <% end %>
+        </div>
+        
+
+        <div class="mealside">
+            <h2>The last new meals</h2>
+            <% @lastMeals.each do |meal| %>
+                <%= render "components/cardproduct", meal: meal %>
+            <% end %>
+        </div>
+        
+    </div>
+    
+    
 
     <p> <%= link_to "Check restaurants", restaurants_path %>
 </div>
