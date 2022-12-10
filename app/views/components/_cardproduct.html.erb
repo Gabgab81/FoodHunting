@@ -1,0 +1,10 @@
+<div class="card-product">
+  <%# <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> %>
+  <%= cl_image_tag meal.photo.key, crop: :fill %>
+  <div class="card-product-infos">
+    <h2><%= meal.name %></h2>
+    <p><%= meal.description %></p>
+    <p class="bottom"><%= meal.price %>$</p>
+  </div>
+</div>
+
