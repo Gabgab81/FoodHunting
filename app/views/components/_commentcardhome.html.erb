@@ -13,7 +13,7 @@
     </div>
     <div class="rating">
         <% if Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).nil? %>
-            N/C
+            NC
         <% else %>
             <%= Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).content %>
         <% end %>
