@@ -7,6 +7,9 @@ import { application } from "./application"
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
+import DefilementCardController from "./defilement_card_controller"
+application.register("defilement-card", DefilementCardController)
+
 import DefilementImgController from "./defilement_img_controller"
 application.register("defilement-img", DefilementImgController)
 

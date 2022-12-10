@@ -3,12 +3,26 @@ $mblack: #071E22;
 $mred: #C1121F;
 $mgreen: #00A676; 
 
+html {
+    scroll-behavior: smooth;
+}
+
 p{
     margin: 0px;
     padding: 0px;
+}
+h1, h2, h3, h4, h5, h6, p{
+    color: $mblack;
 }
 
 body{
     background-color: $mwhite;
 }
 
+a{
+    text-decoration: none;
+    color: $mblack;
+    &:hover{
+        color: $mblack;
+    }
+}
