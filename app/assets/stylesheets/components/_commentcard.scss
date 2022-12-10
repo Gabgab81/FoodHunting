@@ -1,0 +1,49 @@
+.commentcardhome{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(7, 30, 34, .5); 
+    min-width: 80%;
+    padding: 1.5vw;
+
+    .avatar-bordered{
+        width: 5vw;
+        min-width: 40px;
+        max-width: 80px;
+        height: 5vw;
+        min-height: 40px;
+        max-height: 80px;
+    }
+    
+    .maincontainer{
+        padding-left: 2vw;
+        padding-right: 2vw;
+        width: 100%;
+        h3{
+            border-bottom: 1px solid rgba(7, 30, 34, .1); 
+        }
+        p + .bottom{
+            margin-top: 10px;
+            border-top: 1px solid rgba(7, 30, 34, .1);
+        }
+    }
+
+    .rating{
+        width: 5vw;
+        min-width: 30px;
+        max-width: 50px;
+        height: 5vw;
+        min-height: 30px;
+        max-height: 50px;
+        border-radius: 50%;
+        border: 3px solid $mgreen;
+        background-color: $mwhite;
+        color: $mgreen;
+        padding: 5px;
+        font-size: clamp(0.5rem, 2vw, 1.5rem); ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

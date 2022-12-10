@@ -1,0 +1,21 @@
+<div class="commentcardhome">
+    <div class="avatarcard">
+        <% if comment.user.photo.attached? %>
+            <%= cl_image_tag comment.user.photo.key, crop: :fill, class: "avatar-bordered"  %>
+        <% else %>
+            <%= image_tag('LogoHuntingFoodWithBg', class: "avatar-bordered")   %>
+        <% end %>
+    </div>
+    <div class="maincontainer">
+        <h3><%= comment.user.nickname  %></h3>
+        <p><%= comment.content%></p>
+        <p class='bottom'>From <%= comment.restaurant.name %></p>
+    </div>
+    <div class="rating">
+        <% if Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).nil? %>
+            N/C
+        <% else %>
+            <%= Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).content %>
+        <% end %>
+    </div>
+</div>

@@ -58,7 +58,7 @@
 
     <h2>The last comments</h2>
     <% @lastComments.each do |comment| %>
-        <p><%= comment.user.nickname %>: <%= comment.content%> for <%= comment.restaurant.name %></p>
+        <%= render "components/commentcardhome", comment: comment %>
     <% end %>
 
     <h2>The last new meals</h2>
