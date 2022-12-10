@@ -63,9 +63,8 @@
 
     <h2>The last new meals</h2>
     <% @lastMeals.each do |meal| %>
-        <p><%= meal.name %> from <%= meal.restaurant.name %></p>
+        <%= render "components/cardproduct", meal: meal %>
     <% end %>
 
     <p> <%= link_to "Check restaurants", restaurants_path %>
-
 </div>
