@@ -1,0 +1,42 @@
+.footer{
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid rgba(5, 47, 95, 0.1);
+    align-items: center;
+    height: 50px;
+    padding: 0px 10px;
+    // background-color: red;
+    .width20 ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 125px;
+        a{
+            font-size: 25px;
+            color: $mblack;
+            transition: font-size 0.1s ease-in-out 0s;
+            &:hover{
+                font-size: 35px;
+            }
+        }
+      }
+    p{  
+        margin: 0px;
+    }
+    .width20{
+        width: 270px;
+    }
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
