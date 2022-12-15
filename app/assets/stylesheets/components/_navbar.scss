@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  border-bottom: 2px solid rgba(7, 30, 34, .1);
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -15,6 +16,10 @@
   span{
     color: $mred;
   }
+}
+
+.navbar-lewagon .navbar-brand a{
+  margin: 0;
 }
 
 .navbar-lewagon .navbar-brand{
@@ -34,4 +39,36 @@
 
 .search{
   // width: 60%;
+}
+
+@media screen and (max-width: 1000px) {
+  .search{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .collapse{
+    align-items: flex-start;
+  }
+  .navbar-lewagon{
+    height: 175px;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .navbar-lewagon .navbar-brand h1{
+    font-size: 3vw;
+  }
 }
