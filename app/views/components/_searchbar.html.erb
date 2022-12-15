@@ -54,8 +54,8 @@
                     <%= f.input :order, legend_tag: false, as: :radio_buttons, collection: [
                         ['Newer', 'new'], 
                     ['Older', 'old'],
-                    ['More comments', 'comment'],
-                    ['Better rating', 'best']], 
+                    ['Popular', 'comment'],
+                    ['Best', 'best']], 
                     label_method: :first, value_method: :second, label: false %>
                 </div>
             <% else %>

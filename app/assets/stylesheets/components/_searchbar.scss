@@ -1,6 +1,6 @@
 .searchbar{
     width: fit-content;
-
+    margin-top: 10px;
 
     .delimiter{
         width: 1px;
@@ -143,11 +143,43 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center; 
+        align-items: center;
+        .simple_form{
+            width: 100%;
+        }
+        .form2-2{
+            width: 100%;
+        } 
         .mb-3{
+            width: 80%;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
+            // margin: 0 !important;
+            // margin-top: 5px;
+            margin: 5px auto 0 auto !important;
+            font-size: 20px;
+        }
+        .form-check{
+            padding: 0;
+
+            input + label{
+                cursor: pointer;  
+            }
+            input + label:after{
+                display:block;
+                content: '';
+                border-bottom: 2px solid $mblack;
+                transform: scaleX(0);  
+                transition: transform 250ms ease-in-out;
+            }
+            input + label:hover:after{
+                transform: scaleX(1);
+            }
+
+            input{
+                visibility: hidden;
+            }
         }
     }
     
