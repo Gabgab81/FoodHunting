@@ -1,0 +1,79 @@
+<div class="searchbar">
+    <div class="form1">
+        <%= simple_form_for :queries, url: restaurants_path, method: :get  do |f| %>
+            <div class="generalinput">
+                <%= f.input :query, placeholder: "Restaurants, meals...", input_html: {value: params[:queries].nil? ? "" : params[:queries][:query]}, label: false %>
+            </div>
+
+            <%= f.hidden_field :order, value: "best" %>
+
+            <div class="delimiter"></div>
+
+            <div class="addressinput">
+                <%= f.input :address, label: false,
+                input_html: { data: {address_autocomplete_target: "address"}, class: "d-none"},
+                wrapper_html: { data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+            </div>
+            
+            <div class="delimiter"></div>
+
+            <div class="distanceinput">
+                <%= f.input :distance, label: false, input_html: {value: params[:queries].nil? ? "" : params[:queries][:distance]} , placeholder: "Km" %>
+            </div>
+
+            <div class="delimiter"></div>
+            
+            <div class="typeinput">
+                <%= f.input :type, label: false, collection: ["Restaurants", "Meals", "Proteins+", "Proteins-", "Carbs+", "Carbs-", "Fats+",  "Fats-"], selected: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
+            </div>
+            
+            <div class="submitinput">
+                <% if false %>
+                    <%= f.button :submit, '', class: "fa-solid fa-magnifying-glass" do %>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <% end %>
+                <% end %>
+                <%= button_tag type: 'submit', class: "" do %>
+                    <i class="fas fa-search"></i>
+                <% end %>
+            </div>
+            
+        <% end %>
+    </div>
+
+    <% if flash[:query_errors] %>
+        <% flash[:query_errors].each do |msg| %>
+            <p> <%= msg %> </p>
+        <% end %>
+    <% end %>
+
+    <div data-controller="submit-item" class="form2">
+        <%= simple_form_for :queries, url: restaurants_path, method: :get, data:{submit_item_target: "form"}  do |f| %>
+            <% if params[:queries].nil? || params[:queries][:type] == "Restaurants" %>
+                <div data-action = 'click->submit-item#submit', class="form2-2">
+                    <%= f.input :order, legend_tag: false, as: :radio_buttons, collection: [
+                        ['Newer', 'new'], 
+                    ['Older', 'old'],
+                    ['More comments', 'comment'],
+                    ['Better rating', 'best']], 
+                    label_method: :first, value_method: :second, label: false %>
+                </div>
+            <% else %>
+                <div data-action = 'click->submit-item#submit', class="form2-2">
+                    <%= f.input :order, as: :radio_buttons, legend_tag: false, collection: [
+                        ['Newer', 'new'], 
+                    ['Older', 'old'],
+                    ['Better rating', 'best']], 
+                    label_method: :first, value_method: :second, label: false %>
+                </div>
+            <% end %>
+
+            <%= f.hidden_field :query, value: params[:queries].nil? ? "" : params[:queries][:query] %>
+            <%= f.hidden_field :address, value: params[:queries].nil? ? "" : params[:queries][:address] %>
+            <%= f.hidden_field :distance, value: params[:queries].nil? ? "" : params[:queries][:distance] %>
+            <%= f.hidden_field :type, value: params[:queries].nil? ? "Restaurants" : params[:queries][:type] %>
+        
+        <% end %>
+
+    </div>
+</div>

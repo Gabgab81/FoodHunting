@@ -1,0 +1,155 @@
+.searchbar{
+    width: fit-content;
+
+
+    .delimiter{
+        width: 1px;
+        height: 20px;
+        background-color: $mblack;
+    }
+
+    .form1 > .simple_form {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 25px;
+        border: solid 1px $mblack;
+        box-shadow: 0 0 3px 1px rgba(7, 30, 34, .3);
+
+        .generalinput{
+            max-width: 200px;
+            // border-radius: 25px 1px 25px 1px;
+            // border: none;
+            .form-control{
+                border-radius: 25px 0 0 25px;
+                border: none;
+                background-color: white;
+                height: 100%;
+            }
+            input:focus{
+                box-shadow: none;
+            }
+            .mb-3{
+                margin: 0 !important;
+            }
+        }
+
+        .addressinput{
+            // display: inline-block;
+            // width: 10%;
+            .mb-3{
+                // width: 10%;
+                margin: 0 !important;
+            }
+            .mapboxgl-ctrl-geocoder{
+                border: none;
+                min-width: 50px;
+                // width: 50px;
+                max-width: 150px;
+                // width: 100%;
+                // border: 1px solid lightgrey;
+                box-shadow: none;
+                background-color: white;
+            }
+        }
+
+        .distanceinput{
+            max-width: 50px;
+            height: 100%;
+            .mb-3{
+                margin: 0 !important;
+                .form-control{
+                    background-color: white;
+                    border: none;
+                }
+            }
+            input:focus{
+                box-shadow: none;
+            }
+            
+        }
+
+        .typeinput{
+            max-width: 150px;
+
+            height: 100%;
+            .mb-3{
+                margin: 0 !important;
+            }
+            select{
+                border: none;
+                background-color: white;
+                margin: 0;      
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                box-shadow: none;
+
+                background-image:
+                  linear-gradient(45deg, transparent 50%, $mwhite 50%),
+                  linear-gradient(135deg, $mwhite 50%, transparent 50%),
+                  radial-gradient($mred 70%, transparent 72%);
+                background-position:
+                  calc(100% - 20px) calc(1em + 2px),
+                  calc(100% - 15px) calc(1em + 2px),
+                  calc(100% - .5em) .5em;
+                background-size:
+                  5px 5px,
+                  5px 5px,
+                  1.5em 1.5em;
+                background-repeat: no-repeat;
+            }
+            select:focus {
+                background-image:
+                    linear-gradient(45deg, $mred 50%, transparent 50%),
+                    linear-gradient(135deg, transparent 50%, $mred 50%),
+                    radial-gradient($mwhite 70%, transparent 72%);
+                background-position:
+                    calc(100% - 15px) 1em,
+                    calc(100% - 20px) 1em,
+                    calc(100% - .5em) .5em;
+                background-size:
+                    5px 5px,
+                    5px 5px,
+                    1.5em 1.5em;
+                background-repeat: no-repeat;
+                border-color: green;
+                outline: 0;
+            }
+            
+        }
+
+        .submitinput{
+            // width: 10%;
+            height: 100%;
+            button{
+                all: unset;
+                color: $mwhite;
+                background-color: $mred;
+                border-radius: 50%;
+                text-align: center;
+                width: 30px;
+                height: 30px;
+                margin: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .form2{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        .mb-3{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    
+    
+}
