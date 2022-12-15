@@ -2,22 +2,22 @@
 
 //CSS for the form's ingredient
 //Change to a more appropriete place
-.form-check{
-    input + label{
-        background: aqua;
-        cursor: pointer;
-        &:hover{
-            border: 1px solid red;
-        }
+// .form-check{
+//     input + label{
+//         background: aqua;
+//         cursor: pointer;
+//         &:hover{
+//             border: 1px solid red;
+//         }
         
-    }
-    input{
-        visibility: hidden;
-        // &:checked + label {
-        //     background: red;
-        // }
-    }
-}
+//     }
+//     input{
+//         visibility: hidden;
+//         // &:checked + label {
+//         //     background: red;
+//         // }
+//     }
+// }
 
 .homepage{
     display: flex;
