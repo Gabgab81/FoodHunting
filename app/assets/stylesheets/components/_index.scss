@@ -1,4 +1,6 @@
 // Import your components CSS files here.
+@import "initialisation";
+
 @import "alert";
 @import "avatar";
 @import "form_legend_clear";
@@ -6,7 +8,6 @@
 @import "map";
 @import "address_autocomplete";
 
-@import "initialisation";
 @import "smallcard";
 @import "footer";
 @import "commentcard";

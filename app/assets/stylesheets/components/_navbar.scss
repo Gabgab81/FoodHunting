@@ -8,9 +8,30 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 80px;
+}
+.navbar-lewagon .navbar-brand h1{
+  font-size: 36px;
+  span{
+    color: $mred;
+  }
+}
+
+.navbar-lewagon .navbar-brand{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 30%;
+}
+
+.collapse{
+  width: 30%;
+  // margin-left: auto;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .search{
-  width: 60%;
+  // width: 60%;
 }
