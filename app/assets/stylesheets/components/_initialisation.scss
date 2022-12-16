@@ -6,6 +6,15 @@ $mgreen: #00A676;
 html {
     scroll-behavior: smooth;
 }
+.init{
+    display: flex;
+    flex-direction: column;
+    min-height: 94vh;
+}
+
+.main{
+    flex: 1;
+}
 
 p{
     margin: 0px;
@@ -24,5 +33,16 @@ a{
     color: $mblack;
     &:hover{
         color: $mblack;
+    }
+}
+
+.positionnavbar{
+    width: 100%;
+    height: 110px;
+}
+
+@media screen and (max-width: 1000px) {
+    .positionnavbar{
+        height: 175px;
     }
 }
