@@ -1,7 +1,24 @@
 <div class="smallcard" 
 data-controller="defilement-img" 
 data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
-<%#= link_to restaurant_path(restaurant)do %>
+    <% if !restaurant.photos.empty? && restaurant.photos.count != 1%>
+        <div class="btn-img-outside">
+
+            <div>
+                <button class="left" data-action="click->defilement-img#previous">
+                        <i class="fa-sharp fa-solid fa-circle-chevron-left"></i>
+                </button>
+            </div>
+            
+            <div>
+                <button class="right" data-action="click->defilement-img#next">
+                    <i class="fa-sharp fa-solid fa-circle-chevron-right"></i>
+                </button>
+            </div>
+            
+        </div>
+    <% end %>
+<%= link_to restaurant_path(restaurant)do %>
     <% if restaurant.photos.empty? %>
 
         <div class="imgcard" style="background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.2)), url(' <%=  image_path 'LogoHuntingFoodWithBg' %>'); background-size: cover; background-position: center;">
@@ -79,7 +96,7 @@ data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
                 </div>
                 <div class="btn-img">
 
-                    <div>
+                    <%# <div>
                         <button class="left" data-action="click->defilement-img#previous">
                                 <i class="fa-sharp fa-solid fa-circle-chevron-left"></i>
                         </button>
@@ -90,7 +107,7 @@ data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
                             <i class="fa-sharp fa-solid fa-circle-chevron-right"></i>
                         </button>
                     </div>
-                    
+                     %>
                 </div>
                 <div class="spacedot">
                 </div>
@@ -107,14 +124,14 @@ data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
         <p class="cutoff-text"><%= restaurant.address %></p>
         <div class="openrate">
             <% if restaurant.open? %>
-                <p><span class="open">Open</span></p>
+                <p class="open">Open</p>
             <% else %>
-                <p><span class="closed">Closed</span></p>
+                <p class="closed">Closed</p>
             <% end %>
             <div class="ratingcard">
                 <%= restaurant.rating %>
             </div>
         </div>
     </div>
-<%# end %>
+<% end %>
 </div>

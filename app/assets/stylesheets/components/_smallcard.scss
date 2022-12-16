@@ -18,13 +18,40 @@
 
     margin: 10px;
 
-    &:hover{
-         
-        .imgcard{
-            .btn-img{
-                visibility: visible;  
+    .btn-img-outside{
+        height: 0px;
+        width: 100%;
+        display: flex;
+        // visibility: hidden;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px 0px 20px;
+        position: relative;
+        top: 100px;
+
+        .left, .right{
+            all: unset;
+            cursor: pointer;
+            color: rgba(247,247,249,0.80);
+            font-size: 25px;
+            &:hover{
+                scale: 1.1;
+                color: $mwhite;
+            
             }
         }
+    }
+
+    &:hover{
+        .btn-img-outside{
+            visibility: visible; 
+            // background-color: blue; 
+        }
+        // .imgcard{
+        //     .btn-img{
+        //         visibility: visible;  
+        //     }
+        // }
         .dots-img{
             visibility: visible;
         } 
@@ -144,6 +171,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            .open{
+                color: $mgreen;
+            }
+
+            .closed{
+                color: $mred;
+            }
             .ratingcard{
                 border-radius: 50%;
                 border: 3px solid $mgreen;

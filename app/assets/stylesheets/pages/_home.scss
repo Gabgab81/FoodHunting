@@ -34,31 +34,6 @@
         display: flex;
         justify-content: space-between;
 
-        .left, .right{
-            all: unset;
-            cursor: pointer;
-            color: rgba(247,247,249,0.60);
-            font-size: 3rem;
-            -webkit-animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	            animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-            
-            &:hover{
-                -webkit-animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	            animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                  
-            }
-        }
-        .left{
-            position: relative;
-            left: 70px;
-        }
-
-        .right{
-            position: relative;
-            right: 70px;
-        }
-
-
         .display-items{
             // text-align: center;
             display: flex;
@@ -72,7 +47,32 @@
             // white-space: nowrap;
         } 
     }
-    
+
+    .display-card-and-btn > .left, .display-card-and-btn > .right{
+        all: unset;
+        cursor: pointer;
+        color: rgba(247,247,249,0.60);
+        font-size: 3rem;
+        -webkit-animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        
+        &:hover{
+            -webkit-animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                
+        }
+    }
+    .display-card-and-btn > .left{
+        position: relative;
+        left: 70px;
+    }
+
+    .display-card-and-btn > .right{
+        position: relative;
+        right: 70px;
+    }
+
+
     .commentmeal{
         display: flex;
         width: 90%;
