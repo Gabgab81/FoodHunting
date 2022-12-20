@@ -160,7 +160,9 @@
 
     .restaurant-menu{
         display: flex;
-        justify-content: stretch;
+        // justify-content: stretch;
+        width: 80%;
+        margin: 0 auto;
         // align-items: center;
 
         .info-restaurant{
@@ -361,12 +363,15 @@
             }
            
         }
+
+       
     }
 
     // ------- Comments side ---------
 
     .comments{
-        margin: 0 5vw;
+        width: 70%;
+        margin: 0 auto;
         padding: 10px;
         .title-line{
             display: flex;
@@ -402,7 +407,34 @@
             }
         }
     }
+
+    // ------- For responsive -------
+
+    @media only screen and (max-width: 1600px) {
+        .restaurant-menu{
+            width: auto;
+        }
+
+        .comments{
+            width: 90%;
+
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .restaurant-menu{
+            display: block;
+
+            .menu{
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    }
 }
+
+
+
 
 @keyframes fade_in_show {
     0% {
