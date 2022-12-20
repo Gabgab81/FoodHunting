@@ -7,10 +7,11 @@ export default class extends Controller {
     nphotos: Number
   }
   connect() {
+    console.log("img form def img: ", this.imgTargets)
     this.index = 0
     this.showCurrentImg()
     this.showCurrentDot()
-    if (this.nphotos > 5) { this.nphotos = 5 }
+    if (this.nphotosValue > 5) { this.nphotosValue = 5 }
   }
 
   next(){

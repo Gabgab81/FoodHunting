@@ -128,6 +128,7 @@
             button{
                 all: unset;
                 color: $mwhite;
+                border: 1px solid $mwhite; 
                 background-color: $mred;
                 border-radius: 50%;
                 text-align: center;
@@ -135,6 +136,13 @@
                 height: 30px;
                 margin: 5px;
                 cursor: pointer;
+
+                transition: color .5s, background-color .5s, border .5s ;
+                &:hover{
+                    color: $mred;
+                    background-color: $mwhite;
+                    border: 1px solid $mred; 
+                }
             }
         }
     }

@@ -1,3 +1,350 @@
+
+ <div class="showrestaurant" data-controller="defilement-img-show"
+ data-defilement-img-show-nphotos-value = <%= @restaurant.photos.count %>>
+  <div class="pictures">
+    <% if @restaurant.photos.attached? %>
+        <% if @restaurant.photos.count == 1 %>
+          <div class="fav">
+            <% if current_user.favorites.where(restaurant_id: @restaurant).empty? %>
+              <%= simple_form_for [@restaurant, @favorite] do |f| %>
+                <%= button_tag type: 'submit', class: "" do %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_path(@favorite), method: :delete do %>
+                <div class="redheart">
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="img-restaurant">
+
+            <% @restaurant.photos.each do |photo| %>
+
+              <div class="img-card">
+                <%= cl_image_tag photo.key, crop: :fill %>
+              </div>
+              
+            <% end %>
+
+          </div>
+
+        <% elsif @restaurant.photos.count == 2 %>
+
+          <div class="fav">
+            <% if current_user.favorites.where(restaurant_id: @restaurant).empty? %>
+              <%= simple_form_for [@restaurant, @favorite] do |f| %>
+                <%= button_tag type: 'submit', class: "" do %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_path(@favorite), method: :delete do %>
+                <div class="redheart">
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="img-restaurant-2">
+            <% i = 0 %>
+            <% @restaurant.photos.each do |photo| %>
+              <% i += 1 %>
+              <button class="btn-img" data-action="click->defilement-img-show#switch" data-defilement-img-show-target="img">
+                <%= cl_image_tag photo.key, crop: :fill %>
+              </button>
+              
+            <% end %>
+
+          </div>
+          
+        <% else %>
+
+          <div class="btn-img-outside">
+
+            <div>
+                <button class="left" id="button"
+                data-defilement-img-show-target="btnLeft" 
+                data-action="click->defilement-img-show#previous">
+                </button>
+            </div>
+            
+            <div>
+                <button class="right" 
+                data-defilement-img-show-target="btnRight"
+                data-action="click->defilement-img-show#next">
+                </button>
+            </div>
+            
+          </div>
+
+          <div class="fav">
+            <% if current_user.favorites.where(restaurant_id: @restaurant).empty? %>
+              <%= simple_form_for [@restaurant, @favorite] do |f| %>
+                <%= button_tag type: 'submit', class: "" do %>
+                    <div class="heart">
+                        <i class="fa-duotone fa-regular fa-heart"></i>
+                    </div>
+                    <div class="fheart">
+                        <i class="fa-sharp fa-solid fa-heart"></i>
+                    </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_path(@favorite), method: :delete do %>
+                <div class="redheart">
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="img-restaurant-more">
+            
+            <% @restaurant.photos.each do |photo| %>
+        
+              <div class="btn-img" data-defilement-img-show-target="img">
+                <%= cl_image_tag photo.key, crop: :fill %>
+              </div>
+              
+            <% end %>
+
+          </div>
+
+        <% end %>
+
+    <% else %>
+
+      <div class="fav">
+        <% if current_user.favorites.where(restaurant_id: @restaurant).empty? %>
+          <%= simple_form_for [@restaurant, @favorite] do |f| %>
+            <%= button_tag type: 'submit', class: "" do %>
+                <div class="heart">
+                    <i class="fa-duotone fa-regular fa-heart"></i>
+                </div>
+                <div class="fheart">
+                    <i class="fa-sharp fa-solid fa-heart"></i>
+                </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to favorite_path(@favorite), method: :delete do %>
+            <div class="redheart">
+                <i class="fa-sharp fa-solid fa-heart"></i>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="img-restaurant">
+        <%= image_tag 'LogoHuntingFoodWithBg', crop: :fill %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="restaurant-menu">
+  
+    <div class="info-restaurant">
+      <div class="name-rating">
+
+        <div class="space"></div>
+
+        <h2> <%= @restaurant.name %> </h2>
+
+        <div class="rating-restaurant">
+          <% if @restaurant.rating == 0 %>
+            <p>?</p>
+          <% else %>
+            <%= @restaurant.rating %>
+          <% end %>
+        </div>
+        
+      </div>
+      
+      <div class="address-phone">
+      
+        <p><%= @restaurant.address %> </p>
+
+        <p><i class="fa-solid fa-phone"></i> <%= @restaurant.phone %> </p>
+
+        <% if @restaurant.open? %>
+
+          <button title="Click to Show/Hide the schedule" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {
+              document.getElementById('spoiler') .style.display='block'
+              document.getElementById('spoiler') .style.animation='fade_in_show 0.5s'
+            }else{
+              document.getElementById('spoiler') .style.display='none'
+              // document.getElementById('spoiler') .style.animation='fade_out_show 0.5s'
+              }">
+            
+            <%schedule =  @restaurant.schedules.where(weekday: Time.now.wday).first %>
+            <% if schedule.am_closes_at.nil? %>
+                <p class="open"><span>Open</span> <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
+            <% else %>
+              <p class="open"><span>Open</span> 
+                  <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.am_closes_at.strftime("%H:%M") %> / 
+                  <%= schedule.pm_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %>
+              </p>
+            <% end %>
+
+          </button>
+          
+          <div id="spoiler" style="display:none">
+          
+            <% @restaurant.schedules.each do |schedule| %>
+              <% if schedule.am_closes_at.nil? %>
+                  <p><%= weekdays[schedule.weekday - 1][:label] %> : <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
+              <% else %>
+              <p><%= weekdays[schedule.weekday - 1][:label] %>:
+                  <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.am_closes_at.strftime("%H:%M") %> / 
+                  <%= schedule.pm_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %>
+              </p>
+              <% end %>
+            <% end %>
+
+          </div>
+
+          <p>It will close in <%= @restaurant.whenClose  %></p>
+
+        <% else %>
+
+            <button title="Click to Show/Hide the schedule" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {
+              document.getElementById('spoiler') .style.display='block'
+              document.getElementById('spoiler') .style.animation='fade_in_show 0.5s'
+              }else{
+                document.getElementById('spoiler') .style.display='none'
+                // document.getElementById('spoiler') .style.animation='fade_out_show 0.5s'
+              }">
+            
+              <%schedule =  @restaurant.schedules.where(weekday: Time.now.wday).first %>
+              <% if !schedule.nil? %>
+                <% if schedule.am_closes_at.nil? %>
+                    <p class="closed"><span>Closed</span> <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
+                <% else %>
+                  <p class="closed"><span>Closed</span>
+                      <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.am_closes_at.strftime("%H:%M") %> / 
+                      <%= schedule.pm_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %>
+                  </p>
+                <% end %>
+              <% else %>
+                <p class="closed"><span>Closed</span></p>
+              <% end %>
+            
+            </button>
+
+            <div id="spoiler" style="display:none">
+            
+              <% @restaurant.schedules.each do |schedule| %>
+                <% if schedule.am_closes_at.nil? %>
+                    <p><%= weekdays[schedule.weekday - 1][:label] %> : <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
+                <% else %>
+                <p><%= weekdays[schedule.weekday - 1][:label] %>:
+                    <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.am_closes_at.strftime("%H:%M") %> / 
+                    <%= schedule.pm_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %>
+                </p>
+                <% end %>
+              <% end %>
+            </div>
+
+
+            <p>It will open in <%= @restaurant.whenOpen  %></p>
+        <% end %>
+ 
+        <%# <button title="Click to Show/Hide Content" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Show/Hide</button>
+        <div id="spoiler" style="display:none">
+        ADD YOUR HIDDEN CONTENT HERE
+        </div> %>
+      </div>
+
+      <div class="description">
+        <p><%= @restaurant.description %> </p>
+      </div>
+
+      <div class="rating">
+        
+        <% if Ratingr.find_by(user_id: current_user, restaurant_id: @restaurant).nil? %>
+          <p>Rate this restaurant: </p>
+          <%= simple_form_for [@restaurant, @ratingr] do |f| %>
+            <%= f.input :content, collection: (1..5).to_a, label: false, selected: 5 %>
+            <%#= f.submit "Submit yout rating" %>
+            <div class="submitinput">
+              <%= button_tag type: 'submit', class: "" do %>
+                <i class="fa-solid fa-check"></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>You rate this restaurant <span><%= Ratingr.find_by(user_id: current_user, restaurant_id: @restaurant).content %>/5</span></p>
+        <% end %>
+      </div>
+    
+    </div>
+
+    <div class="menu">
+      <div class="title-line">
+        <div class="line">
+        </div>
+        <h2>Menu</h2>
+        <div class="line">
+        </div>
+      </div>
+
+      <div class="list-menus">
+        
+
+        <% @restaurant.meals.each do |meal| %>
+            <%= render "components/cardproduct", meal: meal %>
+        <% end %>
+
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="comments">
+    <div class="title-line">
+      <div class="line">
+      </div>
+      <h2>Comments</h2>
+      <div class="line">
+      </div>
+    </div> 
+
+    <div class="list-comments">
+      <div data-controller="insert-in-list">
+
+        <div class="insert-in-list" data-insert-in-list-target="items">
+          <% @restaurant.comments.each do |comment| %>
+              <%= render "components/commentcardhome", comment: comment %>
+          <% end %>
+        </div>
+      
+      
+      <% if user_signed_in? %>
+        <%= render 'comments/form', restaurant: @restaurant, comment: @comment %>
+      <% end %>
+      
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<% if false %>
 <h1> <%= @restaurant.name %> </h1>
 
 <% if @restaurant.photos.attached? %>
@@ -95,3 +442,4 @@
 
   <%= render 'comments/form', restaurant: @restaurant, comment: @comment %>
 </div>
+<% end %>
