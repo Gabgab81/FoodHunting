@@ -16,6 +16,11 @@
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(7, 30, 34, .5); 
 
+    transition: box-shadow .2s ease-in-out;
+    &:hover{
+        box-shadow: 0 0 15px $mred
+    }
+
     margin: 10px;
 
     .btn-img-outside{
