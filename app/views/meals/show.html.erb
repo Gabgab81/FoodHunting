@@ -1,3 +1,144 @@
+<div class="show-meal">
+    <% if @meal.photo.attached? %>
+            
+        <div class="img-meal">
+
+            <%= cl_image_tag @meal.photo.key, crop: :fill %>
+
+        </div>
+
+    <% else %>
+
+        <div class="img-meal">
+
+            <%= image_tag 'LogoHuntingFoodWithBg', crop: :fill %>
+
+        </div>
+        
+    <% end %>
+
+    <div class="meal-ingredient">
+
+        <div class="info-meal">
+            <div class="name">
+
+                <h2> <%= @meal.name %> </h2>
+
+            </div>
+            
+
+            <div class="description">
+                <p><%= @meal.description %> </p>
+
+                <p>Price: <%= @meal.price %>$</p>
+            </div>
+
+            <div class="nutriments">
+
+                <p>Proteins: <%= @meal.protein %>g </p>
+                <p>Carbohydrates: <%= @meal.carbohydrate %>g </p>
+                <p>Fat: <%= @meal.fat %>g </p>
+
+            </div>
+
+            <%= link_to restaurant_path(@meal.restaurant), title: "Click on it to access to the restaurant" do %>
+                <div class="restaurant">
+
+                    <div class="name-rating">
+
+                        <h2>From <%= @meal.restaurant.name %> </h2>
+
+                        <div class="rating-restaurant">
+                        <% if @meal.restaurant.rating == 0 %>
+                            <p>?</p>
+                        <% else %>
+                            <%= @meal.restaurant.rating %>
+                        <% end %>
+                        </div>
+                        
+                    </div>
+
+                    <div class="address-phone">
+
+                        <p><%= @meal.restaurant.address %> </p>
+                        <p><i class="fa-solid fa-phone"></i> <%= @meal.restaurant.phone %> </p>
+
+                        <% if @meal.restaurant.open? %>
+                            <p class="open"><span>Open</span>. It will close in <%= @meal.restaurant.whenClose  %></p> 
+                        <% else %>
+                            <p class="closed"><span>Closed</span>. It will open in <%= @meal.restaurant.whenOpen  %></p>
+                        <% end %>
+                    </div>
+                
+                </div>
+
+            <% end %>
+
+            <% if @meal.restaurant.user == current_user %>
+                <div class="setting">
+                    <p>
+                        <%= link_to edit_restaurant_meal_path(@meal.restaurant, @meal), title: "Edit your meal" do %>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        <% end %>    
+                    </p>
+                    <p>
+                        <%= link_to new_restaurant_meal_ingredient_path(@meal.restaurant, @meal), title: "Add a ingredient to the meal" do %>
+                            <i class="fa-solid fa-cart-plus"></i>
+                        <% end %>                    
+                    </p>   
+                    <p>
+                        <%= link_to meal_path(@meal), method: :delete, data: { confirm: "Are you sure?" }, title: "Delete your meal" do %>
+                            <i class="fa-solid fa-trash"></i>
+                        <% end %>
+                    </p> 
+                </div>
+            <% end %>
+
+
+        </div>
+
+        <div class="ingredients">
+            <div class="title-line">
+                <div class="line">
+                </div>
+                    <h2>Ingredients</h2>
+                <div class="line">
+                </div>
+            </div>
+
+            <div class="list-ingredients">
+            
+
+                <% if @ingredients.nil? %>
+                    <p>No ingredient added yet.</p>
+                <% else %>
+                    <% @ingredients.each do |ingredient| %>
+
+                        <%= render "components/cardIngredient", ingredient: ingredient %>
+
+                    <% end %>
+                <% end %>
+
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+<%# ----------------------------------------------------------------------------- %>
+
+
+
+
+
+<% if false %>
 <h1> <%= @meal.name %></h1>
 
 <p> <%="Price: #{@meal.price}$"  %>
@@ -47,4 +188,7 @@
 <p>Proteins: <%= @meal.protein %>g </p>
 <p>Carbohydrates: <%= @meal.carbohydrate %>g </p>
 <p>Fat: <%= @meal.fat %>g </p>
+
+<% end %>
+
 <%= link_to "Back to the restaurant", restaurant_path(@meal.restaurant)  %>

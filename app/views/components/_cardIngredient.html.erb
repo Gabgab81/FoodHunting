@@ -1,0 +1,27 @@
+<div class="card-ingredient">
+  <%# <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> %>
+    <% if ingredient.image.nil? %>
+        <%= image_tag 'LogoHuntingFoodWithBg', crop: :fill %>
+    <% else %>
+      <div class="img-ingredient">
+        <%= image_tag(ingredient.image) %>
+      </div>
+    <% end %>
+  <div class="card-ingredient-infos">
+    <h2><%= ingredient.name %></h2>
+    <p>Proteins(100g): <%= ingredient.info["proteins_100g"] %>g</p>
+    <p>Carbohydrates(100g): <%= ingredient.info["carbohydrates_100g"] %>g</p>
+    <p>Fats(100g)<%= ingredient.info["fats_100g"] %>g</p>
+    <p>weight: <%= ingredient.weight %>g </p>
+  </div>
+
+  <% if ingredient.meal.restaurant.user == current_user %>
+    <div class="delete">
+      <%= link_to ingredient_path(ingredient),
+      method: :delete,
+      data: { confirm: "Are you sure?" }, title: "Remove this ingredient to the meal" do %>
+          <i class="fa-regular fa-circle-xmark"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

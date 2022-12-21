@@ -306,7 +306,9 @@
         
 
         <% @restaurant.meals.each do |meal| %>
+          <%= link_to meal_path(meal) do %>
             <%= render "components/cardproduct", meal: meal %>
+          <% end %>
         <% end %>
 
       </div>
@@ -342,6 +344,10 @@
 
   </div>
 </div>
+
+
+
+<%# ---------------------------------------------------------------------------- %>
 
 
 <% if false %>

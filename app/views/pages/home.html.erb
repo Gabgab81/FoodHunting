@@ -69,7 +69,9 @@
         <div class="mealside">
             <h2>The last new meals</h2>
             <% @lastMeals.each do |meal| %>
-                <%= render "components/cardproduct", meal: meal %>
+                <%= link_to meal_path(meal) do %>
+                    <%= render "components/cardproduct", meal: meal %>
+                <% end %>
             <% end %>
         </div>
         

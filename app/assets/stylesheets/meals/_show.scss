@@ -1,0 +1,212 @@
+.show-meal{
+    // background-color: blue;
+
+    // ------ img --------
+
+    .img-meal{
+
+        img{
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+    }
+
+    // -------- info side -------
+
+    .meal-ingredient{
+
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        // height: 600px;
+
+
+        .info-meal{
+
+            flex: 2;
+            padding: 10px;
+            margin-left: 5vw;
+            margin-right: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            // align-items: center;
+
+            .name{
+
+                height: 60px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+
+                h2{
+                    text-align: center;
+                    width: 100%;
+                }
+                
+
+            }
+
+            .restaurant{
+
+                .name-rating{
+                    // height: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .rating-restaurant{
+                        height: 35px;
+                        width: 35px;
+                        border-radius: 50%;
+                        border: 3px solid $mgreen;
+                        background-color: $mwhite;
+                        color: $mgreen;
+                        padding: 5px;
+                        font-size: 12px;
+                        margin-right: 1vw;
+                    }
+                }
+
+                .address-phone{
+
+                    
+                    .open span{
+                        color: $mgreen;
+                    }
+
+                    .closed span{
+                        color: $mred;
+                    }
+                }
+
+                transition: box-shadow .2s ease-in-out;
+                &:hover{
+                    box-shadow: 0 0 15px $mred
+                }
+            }
+
+            .setting{
+                display: flex;
+                justify-content: space-evenly;
+                padding: 10px;
+                font-size: 20px;
+                a{
+                    color: $mblack;
+                    transition: color .2s ease-in-out;
+                    i{
+                       transition: scale .2s ease-in-out;
+                    } 
+
+                }
+                a:hover{
+                    color: $mred;
+                    i{
+                        scale: 1.2;
+                    }
+                    
+                }
+            }
+
+            .description, .nutriments, .restaurant{
+                padding: 10px 10px 10px 30px;
+            }
+
+            .description, .name, .nutriments, .restaurant, .setting{
+                width: 100%;
+                margin: 10px 0;
+                // padding: 10px 10px 10px 30px;
+                border-radius: 25px;
+                border: 1px solid rgba(7, 30, 34, .3);
+                box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
+            }
+        }
+
+        .ingredients{
+
+            // overflow-y: scroll;
+
+            flex: 1;
+            margin-right: 5vw;
+            margin-left: 30px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .title-line{
+
+                display: flex;
+                justify-content: stretch;
+                align-items: center;
+                margin: 20px 0;
+
+                .line{
+                    flex-grow: 1;
+                    width: 10px;
+                    height: 1px;
+                    border-bottom: 3px solid rgba(7, 30, 34, .9);
+                }
+
+                h2{
+                    flex-grow: 2;
+                    text-align: center;
+                }
+
+            }
+
+            .list-ingredients{
+
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                // overflow-y: hidden;
+                // overflow: scroll;
+
+            }
+        }
+
+    }
+
+      // ------- For responsive -------
+
+    @media only screen and (max-width: 1600px) {
+        .meal-ingredient{
+            width: auto;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .meal-ingredient > .ingredients{
+            flex: 1.5;
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .meal-ingredient{
+            display: block;
+            width: 80%;
+
+            .ingredients{
+                width: 85%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .meal-ingredient{
+            display: block;
+            width: 90%;
+
+            .ingredients{
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+}
