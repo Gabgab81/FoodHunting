@@ -1,14 +1,15 @@
 .card-ingredient {
     background-color: blue;
-    overflow: hidden;
-    max-height: 170px;
-    height: fit-content;
+    // overflow: hidden;
+    max-height: 200px;
+    // height: ;
     background: $mwhite;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
     display: flex;
     justify-content: center;
     // align-items: stretch;
     border-radius: 25px;
+    margin: 10px;
 
   }
   .card-ingredient .img-ingredient{
@@ -18,7 +19,7 @@
   .card-ingredient img {
     height: 100%;
     width: 100%;
-    
+    border-radius: 25px 0 0 25px;
     // flex-shrink: 30;
     // flex-basis: 10px;
     object-fit: cover;
@@ -31,6 +32,8 @@
     flex-grow: 1.5;
     // width: 40vw;
     padding: 15px;
+    // height: auto;
+    // overflow: visible;
   }
   
   .card-ingredient h2 {

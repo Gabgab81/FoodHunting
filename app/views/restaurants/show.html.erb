@@ -345,7 +345,14 @@
   </div>
 </div>
 
-
+<% if current_user.id == @restaurant.user_id %>
+    <%= link_to "Create new meal", new_restaurant_meal_path(@restaurant)  %>
+    <%= link_to "Modifiy #{@restaurant.name}", edit_restaurant_path(@restaurant)  %>
+    <%= link_to "Delete #{@restaurant.name}",
+                restaurant_path(@restaurant),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+<% end %>
 
 <%# ---------------------------------------------------------------------------- %>
 

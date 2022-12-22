@@ -16,6 +16,9 @@ application.register("defilement-img", DefilementImgController)
 import DefilementImgShowController from "./defilement_img_show_controller"
 application.register("defilement-img-show", DefilementImgShowController)
 
+import DefilementIngredientShowController from "./defilement_ingredient_show_controller"
+application.register("defilement-ingredient-show", DefilementIngredientShowController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

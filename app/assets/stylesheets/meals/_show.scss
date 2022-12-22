@@ -142,7 +142,7 @@
                 display: flex;
                 justify-content: stretch;
                 align-items: center;
-                margin: 20px 0;
+                margin: 20px 0 10px 0;
 
                 .line{
                     flex-grow: 1;
@@ -158,13 +158,56 @@
 
             }
 
+            button{
+                all: unset;
+                cursor: pointer;
+            }
+
+            .btn-top{
+                // padding: O auto;
+                
+                margin: 0 auto 10px auto;
+                width: 0px;
+                height: 0px;
+                color: $mblack;
+                border-style: solid;
+                border-width: 0 80px 40px 80px;
+                border-color: transparent transparent currentColor transparent;
+                transition: color 500ms ease-in-out;
+                &:hover{
+                    // transition: color .2 ease-in-out;
+                    color: $mred;
+                    border-color: transparent transparent currentColor transparent;
+                }
+
+            }
+
+            .btn-bottom{
+                
+                margin: 10px auto 0 auto;
+                width: 0px;
+                height: 0px;
+                color: $mblack;
+                border-style: solid;
+                border-width: 40px 80px 1px 80px;
+                border-color: currentColor transparent transparent transparent;
+                transition: color 500ms ease-in-out;
+                &:hover{
+                    // transition: color .2 ease-in-out;
+                    color: $mred;
+                    border-color: currentColor transparent transparent transparent;
+                }
+            }
+
             .list-ingredients{
 
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
-                // overflow-y: hidden;
-                // overflow: scroll;
+                height: 100px;
+                // gap: 10px;
+                // overflow-Y: scroll;
+                overflow: hidden;
+                // background-color: $mwhite;
 
             }
         }
