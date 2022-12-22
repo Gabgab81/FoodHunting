@@ -16,10 +16,12 @@
         </div>
         
     <% end %>
-
-    <div class="meal-ingredient">
+   
+    <div class="meal-ingredient" data-controller="defilement-ingredient-show"
+    data-defilement-ingredient-show-ningredients-value = <%= @meal.ingredients.count %> >
 
         <div class="info-meal">
+      
             <div class="name">
 
                 <h2> <%= @meal.name %> </h2>
@@ -97,7 +99,7 @@
 
         </div>
 
-        <div class="ingredients">
+        <div class="ingredients" > 
             <div class="title-line">
                 <div class="line">
                 </div>
@@ -106,7 +108,16 @@
                 </div>
             </div>
 
-            <div class="list-ingredients">
+
+                <button class="btn-top" data-action="click->defilement-ingredient-show#up">
+                        <%# <i class="fa-solid fa-chevron-up"></i> %>
+                        <%# <i class="fa-solid fa-circle-up"></i> %>
+                        <%# <i class="fa-solid fa-caret-up"></i> %>
+                        <%# <i class="fa-solid fa-chevron-up"></i> %>
+                </button>
+        
+            
+            <div class="list-ingredients" data-defilement-ingredient-show-target = "cards">
             
 
                 <% if @ingredients.nil? %>
@@ -120,6 +131,12 @@
                 <% end %>
 
             </div>
+
+        
+            <button class="btn-bottom" data-action="click->defilement-ingredient-show#down">
+                <%# <i class="fa-sharp fa-solid fa-circle-chevron-right"></i> %>
+                <%# <i class="fa-solid fa-chevron-down"></i> %>
+            </button>
             
         </div>
     </div>
