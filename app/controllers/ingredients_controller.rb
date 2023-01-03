@@ -41,7 +41,7 @@ class IngredientsController < ApplicationController
                 @meal.fat =0
             end
             @meal.save
-            redirect_to ingredient_path(@ingredient)
+            redirect_to meal_path(@ingredient.meal)
         else
             flash[:ingredient_errors] = @ingredient.errors.full_messages
             redirect_to new_restaurant_meal_ingredient_path(@meal.restaurant, @meal)
