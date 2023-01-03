@@ -37,9 +37,9 @@
 
             <div class="nutriments">
 
-                <p>Proteins: <%= @meal.protein %>g </p>
-                <p>Carbohydrates: <%= @meal.carbohydrate %>g </p>
-                <p>Fat: <%= @meal.fat %>g </p>
+                <p>Proteins: <%= (@meal.protein % 1) == 0 ? @meal.protein.to_i : @meal.protein %>g </p>
+                <p>Carbohydrates: <%= (@meal.carbohydrate % 1) == 0 ? @meal.carbohydrate.to_i : @meal.carbohydrate %>g </p>
+                <p>Fat: <%= (@meal.fat % 1) == 0 ? @meal.fat.to_i : @meal.fat.round %>g </p>
 
             </div>
 
@@ -109,12 +109,9 @@
             </div>
 
 
-                <button class="btn-top" data-action="click->defilement-ingredient-show#up">
-                        <%# <i class="fa-solid fa-chevron-up"></i> %>
-                        <%# <i class="fa-solid fa-circle-up"></i> %>
-                        <%# <i class="fa-solid fa-caret-up"></i> %>
-                        <%# <i class="fa-solid fa-chevron-up"></i> %>
-                </button>
+            <button class="btn-top" data-action="click->defilement-ingredient-show#up">
+                <i class="fa-solid fa-circle-chevron-up"></i>
+            </button>
         
             
             <div class="list-ingredients" data-defilement-ingredient-show-target = "cards">
@@ -132,10 +129,8 @@
 
             </div>
 
-        
             <button class="btn-bottom" data-action="click->defilement-ingredient-show#down">
-                <%# <i class="fa-sharp fa-solid fa-circle-chevron-right"></i> %>
-                <%# <i class="fa-solid fa-chevron-down"></i> %>
+                <i class="fa-solid fa-circle-chevron-down"></i>
             </button>
             
         </div>

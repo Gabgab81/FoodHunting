@@ -112,11 +112,12 @@
     0% {
       -webkit-transform: scale(1);
               transform: scale(1);
-              color: rgba(247,247,249,0.60);
+            //   color: rgba(247,247,249,0.60);
+            color: $mwhite;
     }
     50% {
-        -webkit-transform: scale(0.8);
-                transform: scale(0.8);
+        -webkit-transform: scale(0.9);
+                transform: scale(0.9);
                 color: $mblack;
       }
     100% {
@@ -129,11 +130,12 @@
     0% {
         -webkit-transform: scale(1);
                 transform: scale(1);
-                color: rgba(247,247,249,0.60);
+                // color: rgba(247,247,249,0.60);
+                color: $mwhite;
       }
       50% {
-          -webkit-transform: scale(0.8);
-                transform: scale(0.8);
+          -webkit-transform: scale(0.9);
+                transform: scale(0.9);
                 color: $mblack;
         }
       100% {
@@ -148,6 +150,7 @@
       -webkit-transform: scale(1.2);
               transform: scale(1.2);
               color: $mwhite;
+            //   background-color: blue;
     }
     50% {
         -webkit-transform: scale(0.8);
@@ -157,7 +160,8 @@
     100% {
       -webkit-transform: scale(1);
               transform: scale(1);
-              color: rgba(247,247,249,0.60);
+            //   color: rgba(247,247,249,0.60);
+            color: $mwhite;
     }
   }
   @keyframes scale-down{
@@ -174,6 +178,39 @@
       100% {
         -webkit-transform: scale(1);
                 transform: scale(1);
-                color: rgba(247,247,249,0.60);
+                // color: rgba(247,247,249,0.60);
+                color: $mwhite;
+      }
+  }
+
+//   -------- Animation for background btn ---------
+
+  @keyframes background-up{
+    0% {
+        background-color: $mblack;
+        border: 2px solid $mblack;
+      }
+      50% {
+        background-color: $mwhite;
+        border: 2px solid $mwhite;
+        }
+      100% {
+        background-color: $mred;
+        border: 2px solid $mred;
+      }
+  }
+  
+  @keyframes background-down{
+    0% {
+        background-color: $mred;
+        border: 2px solid $mred;
+      }
+      50% {
+        background-color: $mwhite;
+        border: 2px solid $mwhite;
+        }
+      100% {
+        background-color: $mblack;
+        border: 2px solid $mblack;
       }
   }

@@ -160,43 +160,40 @@
 
             button{
                 all: unset;
+                // cursor: pointer;
+            }
+
+            .btn-top, .btn-bottom{
+                margin: 0 auto;
+                text-align: center;
+                line-height: 0px;
+                height: 0;
                 cursor: pointer;
+                i{
+                    border-radius: 50%;
+                    animation: background-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                }
+                font-size: 3rem;
+                -webkit-animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                    animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                
+                &:hover{
+                    -webkit-animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                    animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                    i{
+                        animation: background-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                    }
+                }
             }
 
             .btn-top{
-                // padding: O auto;
-                
-                margin: 0 auto 10px auto;
-                width: 0px;
-                height: 0px;
-                color: $mblack;
-                border-style: solid;
-                border-width: 0 80px 40px 80px;
-                border-color: transparent transparent currentColor transparent;
-                transition: color 500ms ease-in-out;
-                &:hover{
-                    // transition: color .2 ease-in-out;
-                    color: $mred;
-                    border-color: transparent transparent currentColor transparent;
-                }
-
+                position: relative;
+                top: 20px;
             }
 
             .btn-bottom{
-                
-                margin: 10px auto 0 auto;
-                width: 0px;
-                height: 0px;
-                color: $mblack;
-                border-style: solid;
-                border-width: 40px 80px 1px 80px;
-                border-color: currentColor transparent transparent transparent;
-                transition: color 500ms ease-in-out;
-                &:hover{
-                    // transition: color .2 ease-in-out;
-                    color: $mred;
-                    border-color: currentColor transparent transparent transparent;
-                }
+                position: relative;
+                bottom: 60px;
             }
 
             .list-ingredients{
