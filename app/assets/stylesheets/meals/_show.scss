@@ -168,18 +168,20 @@
                 text-align: center;
                 line-height: 0px;
                 height: 0;
+                // background-color: rgba(7, 30, 34, .1);
                 cursor: pointer;
                 i{
+                    // background-color: rgba(7, 30, 34, 0);
+                    // color: rgba(247,247,249,0);
+                    // color: rgba(7, 30, 34, .1);
                     border-radius: 50%;
                     animation: background-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
                 }
                 font-size: 3rem;
-                -webkit-animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                    animation: scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                animation: arrow-scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
                 
                 &:hover{
-                    -webkit-animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                    animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                    animation: arrow-scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
                     i{
                         animation: background-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
                     }
@@ -210,6 +212,73 @@
         }
 
     }
+
+    //   -------- Animation for btn ---------
+
+    @keyframes background-up{
+        0% {
+            background-color: $mblack;
+            // background-color: rgba(7, 30, 34, .1);
+            border: 2px solid $mblack;
+            // border: 2px solid rgba(7, 30, 34, .1);
+          }
+          50% {
+            background-color: $mwhite;
+            border: 2px solid $mwhite;
+            }
+          100% {
+            background-color: $mred;
+            border: 2px solid $mred;
+          }
+      }
+      
+      @keyframes background-down{
+        0% {
+            background-color: $mred;
+            border: 2px solid $mred;
+          }
+          50% {
+            background-color: $mwhite;
+            border: 2px solid $mwhite;
+            }
+          100% {
+            // background-color: $mblack;
+            background-color: rgba(7, 30, 34, 0.1);
+            border: 2px solid rgba(7, 30, 34, 0.2);
+          }
+      }
+
+      @keyframes arrow-scale-up{
+        0% {
+                transform: scale(1);
+                color: rgba(247,247,249,0.1);
+                // color: $mwhite;
+          }
+          50% {
+                transform: scale(0.9);
+                color: $mblack;
+            }
+          100% {
+                transform: scale(1.2);
+                color: $mwhite;
+          }
+      }
+    
+      @keyframes arrow-scale-down{
+        0% {
+                transform: scale(1.2);
+                color: $mwhite;
+          }
+          50% {
+                transform: scale(0.8);
+                color: $mblack;
+            }
+          100% {
+                transform: scale(1);
+                color: rgba(247,247,249,0.5);
+                // color: $mwhite;
+          }
+      }
 
       // ------- For responsive -------
 

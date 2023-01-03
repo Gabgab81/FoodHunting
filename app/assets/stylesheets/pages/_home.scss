@@ -182,35 +182,3 @@
                 color: $mwhite;
       }
   }
-
-//   -------- Animation for background btn ---------
-
-  @keyframes background-up{
-    0% {
-        background-color: $mblack;
-        border: 2px solid $mblack;
-      }
-      50% {
-        background-color: $mwhite;
-        border: 2px solid $mwhite;
-        }
-      100% {
-        background-color: $mred;
-        border: 2px solid $mred;
-      }
-  }
-  
-  @keyframes background-down{
-    0% {
-        background-color: $mred;
-        border: 2px solid $mred;
-      }
-      50% {
-        background-color: $mwhite;
-        border: 2px solid $mwhite;
-        }
-      100% {
-        background-color: $mblack;
-        border: 2px solid $mblack;
-      }
-  }
