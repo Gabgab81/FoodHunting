@@ -15,7 +15,7 @@
         <% if Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).nil? %>
             NC
         <% else %>
-            <%= Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).content %>
+            <%= Ratingr.find_by(user_id: comment.user, restaurant_id: comment.restaurant).content.to_i %>
         <% end %>
     </div>
 </div>
