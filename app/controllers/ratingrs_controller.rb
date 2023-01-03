@@ -9,7 +9,7 @@ class RatingrsController < ApplicationController
         authorize @ratingr
         # raise
         if @ratingr.save
-            @restaurant.rating = @restaurant.ratingrs.inject(0) {|sum, rate| sum + rate.content} / @restaurant.ratingrs.count
+            @restaurant.rating = (@restaurant.ratingrs.inject(0) {|sum, rate| sum + rate.content} / @restaurant.ratingrs.count).round(1)
             @restaurant.save
             @restaurant.meals.each do |meal|
                 meal.rating = @restaurant.rating

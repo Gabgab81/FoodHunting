@@ -129,7 +129,7 @@ data-defilement-img-nphotos-value = <%= restaurant.photos.count %>>
                 <p class="closed">Closed</p>
             <% end %>
             <div class="ratingcard">
-                <%= restaurant.rating %>
+                <%= (restaurant.rating % 1) == 0 ? restaurant.rating.to_i : restaurant.rating %>
             </div>
         </div>
     </div>

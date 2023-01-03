@@ -168,7 +168,7 @@
           <% if @restaurant.rating == 0 %>
             <p>?</p>
           <% else %>
-            <%= @restaurant.rating %>
+            <%= (@restaurant.rating % 1) == 0 ? @restaurant.rating.to_i : @restaurant.rating %>
           <% end %>
         </div>
         
