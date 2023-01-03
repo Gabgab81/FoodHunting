@@ -32,9 +32,9 @@ class IngredientsController < ApplicationController
         # raise
         if @ingredient.save
             if @meal.ingredients.count > 0
-                @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"]* ingredient.weight)/100}
-                @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
-                @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+                @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"]* ingredient.weight)/100}.round(1)
+                @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}.round(1)
+                @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}.round(1)
             else
                 @meal.protein = 0
                 @meal.carbohydrate = 0
@@ -53,9 +53,9 @@ class IngredientsController < ApplicationController
         @meal = @ingredient.meal
         @ingredient.destroy
         if @meal.ingredients.count > 0
-            @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}
-            @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}
-            @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}
+            @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"] * ingredient.weight)/100}.round(1)
+            @meal.carbohydrate = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}.round(1)
+            @meal.fat = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}.round(1)
         else
             @meal.protein = 0
             @meal.carbohydrate = 0
