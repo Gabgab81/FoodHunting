@@ -160,24 +160,21 @@
 
 
     .restaurant-menu{
+
         display: flex;
-        // justify-content: stretch;
         width: 80%;
         margin: 0 auto;
-        // align-items: center;
 
         .info-restaurant{
+
             flex: 2;
-            // height: 200px;
-            // background-color: blue;
-            // margin: 10px;
             padding: 10px;
             margin-left: 5vw;
             margin-right: 30px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            align-items: center;
+            // align-items: center;
 
             .name-rating{
                 // max-width: 600px;
@@ -240,7 +237,7 @@
                 justify-content: space-between;
                 align-items: center;
 
-                height: 100%;
+                // height: 100%;
 
                 p span{
                     color: $mgreen;
@@ -325,7 +322,29 @@
 
             }
 
-            .name-rating, .address-phone, .description, .rating{
+            .setting{
+                display: flex;
+                justify-content: space-evenly;
+                padding: 10px;
+                font-size: 20px;
+                a{
+                    color: $mblack;
+                    transition: color .2s ease-in-out;
+                    i{
+                       transition: scale .2s ease-in-out;
+                    } 
+
+                }
+                a:hover{
+                    color: $mred;
+                    i{
+                        scale: 1.2;
+                    }
+                    
+                }
+            }
+
+            .name-rating, .address-phone, .description, .rating, .setting{
                 width: 100%;
                 margin: 10px 0;
                 padding: 10px 10px 10px 30px;
@@ -338,21 +357,19 @@
 
         .menu{
             flex: 1;
-            // height: 200px;
-            // height: 100px;
             margin-right: 5vw;
             margin-left: 30px;
             padding: 10px;
-            // background-color: green;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            // align-items: flex-start;
+
             .title-line{
                 display: flex;
                 justify-content: stretch;
                 align-items: center;
                 margin: 20px 0;
+
                 .line{
                     // flex-shrink: 1;
                     flex-grow: 1;
@@ -367,6 +384,87 @@
             }
            
         }
+
+
+
+
+        button{
+            all: unset;
+            // cursor: pointer;
+        }
+
+        .btn-top, .btn-bottom{
+            margin: 0 auto;
+            text-align: center;
+            line-height: 0px;
+            height: 0;
+            // background-color: rgba(7, 30, 34, .1);
+            cursor: pointer;
+            i{
+                // background-color: rgba(7, 30, 34, 0);
+                // color: rgba(247,247,249,0);
+                // color: rgba(7, 30, 34, .1);
+                border-radius: 50%;
+                animation: background-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            }
+            font-size: 3rem;
+            animation: arrow-scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            
+            &:hover{
+                animation: arrow-scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                i{
+                    animation: background-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                }
+            }
+        }
+
+        .btn-top{
+            position: relative;
+            top: 20px;
+        }
+
+        .btn-bottom{
+            position: relative;
+            bottom: 60px;
+        }
+
+        .list-menus{
+
+            display: flex;
+            flex-direction: column;
+            height: 100px;
+            // gap: 10px;
+            // overflow-Y: scroll;
+            overflow: hidden;
+            // background-color: $mwhite;
+
+            .delete{
+                position: relative;
+                left: 15px;
+                top: 15px;
+                height: 0;
+                // width: 0;
+
+                i{
+                    font-size: 20px;
+                    color: $mblack;
+                    transition: color .2s ease-in-out, scale .2s ease-in-out;
+                }
+                
+                &:hover{
+                    i{
+                    color: $mred;
+                    scale: 1.2;
+                    }
+                    
+                }
+            }
+
+        }
+
+
+
+
 
        
     }
@@ -425,9 +523,27 @@
         }
     }
 
+    @media only screen and (max-width: 1200px) {
+        .restaurant-menu > .menu{
+            flex: 1.5;
+        }
+    }
+
     @media only screen and (max-width: 1000px) {
         .restaurant-menu{
             display: block;
+
+            .menu{
+                width: 85%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .restaurant-menu{
+            display: block;
+            width: 90%;
 
             .menu{
                 width: 90%;

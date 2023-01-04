@@ -1,33 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="defilement-ingredient-show"
+// Connects to data-controller="defilement-meal-show"
 export default class extends Controller {
   static targets = ["cards"]
-  static values = {
-    ningredients: Number
-  }
-  connect() {
-    this.height = this.element.querySelector('.info-meal').offsetHeight
 
+  connect() {
+
+    console.log("card target: ", this.cardsTargets)
+    this.height = this.element.querySelector('.info-restaurant').offsetHeight
+    console.log("height: ", this.height)
     this.position = 0
     
-    this.allCardNode = this.element.querySelectorAll('.list-ingredients > .card-ingredient');
+    this.allCardNode = this.element.querySelectorAll('.list-menus > a > .card-product');
     this.totalHeightCards = 0
     this.allCardNode.forEach((node) => this.totalHeightCards += node.offsetHeight)
+    console.log("totalHzightCard: ", this.totalHeightCards)
     this.element.querySelector('.btn-top').style.display = 'none'
    
-    if (this.totalHeightCards + 70 < this.height) {
+    if (this.totalHeightCards + 100 < this.height) {
       this.element.querySelector('.btn-top').remove()
       this.element.querySelector('.btn-bottom').remove()
-      this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
+      this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
     } else {
-      this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
+      this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
     }
   }
 
+
   up(){
 
-    if ((this.position > this.firstCardHeight * 2) && (this.totalHeightCards > this.listIngredient + this.lastCardHeight)) {
+    if ((this.position > this.firstCardHeight * 2) && (this.totalHeightCards > this.listMenu + this.lastCardHeight)) {
       this.position -= 200
       this.element.querySelector('.btn-bottom').style.display = 'block'
     } else {
@@ -45,16 +47,16 @@ export default class extends Controller {
 
   down(){
 
-    this.allCardNode = this.element.querySelectorAll('.list-ingredients > .card-ingredient');
+    this.allCardNode = this.element.querySelectorAll('.list-menus > a > .card-product');
     this.firstCardHeight = this.allCardNode[0].offsetHeight;
     this.lastCardHeight = this.allCardNode[this.allCardNode.length - 1].offsetHeight;
    
     this.totalHeightCards = 0
     this.allCardNode.forEach((node) => this.totalHeightCards += node.offsetHeight)
 
-    this.listIngredient = this.element.querySelector('.list-ingredients').offsetHeight
+    this.listMenu = this.element.querySelector('.list-menus').offsetHeight
 
-    if ((this.position < this.totalHeightCards - this.lastCardHeight * 4) && (this.totalHeightCards > this.listIngredient + this.lastCardHeight)) {
+    if ((this.position < this.totalHeightCards - this.lastCardHeight * 4) && (this.totalHeightCards > this.listMenu + this.lastCardHeight)) {
       this.position += 200
       this.element.querySelector('.btn-top').style.display = 'block'
       this.cardsTargets[0].scrollTo({
@@ -68,9 +70,10 @@ export default class extends Controller {
         left: 0,
         behavior: 'smooth'
       });
-      this.position = this.totalHeightCards - this.listIngredient
+      this.position = this.totalHeightCards - this.listMenu
       this.element.querySelector('.btn-bottom').style.display = 'none'
       this.element.querySelector('.btn-top').style.display = 'block'
     }
   }
+
 }

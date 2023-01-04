@@ -1,81 +1,79 @@
 .card-ingredient {
-    background-color: blue;
-    // overflow: hidden;
-    max-height: 200px;
-    // height: ;
-    background: $mwhite;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    // align-items: stretch;
-    border-radius: 25px;
-    margin: 10px;
+  
+  max-height: 200px;
+  // height: ;
+  background: $mwhite;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  // align-items: stretch;
+  border-radius: 25px;
+  margin: 10px;
 
-  }
-  .card-ingredient .img-ingredient{
-    min-width: 140px;
-    flex: 1;
-  }
-  .card-ingredient img {
-    height: 100%;
-    width: 100%;
-    border-radius: 25px 0 0 25px;
-    // flex-shrink: 30;
-    // flex-basis: 10px;
-    object-fit: cover;
-    // display: flex;
+}
 
-  }
+.card-ingredient .img-ingredient{
+  min-width: 140px;
+  flex: 1;
+}
 
-  .card-ingredient-infos{
-    min-width: 170px;
-    flex-grow: 1.5;
-    // width: 40vw;
-    padding: 15px;
-    // height: auto;
-    // overflow: visible;
+.card-ingredient img {
+  height: 100%;
+  width: 100%;
+  border-radius: 25px 0 0 25px;
+  object-fit: cover;
+
+}
+
+.card-ingredient-infos{
+  min-width: 170px;
+  flex-grow: 1.5;
+  // width: 40vw;
+  padding: 15px;
+  // height: auto;
+  // overflow: visible;
+}
+
+.card-ingredient h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-ingredient p {
+  font-size: 12px;
+  line-height: 1.4;
+  // opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-ingredient p + .bottom{
+  text-align: end;
+}
+
+.card-ingredient .card-ingredient-infos {
+  // padding: 16px;
+  // width: 100%;
+}
+
+.card-ingredient .delete{
+  position: relative;
+  right: 10px;
+  top: 10px;
+  height: 0;
+  // width: 0;
+  i{
+    font-size: 20px;
+    color: $mblack;
+    transition: color .2s ease-in-out, scale .2s ease-in-out;
   }
   
-  .card-ingredient h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .card-ingredient p {
-    font-size: 12px;
-    line-height: 1.4;
-    // opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
-  }
-
-  .card-ingredient p + .bottom{
-    text-align: end;
-  }
-  
-  .card-ingredient .card-ingredient-infos {
-    // padding: 16px;
-    // width: 100%;
-  }
-
-  .card-ingredient .delete{
-    position: relative;
-    right: 10px;
-    top: 10px;
-    height: 0;
-    // width: 0;
+  &:hover{
     i{
-      font-size: 20px;
-      color: $mblack;
-      transition: color .2s ease-in-out, scale .2s ease-in-out;
+      color: $mred;
+      scale: 1.2;
     }
     
-    &:hover{
-      i{
-        color: $mred;
-        scale: 1.2;
-      }
-      
-    }
   }
+}
