@@ -440,8 +440,8 @@
 
             .delete{
                 position: relative;
-                left: 230px;
-                top: 20px;
+                left: 15px;
+                top: 15px;
                 height: 0;
                 // width: 0;
 
@@ -523,9 +523,27 @@
         }
     }
 
+    @media only screen and (max-width: 1200px) {
+        .restaurant-menu > .menu{
+            flex: 1.5;
+        }
+    }
+
     @media only screen and (max-width: 1000px) {
         .restaurant-menu{
             display: block;
+
+            .menu{
+                width: 85%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .restaurant-menu{
+            display: block;
+            width: 90%;
 
             .menu{
                 width: 90%;

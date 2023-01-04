@@ -5,6 +5,8 @@ export default class extends Controller {
   static targets = ["cards"]
 
   connect() {
+
+    console.log("card target: ", this.cardsTargets)
     this.height = this.element.querySelector('.info-restaurant').offsetHeight
     console.log("height: ", this.height)
     this.position = 0
@@ -15,12 +17,12 @@ export default class extends Controller {
     console.log("totalHzightCard: ", this.totalHeightCards)
     this.element.querySelector('.btn-top').style.display = 'none'
    
-    if (this.totalHeightCards + 70 < this.height) {
+    if (this.totalHeightCards + 100 < this.height) {
       this.element.querySelector('.btn-top').remove()
       this.element.querySelector('.btn-bottom').remove()
       this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
     } else {
-      this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
+      this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
     }
   }
 
@@ -45,7 +47,7 @@ export default class extends Controller {
 
   down(){
 
-    this.allCardNode = this.element.querySelectorAll('.list-menus > .card-product');
+    this.allCardNode = this.element.querySelectorAll('.list-menus > a > .card-product');
     this.firstCardHeight = this.allCardNode[0].offsetHeight;
     this.lastCardHeight = this.allCardNode[this.allCardNode.length - 1].offsetHeight;
    
