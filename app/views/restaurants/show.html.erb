@@ -336,7 +336,11 @@
       
       
       <% if user_signed_in? %>
-        <%= render 'comments/form', restaurant: @restaurant, comment: @comment %>
+        <div class="comment-adv">
+          <div class="simple-form">
+            <%= render 'comments/form', restaurant: @restaurant, comment: @comment %>
+          </div>
+        </div>
       <% end %>
       
       </div>
