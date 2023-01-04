@@ -27,7 +27,8 @@
         height: 0px;
         width: 100%;
         display: flex;
-        // visibility: hidden;
+        visibility: hidden;
+        opacity: 0;
         justify-content: space-between;
         align-items: center;
         padding: 0px 20px 0px 20px;
@@ -50,7 +51,8 @@
     &:hover{
         .btn-img-outside{
             visibility: visible; 
-            // background-color: blue; 
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         }
         // .imgcard{
         //     .btn-img{
@@ -59,6 +61,8 @@
         // }
         .dots-img{
             visibility: visible;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         } 
       }
     
@@ -139,6 +143,7 @@
         bottom: 20px;
         // background-color: blue;
         visibility: hidden;
+        opacity: 0;
         width: 100%;
         display: flex;
         justify-content: center;
