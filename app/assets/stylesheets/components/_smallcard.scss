@@ -191,11 +191,16 @@
             }
             .ratingcard{
                 border-radius: 50%;
+                width: 30px;
+                height: 30px;
                 border: 3px solid $mgreen;
                 background-color: $mwhite;
                 color: $mgreen;
                 padding: 5px;
                 font-size: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
