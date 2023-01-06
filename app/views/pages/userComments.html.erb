@@ -1,8 +1,22 @@
-<h1>All comments created by <%= current_user.nickname %></h1>
+<div class="comments">
 
-<% @comments.each do |comment| %>
-    <%= link_to restaurant_path(comment.restaurant) do %>
-        <p><%= comment.restaurant.name %></p>
-        <p><%= comment.content %> </p>
-    <% end %>
-<% end %>
+    <div class="title-line">
+        <div class="line">
+        </div>
+        <h2>All your comments</h2>
+        <div class="line">
+        </div>
+    </div> 
+
+    <div class="list-comments">
+        <% @comments.each do |comment| %>
+            <%= link_to restaurant_path(comment.restaurant), title: "Click to show the restaurant" do %>
+                <div class="restaurant">
+                    <%= comment.restaurant.name %>
+                </div>
+                <%= render "components/commentcardhome", comment: comment %>
+            <% end %>
+        <% end %>
+    </div>
+
+</div>
