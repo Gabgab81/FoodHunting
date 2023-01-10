@@ -1,7 +1,25 @@
-<h1>All raitings created by <%= current_user.nickname %></h1>
 
-<% @ratingrs.each do |ratingr| %>
-    <%= link_to restaurant_path(ratingr.restaurant) do %>
-        <p><%= ratingr.content %>/5 for <%= ratingr.restaurant.name %></p>
-    <% end %>
-<% end %>
+<div class="user-restaurant">
+
+    <div class="title-line">
+        <div class="line">
+        </div>
+        <h2>All your raitings</h2>
+        <div class="line">
+        </div>
+    </div> 
+
+    <div class="list-restaurants">
+        <% @ratingrs.each do |ratingr| %>
+            <%= link_to restaurant_path(ratingr.restaurant), title: "Click to show the restaurant" do %>
+                <%= render "components/cardrestaurant", restaurant: ratingr.restaurant %>
+            <% end %>
+            <div class="raiting-absolute">
+                <div class="raiting">
+                    <p><%= ratingr.content %>/5</p>
+                </div>
+            </div>
+            
+        <% end %>
+    </div>  
+</div>

@@ -36,6 +36,30 @@
                 box-shadow: 0 0 10px rgba(193, 18, 31, 1);
             }
         }
+        .raiting-absolute{
+            height: 0px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            .raiting{
+                position: relative;
+                bottom: 130px;
+                right: 25px;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                border: 3px solid $mgreen;
+                background-color: $mwhite;
+                padding: 5px;
+                font-size: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                p{
+                    color: $mgreen;
+                }
+            }
+        }
         
         
     }
