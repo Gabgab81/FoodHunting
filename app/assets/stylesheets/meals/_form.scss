@@ -1,0 +1,98 @@
+.form-meal{
+
+    color: $mblack;
+    background-color: $mwhite;
+    width: 40%;
+    margin: 0 auto;
+
+    .info, h2{
+        border-radius: 25px;
+        border: 1px solid rgba(7, 30, 34, .3);
+        box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
+        padding: 15px;
+    }
+    .info{
+        margin: 15px;
+        .form-control{
+            border-radius: 10px;
+        }
+    }
+    h2{
+        margin: 15px 15px 0 15px;
+        text-align: center;
+    }
+
+    .submit-back{
+        // background-color: blue;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
+        input{
+            // width: 20%;
+            height: 40px;
+            margin: 0px Auto;
+            padding: 5px;
+            border-radius: 25px;
+            color: $mwhite;
+            background-color: $mred;
+            border: 2px solid $mred;
+            transition: all 0.2s ease-in-out 0s;
+            transition-property: border, background-color, color;
+            &:hover{
+                background-color: $mwhite;
+                color: $mred;
+                border: 2px solid $mred;
+            }
+        }
+        a{
+            margin-top: 5px;
+            text-align: center;
+            color: $mblack;
+            transition: color 0.2s ease-in-out 0s;
+            &:hover{
+                // background-color: $mwhite;
+                color: $mred;
+                // border: 2px solid $mred;
+            }
+        }
+    }
+
+}
+
+// ------- For responsive -------
+
+@media only screen and (max-width: 1500px) {
+    .form-meal{
+        width: 50%;
+
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .form-meal{
+        width: 60%;
+
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .form-meal{
+        width: 70%;
+
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .form-meal{
+        width: 80%;
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .form-meal{
+        width: 100%;
+
+    }
+}
