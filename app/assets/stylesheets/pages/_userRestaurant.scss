@@ -1,0 +1,75 @@
+.user-restaurant{
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    .title-line{
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+        margin: 20px 0;
+        .line{
+            // flex-shrink: 1;
+            flex-grow: 1;
+            width: 10px;
+            height: 1px;
+            border-bottom: 3px solid rgba(7, 30, 34, .9);
+        }
+        h2{
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+
+    .list-restaurant{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-right: 10px;
+
+        a .cardrestaurant{
+            &:hover{
+                box-shadow: 0 0 10px rgba(193, 18, 31, 1);
+            }
+        }
+        
+        
+    }
+}
+
+// ------- For responsive -------
+
+@media only screen and (max-width: 1500px) {
+    .user-restaurant{
+        width: 50%;
+
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .user-restaurant{
+        width: 60%;
+
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .user-restaurant{
+        width: 70%;
+
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .user-restaurant{
+        width: 80%;
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .user-restaurant{
+        width: 90%;
+
+    }
+}

@@ -1,0 +1,22 @@
+<div class="card-restaurant">
+
+    <% if restaurant.photos.attached? %>
+        <%= cl_image_tag restaurant.photos.first.key, crop: :fill %>
+    <% else %>
+        <%= image_tag 'LogoHuntingFoodWithBg', crop: :fill %>
+    <% end %>
+
+    <div class="card-restaurant-infos">
+        
+        <div class="info">
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.description %></p>
+            <p><%= restaurant.address %></p>
+            <p><%= restaurant.phone %></p>
+        </div>
+    
+
+    </div>
+
+
+</div>

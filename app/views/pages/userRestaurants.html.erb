@@ -1,5 +1,18 @@
-<h1>All restaurants created by <%= current_user.nickname %></h1>
+<div class="user-restaurant">
 
-<% @restaurants.each do |restaurant| %>
-    <p><%= restaurant.name %></p>
-<% end %>
+    <div class="title-line">
+        <div class="line">
+        </div>
+        <h2>All your restaurants</h2>
+        <div class="line">
+        </div>
+    </div> 
+
+    <div class="list-restaurants">
+        <% @restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant), title: "Click to show the restaurant" do %>
+                <%= render "components/cardrestaurant", restaurant: restaurant %>
+            <% end %>
+        <% end %>
+    </div>  
+</div>
