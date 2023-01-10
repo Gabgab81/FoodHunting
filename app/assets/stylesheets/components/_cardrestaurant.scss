@@ -1,0 +1,46 @@
+.card-restaurant{
+    height: 120px;
+    background: $mwhite;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    overflow: hidden;
+
+    margin: 10px;
+
+    transition: box-shadow .2s ease-in-out;
+    &:hover{
+        box-shadow: 0 0 5px $mred
+    }
+}
+
+.card-restaurant img {
+    height: 100%;
+    width: 120px;
+    object-fit: cover;
+}
+
+.card-restaurant h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.card-restaurant p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+}
+
+.card-product p + .bottom{
+    text-align: end;
+}
+
+.card-restaurant .card-restaurant-infos {
+    padding: 16px;
+    width: 100%;
+}
+  
