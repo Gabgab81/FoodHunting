@@ -20,12 +20,16 @@
         }
     }
 
-    .list-restaurant{
+    .list-restaurants{
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
         margin-right: 10px;
+
+        #list-empty{
+            text-align: center;
+        }
 
         a .cardrestaurant{
             &:hover{
@@ -69,7 +73,7 @@
 
 @media only screen and (max-width: 500px) {
     .user-restaurant{
-        width: 90%;
+        width: 100%;
 
     }
 }

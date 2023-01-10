@@ -1,7 +1,23 @@
-<h1>All favorites from <%= current_user.nickname %></h1>
 
-<% @favorites.each do |favorite| %>
-    <%= link_to restaurant_path(favorite.restaurant) do %>
-        <p><%= favorite.restaurant.name %></p>
-    <% end %>
-<% end %>
+<div class="user-restaurant">
+
+    <div class="title-line">
+        <div class="line">
+        </div>
+        <h2>All your favories</h2>
+        <div class="line">
+        </div>
+    </div> 
+
+    <div class="list-restaurants">
+        <% if @favorites.empty? %>
+            <p id="list-empty">You don't have any favorite yet.</p>
+        <% else %>
+            <% @favorites.each do |favorite| %>
+                <%= link_to restaurant_path(favorite.restaurant), title: "Click to show the restaurant" do %>
+                    <%= render "components/cardrestaurant", restaurant: favorite.restaurant %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>  
+</div>
