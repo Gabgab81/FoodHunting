@@ -1,0 +1,224 @@
+.form-ingredient{
+
+    color: $mblack;
+    background-color: $mwhite;
+    width: 60%;
+    margin: 0 auto;
+
+    .search-ingredient, h2{
+        border-radius: 25px;
+        border: 1px solid rgba(7, 30, 34, .3);
+        box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
+        padding: 15px;
+    }
+    .search-ingredient{
+        margin: 15px;
+        .form-control{
+            border-radius: 10px;
+        }
+    }
+    h2{
+        margin: 15px 15px 0 15px;
+        text-align: center;
+    }
+
+    .submit-btn{
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        
+        input{
+            // width: 20%;
+            height: 40px;
+            margin: 0px Auto;
+            padding: 5px;
+            border-radius: 10px;
+            color: $mwhite;
+            background-color: $mred;
+            border: 2px solid $mred;
+            transition: all 0.2s ease-in-out 0s;
+            transition-property: border, background-color, color;
+            &:hover{
+                background-color: $mwhite;
+                color: $mred;
+                border: 2px solid $mred;
+            }
+        }
+        a{
+            margin-top: 5px;
+            text-align: center;
+            color: $mblack;
+            transition: color 0.2s ease-in-out 0s;
+            &:hover{
+                // background-color: $mwhite;
+                color: $mred;
+                // border: 2px solid $mred;
+            }
+        }
+
+    }
+
+    .search-ingredient .instruction{
+            text-align: center;
+            margin-top: 10px;
+    }
+    
+    .list-card{
+        .cardIngredientSearch{
+            display: flex;
+            flex-direction: column;
+        } 
+    }
+
+    .query-present{
+        // width: 100%;
+        border-radius: 25px;
+        border: 1px solid rgba(7, 30, 34, .3);
+        box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
+        padding: 15px;
+        margin: 0 15px 15px 15px;
+        
+        .simple_form {
+
+            .form-control{
+                border-radius: 10px;
+            }
+
+            p{
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+        
+            .radio_buttons{
+            // background-color: blue;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                legend{
+                    display: none;
+                }
+            }
+
+
+        }
+        
+        .form-check{
+            padding: 0;
+
+            input + label{
+                // background: aqua;
+                background-color: white;
+                cursor: pointer;
+                border-radius: 25px;
+                box-shadow: 0 0 10px rgba(7, 30, 34, .5); 
+
+                transition: box-shadow .2s ease-in-out;
+                
+                &:hover{
+                    box-shadow: 0 0 15px $mred
+                }
+                
+            }
+            input{
+                visibility: hidden;
+                // &:checked + label {
+                //     background: red;
+                // }
+            }
+
+            img{
+                // opacity: 0.5;
+                width: 100%;
+                // height: 60%;
+                object-fit: fill;
+                height: 150px;
+            }
+
+            .name{
+                padding: 10px;
+            }
+
+            .form-check-label{
+            // background-color: blue;
+            overflow: hidden;
+            width: 200px;
+            } 
+        }
+    }
+
+}
+
+// ------- For responsive -------
+
+@media only screen and (max-width: 1800px) {
+    .form-ingredient{
+        width: 70%;
+
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .form-ingredient{
+        width: 80%;
+
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .form-ingredient{
+        width: 90%;
+
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .form-ingredient{
+        width: 100%;
+
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .form-ingredient{
+        // width: 80%;
+        .query-present .form-check .form-check-label{
+            // background-color: blue;
+            // overflow: hidden;
+            width: 20vw;
+        } 
+
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .form-ingredient{
+        // width: 80%;
+        .query-present .form-check .form-check-label{
+            // background-color: blue;
+            // overflow: hidden;
+            width: 28vw;
+        } 
+
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .form-ingredient{
+        // width: 80%;
+        .query-present .form-check .form-check-label{
+            // background-color: blue;
+            // overflow: hidden;
+            width: 40vw;
+        } 
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .form-ingredient{
+        // width: 100%;
+
+    }
+}

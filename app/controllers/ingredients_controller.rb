@@ -9,9 +9,10 @@ class IngredientsController < ApplicationController
     def new
         # raise
         if params[:query].present?
-            @products =  Openfoodfacts::Product.search(params[:query], locale: 'world', page_size: 3)
-          else
-            @products =  Openfoodfacts::Product.search("chocolat", locale: 'world', page_size: 3)
+            @products =  Openfoodfacts::Product.search(params[:query], locale: 'world', page_size: 30)
+            # raise
+        else
+            @products =  Openfoodfacts::Product.search("chocolat", locale: 'world', page_size: 5)
         end
         # raise
         @ingredient = Ingredient.new
@@ -25,7 +26,7 @@ class IngredientsController < ApplicationController
         # @ingredient.info = param
         @product = Openfoodfacts::Product.get(@ingredient.code, locale: 'fr')
         @ingredient.meal = @meal
-        @ingredient.name = @product.product_name
+        # @ingredient.name = @product.product_name
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
         authorize @ingredient
@@ -73,7 +74,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-        params.require(:ingredient).permit(:code, :weight)
+        params.require(:ingredient).permit(:code, :weight, :name)
     end
 
 end
