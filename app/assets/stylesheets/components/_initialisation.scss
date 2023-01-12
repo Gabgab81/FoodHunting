@@ -9,12 +9,18 @@ html {
 .init{
     display: flex;
     flex-direction: column;
-    min-height: 94vh;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .main{
     flex: 1;
 }
+
+// .footer{
+//     position: relative;
+//     bottom: 0;
+// }
 
 p{
     margin: 0px;
