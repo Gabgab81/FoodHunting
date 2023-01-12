@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+    skip_before_action :authenticate_user!, only: [:index, :show]
 
     def index
         if params[:queries].nil? || params[:queries][:type] == "Restaurants"
@@ -126,10 +127,14 @@ class RestaurantsController < ApplicationController
         # if Ratingr.find(user_id: current_user)
         @ratingr = Ratingr.new
 
-        if current_user.favorites.where(restaurant_id: @restaurant).empty?
-            @favorite = Favorite.new
-        else
-            @favorite = current_user.favorites.where(restaurant_id: @restaurant).first
+        if !current_user.nil?
+              
+            if current_user.favorites.where(restaurant_id: @restaurant).empty?
+                @favorite = Favorite.new
+            else
+                @favorite = current_user.favorites.where(restaurant_id: @restaurant).first
+            end
+            
         end
 
         restaurant = Restaurant.where(id: @restaurant.id)
