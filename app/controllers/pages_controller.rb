@@ -8,8 +8,8 @@ class PagesController < ApplicationController
     .group("restaurants.id")
     .order("count(restaurants.id) DESC")
     .reject {|restaurant| restaurant.comments.count == 0}
-    @lastComments = Comment.order('created_at DESC')
-    @lastMeals = Meal.order('created_at DESC')
+    @lastComments = Comment.order('created_at DESC').first(5)
+    @lastMeals = Meal.order('created_at DESC').first(5)
     # raise  
   end
 

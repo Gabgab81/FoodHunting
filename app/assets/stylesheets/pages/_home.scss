@@ -2,22 +2,6 @@
 
 //CSS for the form's ingredient
 //Change to a more appropriete place
-// .form-check{
-//     input + label{
-//         background: aqua;
-//         cursor: pointer;
-//         &:hover{
-//             border: 1px solid red;
-//         }
-        
-//     }
-//     input{
-//         visibility: hidden;
-//         // &:checked + label {
-//         //     background: red;
-//         // }
-//     }
-// }
 
 .homepage{
     display: flex;
@@ -63,13 +47,17 @@
         }
     }
     .display-card-and-btn > .left{
+        height: fit-content;
         position: relative;
         left: 70px;
+        top: 120px;
     }
 
     .display-card-and-btn > .right{
+        height: fit-content;
         position: relative;
         right: 70px;
+        top: 120px;
     }
 
 
@@ -182,3 +170,54 @@
                 color: $mwhite;
       }
   }
+
+
+// ------- For responsive -------
+
+@media only screen and (max-width: 1000px) {
+    .homepage .commentmeal{
+        display: block;
+        .commentside, .mealside{
+            width: 80%;
+            margin: 0 auto;
+        }
+        // .card-product{
+        //     width: 500px;
+        //     margin: 0 auto;
+        // }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .homepage .commentmeal{
+        
+        .commentside, .mealside{
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .homepage .commentmeal{
+        
+        .commentside, .mealside{
+            width: 100%;
+            // margin: 0 auto;
+        }
+    }
+}
+
+// @media only screen and (max-width: 800px) {
+//     .form-meal{
+//         width: 80%;
+
+//     }
+// }
+
+// @media only screen and (max-width: 500px) {
+//     .form-meal{
+//         width: 100%;
+
+//     }
+// }
