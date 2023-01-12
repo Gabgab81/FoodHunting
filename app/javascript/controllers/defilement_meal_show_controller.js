@@ -9,8 +9,8 @@ export default class extends Controller {
 
   connect() {
 
-    console.log("nmeals value: ", this.nmealsValue)
-    console.log("this element: ", this.element.offsetWidth)
+    // console.log("nmeals value: ", this.nmealsValue)
+    // console.log("this element: ", this.element.offsetWidth)
     this.height = this.element.querySelector('.info-restaurant').offsetHeight
     this.position = 0
     
