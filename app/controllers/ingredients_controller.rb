@@ -44,8 +44,9 @@ class IngredientsController < ApplicationController
             @meal.save
             redirect_to meal_path(@ingredient.meal)
         else
-            flash[:ingredient_errors] = @ingredient.errors.full_messages
-            redirect_to new_restaurant_meal_ingredient_path(@meal.restaurant, @meal)
+            # raise
+            flash[:ingredient_errors] = @ingredient.errors.messages
+            redirect_to new_restaurant_meal_ingredient_path(@meal.restaurant, @meal, :query => params[:ingredient][:query])
         end
     end
 

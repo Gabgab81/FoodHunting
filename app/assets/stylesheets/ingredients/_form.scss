@@ -81,6 +81,13 @@
         
         .simple_form {
 
+            .errors{
+                color: red;
+                position: relative;
+                bottom: 10px;
+                left: 20px;
+            }
+
             .form-control{
                 border-radius: 10px;
             }

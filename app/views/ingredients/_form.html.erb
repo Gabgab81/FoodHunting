@@ -25,7 +25,7 @@
 
   </div>
 
-  <%# if params[:query].present? %>
+  <% if params[:query].present? %>
  
 
     <div class="query-present" data-controller="submit-item">
@@ -36,15 +36,25 @@
                 <div class='name'>#{p.product_name}</div>
             </div>".html_safe } %>
             <%= f.input :weight, required: true, label: false, placeholder: "Weight (g)"%>
+            <div class="errors">
+              <% if flash[:ingredient_errors] && flash[:ingredient_errors]["weight"] %>
+                  <% flash[:ingredient_errors]["weight"].each do |msg| %>
+                    <%= msg %>
+                  <% end %>
+              <% end %>
+            </div>
+            
             <%= f.input :name, required: true, label: false, placeholder: "Name (ex: steak, farine, laituce etc)"%>
-
-            <% if flash[:ingredient_errors] %>
-              <ul>
-                <% flash[:ingredient_errors].each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
+            
+            <% if flash[:ingredient_errors] &&  flash[:ingredient_errors]["name"] %>
+    
+              <div class="errors">
+                <%= flash[:ingredient_errors]["name"].first %>
+              </div>
+                
             <% end %>
+
+            <%= f.hidden_field :query, value: params[:query] %>
 
             <p>
             Provide the weight and the name first. Select the ingredient after. <br>
@@ -59,6 +69,6 @@
         <% end %>
     </div>
 
-  <%# end %>
+  <% end %>
 
 </div>
