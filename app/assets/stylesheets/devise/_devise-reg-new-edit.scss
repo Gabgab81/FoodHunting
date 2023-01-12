@@ -1,0 +1,124 @@
+.devise-session-new{
+
+    font-size: 24px;
+    color: $mblack;
+
+    .simple-form{
+        margin: 0px auto;
+        background-color: white;
+        border-radius: 36px;
+        box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
+        width: 40%;
+        padding: 20px;
+    }
+    .space-between{
+        width: 100%;
+        height: 30px;
+    }
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // margin-top: 30px;
+        margin-bottom: 30px;
+        .hr{
+            width: 35%;
+            border-top: 1px solid $mblack; 
+        }
+    }
+
+    .form-actions{
+        text-align: center;
+        input{
+            font-size: 24px;
+            width: 130px;
+            height: 60px;
+            margin: 0px Auto;
+            border-radius: 36px;
+            color: white;
+            background-color: $mred;
+            border: 2px solid $mred;
+            transition: all 0.2s ease-in-out 0s;
+            transition-property: border, background-color, color;
+            &:hover{
+                background-color: white;
+                color: $mred;
+                border: 2px solid $mred;
+            }
+        }
+    }
+    .shared-link{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px;
+        input, a{
+            all: unset;
+            cursor: pointer;
+            color: $mred;
+            scale: 1;
+            transition: scale 0.2s ease-in-out;
+            &:hover{
+                scale: 1.1;
+            }
+        }
+        // a{
+        //     color: $mred;
+        // }
+    }
+}
+
+// ------- For responsive -------
+
+@media only screen and (max-width: 1700px) {
+    .devise-session-new .simple-form{
+        width: 50%;
+
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .devise-session-new .simple-form{
+        width: 60%;
+
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .devise-session-new .simple-form{
+        width: 70%;
+
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .devise-session-new .simple-form{
+        width: 80%;
+
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .devise-session-new .simple-form{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .devise-session-new .simple-form{
+        width:95%;
+    }
+}
+
+// @media only screen and (max-width: 650px) {
+//     .devise-session-new .simple-form{
+//             // width: 40vw;
+//     }
+// }
+
+// @media only screen and (max-width: 500px) {
+//     .devise-session-new .simple-form{
+//         // width: 100%;
+//     }
+// }
