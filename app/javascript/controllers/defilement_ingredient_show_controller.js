@@ -16,11 +16,17 @@ export default class extends Controller {
     this.allCardNode.forEach((node) => this.totalHeightCards += node.offsetHeight)
     this.element.querySelector('.btn-top').style.display = 'none'
    
+    if (this.ningredientsValue == 0){
+      this.element.querySelector('.ingredients').style.display = 'none';
+    }
+
     if (this.totalHeightCards + 70 < this.height) {
       this.element.querySelector('.btn-top').remove()
       this.element.querySelector('.btn-bottom').remove()
-      this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
-    } else {
+      if(this.element.offsetWidth > 1000){
+        this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
+      }
+    } else if(this.element.offsetWidth > 1000){
       this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
     }
   }
