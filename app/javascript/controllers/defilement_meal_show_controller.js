@@ -3,12 +3,15 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="defilement-meal-show"
 export default class extends Controller {
   static targets = ["cards"]
+  static values = {
+    nmeals: Number
+  }
 
   connect() {
 
-    console.log("card target: ", this.cardsTargets)
+    console.log("nmeals value: ", this.nmealsValue)
+    console.log("this element: ", this.element.offsetWidth)
     this.height = this.element.querySelector('.info-restaurant').offsetHeight
-    console.log("height: ", this.height)
     this.position = 0
     
     this.allCardNode = this.element.querySelectorAll('.list-menus > a > .card-product');
@@ -17,13 +20,21 @@ export default class extends Controller {
     console.log("totalHzightCard: ", this.totalHeightCards)
     this.element.querySelector('.btn-top').style.display = 'none'
    
-    if (this.totalHeightCards + 100 < this.height) {
-      this.element.querySelector('.btn-top').remove()
-      this.element.querySelector('.btn-bottom').remove()
-      this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
-    } else {
-      this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
+    if (this.nmealsValue == 0){
+      this.element.querySelector('.menu').style.display = 'none';
     }
+    else{
+      if (this.totalHeightCards + 100 < this.height) {
+        this.element.querySelector('.btn-top').remove()
+        this.element.querySelector('.btn-bottom').remove()
+        if(this.element.offsetWidth > 1000){
+          this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
+        }
+      } else if(this.element.offsetWidth > 1000){
+        this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
+      }
+    }
+    
   }
 
 
