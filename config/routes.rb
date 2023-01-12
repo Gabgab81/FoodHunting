@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "userRatings", to: "pages#userRatings"
   get "userComments", to: "pages#userComments"
   get "userFavorites", to: "pages#userFavorites"
+  get "userProfile", to: "pages#userProfile"
 
   resources :restaurants do
     resources :favorites, only: :create
