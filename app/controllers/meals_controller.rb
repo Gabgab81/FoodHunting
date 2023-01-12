@@ -1,5 +1,6 @@
 class MealsController < ApplicationController
     before_action :set_restaurant, only: [:new, :create, :edit, :update]
+    skip_before_action :authenticate_user!, only: :show
 
     def new
         # @restaurant = Restaurant.find(params[:restaurant_id])
