@@ -9,8 +9,8 @@ export default class extends Controller {
 
   connect() {
 
-    // console.log("nmeals value: ", this.nmealsValue)
-    // console.log("this element: ", this.element.offsetWidth)
+    console.log("nmeals value: ", this.nmealsValue)
+    console.log("this element: ", this.element.offsetWidth)
     this.height = this.element.querySelector('.info-restaurant').offsetHeight
     this.position = 0
     
@@ -28,9 +28,12 @@ export default class extends Controller {
         this.element.querySelector('.btn-top').remove()
         this.element.querySelector('.btn-bottom').remove()
         if(this.element.offsetWidth > 1000){
-          this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
+          console.log('bobobo')
+          // this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
+          this.element.querySelector('.list-menus').style.height = `fit-content`
         }
       } else if(this.element.offsetWidth > 1000){
+        console.log('gogogoggoo')
         this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
       }
     }
