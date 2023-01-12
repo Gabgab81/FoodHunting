@@ -155,7 +155,7 @@
     <% end %>
   </div>
 
-  <div class="restaurant-menu" data-controller="defilement-meal-show">
+  <div class="restaurant-menu" data-controller="defilement-meal-show" data-defilement-meal-show-nmeals-value = <%= @restaurant.meals.count %>>
   
     <div class="info-restaurant">
       <div class="name-rating">
@@ -313,7 +313,11 @@
     
     </div>
 
-    <div class="menu">
+    <% if @restaurant.meals.count == 0 %>
+      <div onload="document.querySelector('menu').style.display=='none'"></div>
+    <% end %>
+
+    <div class="menu" >
       <div class="title-line">
         <div class="line">
         </div>
