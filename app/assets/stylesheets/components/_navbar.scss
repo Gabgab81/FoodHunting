@@ -34,16 +34,12 @@
   width: 30%;
 }
 
-.collapse{
+.navbar-nav{
   width: 30%;
   // margin-left: auto;
   display: flex;
   justify-content: end;
   align-items: center;
-}
-
-.search{
-  // width: 60%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -75,5 +71,24 @@
 @media screen and (min-width: 1000px) and (max-width: 1200px) {
   .navbar-lewagon .navbar-brand h1{
     font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar .container-fluid .navbar-nav{
+      flex-direction: row;
+
+      .nav-item + .dropdown{
+        height: 0px;
+        width: 40px;
+        background-color: green;
+      }
+      .dropdown-menu{
+        // background-color: blue;
+        position: relative;
+        top: 0px;
+        right: 150px;
+        width: fit-content;
+      }
   }
 }
