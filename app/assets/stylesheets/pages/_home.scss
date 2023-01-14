@@ -8,6 +8,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
+    margin: 0 auto;
     .title{
         margin: 20px;
         // text-align: center;
@@ -47,14 +49,17 @@
         }
     }
     .display-card-and-btn > .left{
-        height: fit-content;
+        height: 0;
+        width: 0;
         position: relative;
-        left: 70px;
+        left: 20px;
         top: 120px;
+        // background-color: blue;
     }
 
     .display-card-and-btn > .right{
-        height: fit-content;
+        height: 0;
+        width: 0;
         position: relative;
         right: 70px;
         top: 120px;
@@ -208,12 +213,12 @@
     }
 }
 
-// @media only screen and (max-width: 800px) {
-//     .form-meal{
-//         width: 80%;
+@media only screen and (max-width: 500px) {
+    .homepage{
+        width: 100%;
 
-//     }
-// }
+    }
+}
 
 // @media only screen and (max-width: 500px) {
 //     .form-meal{

@@ -10,7 +10,7 @@ export default class extends Controller {
   submit(event){
     // console.log("submit")
     // console.log(event)
-    console.log("Hello");
+    // console.log("Hello");
     // setTimeout(() => {  console.log("World!"); }, 5000);
     setTimeout(() => {  this.formTarget.submit(); }, 100);
     // this.formTarget.submit()
