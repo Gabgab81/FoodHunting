@@ -7,7 +7,7 @@ export default class extends Controller {
     nphotos: Number
   }
   connect() {
-    console.log("img form def img: ", this.imgTargets)
+    // console.log("img form def img: ", this.imgTargets)
     this.index = 0
     this.showCurrentImg()
     this.showCurrentDot()

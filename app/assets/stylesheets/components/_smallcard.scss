@@ -35,7 +35,7 @@
         position: relative;
         top: 100px;
 
-        .left, .right{
+        .btn-left, .btn-right{
             all: unset;
             cursor: pointer;
             color: rgba(247,247,249,0.80);
@@ -121,7 +121,7 @@
             padding: 0px 20px 0px 20px;
             // color: white;
 
-            .left, .right{
+            .btn-left, .bnt-right{
                 all: unset;
                 cursor: pointer;
                 color: rgba(247,247,249,0.80);
