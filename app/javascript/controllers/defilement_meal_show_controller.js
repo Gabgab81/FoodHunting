@@ -10,9 +10,13 @@ export default class extends Controller {
   connect() {
 
     console.log("nmeals value: ", this.nmealsValue)
-    console.log("this element: ", this.element.offsetWidth)
+    console.log("this element: ", this.element)
+    console.log("this element offSetW: ", this.element.offsetWidth)
     this.height = this.element.querySelector('.info-restaurant').offsetHeight
     this.position = 0
+
+    this.width = document.querySelector('.showrestaurant').offsetWidth + 17
+    console.log("this width: ", this.width)
     
     this.allCardNode = this.element.querySelectorAll('.list-menus > a > .card-product');
     this.totalHeightCards = 0
@@ -32,7 +36,7 @@ export default class extends Controller {
         console.log('Im in the if')
         this.element.querySelector('.btn-top').remove()
         this.element.querySelector('.btn-bottom').remove()
-        if(this.element.offsetWidth > 1000){
+        if(this.width> 1000){
           console.log('bobobo')
           // this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
           this.element.querySelector('.list-menus').style.height = `fit-content`

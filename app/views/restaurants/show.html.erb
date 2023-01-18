@@ -424,16 +424,15 @@
 
 
   <div class="comments">
-    <div class="title-line">
-      <% if !@restaurant.comments.empty? %>
+    <% if !@restaurant.comments.empty? %>
+      <div class="title-line">
         <div class="line">
         </div>
         <h2>Comments</h2>
         <div class="line">
         </div>
-      <% end %>
-    </div> 
-    
+      </div> 
+    <% end %>
 
     <div class="list-comments">
       <div data-controller="insert-in-list">

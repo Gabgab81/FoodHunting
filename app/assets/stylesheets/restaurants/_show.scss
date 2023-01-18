@@ -465,7 +465,7 @@
             display: flex;
             flex-direction: column;
             // justify-content: center;
-            height: 100px;
+            height: 150px;
             // gap: 5px;
             // overflow-Y: scroll;
             overflow: hidden;
@@ -574,6 +574,7 @@
     @media only screen and (max-width: 1000px) {
         .restaurant-menu{
             display: block;
+            width: 85%;
 
             .menu{
                 width: 85%;
@@ -582,10 +583,16 @@
         }
     }
 
+    @media only screen and (max-width: 800px) {
+        .restaurant-menu{
+            width: 90%;
+        }
+    }
+
     @media only screen and (max-width: 500px) {
         .restaurant-menu{
             display: block;
-            width: 90%;
+            width: 100%;
 
             .menu{
                 width: 90%;
