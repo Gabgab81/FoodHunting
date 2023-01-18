@@ -40,6 +40,22 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  .no-avatar{
+    background-color: rgba(7, 30, 34, .9);;
+    height: 40px;
+    color: white;
+    // cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+  }
+  .dropdown-toggle::after{
+    display: none;
+  }
+  .avatar{
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -81,7 +97,7 @@
       .nav-item + .dropdown{
         height: 0px;
         width: 40px;
-        background-color: green;
+        // background-color: green;
       }
       .dropdown-menu{
         // background-color: blue;
