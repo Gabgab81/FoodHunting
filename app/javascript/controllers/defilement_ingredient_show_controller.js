@@ -21,7 +21,9 @@ export default class extends Controller {
     console.log("totalHzightCard: ", this.totalHeightCards)
     console.log("Height: ", this.height)
 
+    // console.log("kust before the buttoms")
     this.element.querySelector('.btn-top').style.display = 'none'
+    this.element.querySelector('.btn-bottom').style.display = 'block'
    
     if (this.ningredientsValue == 0){
       this.element.querySelector('.ingredients').style.display = 'none';

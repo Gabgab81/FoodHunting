@@ -24,6 +24,7 @@ export default class extends Controller {
     console.log("totalHzightCard: ", this.totalHeightCards)
     console.log("Height: ", this.height)
     this.element.querySelector('.btn-top').style.display = 'none'
+    this.element.querySelector('.btn-bottom').style.display = 'block'
    
     if (this.nmealsValue == 0){
       this.element.querySelector('.menu').style.display = 'none';
