@@ -7,6 +7,9 @@ export default class extends Controller {
     ningredients: Number
   }
   connect() {
+
+    console.log("nIngredient:", this.ningredientsValue)
+    console.log("this element:", this.element.offsetWidth)
     this.height = this.element.querySelector('.info-meal').offsetHeight
 
     this.position = 0
@@ -14,21 +17,29 @@ export default class extends Controller {
     this.allCardNode = this.element.querySelectorAll('.list-ingredients > .card-ingredient');
     this.totalHeightCards = 0
     this.allCardNode.forEach((node) => this.totalHeightCards += node.offsetHeight)
+
+    console.log("totalHzightCard: ", this.totalHeightCards)
+    console.log("Height: ", this.height)
+
     this.element.querySelector('.btn-top').style.display = 'none'
    
     if (this.ningredientsValue == 0){
       this.element.querySelector('.ingredients').style.display = 'none';
-    }
+    } else {
 
-    if (this.totalHeightCards + 70 < this.height) {
-      this.element.querySelector('.btn-top').remove()
-      this.element.querySelector('.btn-bottom').remove()
-      if(this.element.offsetWidth > 1000){
+      if (this.totalHeightCards + 100 < this.height) {
+        console.log('Im in the if')
+        this.element.querySelector('.btn-top').remove()
+        this.element.querySelector('.btn-bottom').remove()
+        if(this.element.offsetWidth > 1000){
+          console.log('bobobo')
+          this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
+        }
+      } else{
+        console.log('gogogoggoo')
         this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
       }
-    } else if(this.element.offsetWidth > 1000){
-      this.element.querySelector('.list-ingredients').style.height = `${this.height - 90}px`
-    }
+    } 
   }
 
   up(){
