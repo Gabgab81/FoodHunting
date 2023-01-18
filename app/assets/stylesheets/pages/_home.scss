@@ -69,7 +69,7 @@
     .commentmeal{
         display: flex;
         width: 90%;
-
+       
         .commentside > h2{
             text-align: center;
         }
@@ -186,10 +186,10 @@
             width: 80%;
             margin: 0 auto;
         }
-        // .card-product{
-        //     width: 500px;
-        //     margin: 0 auto;
-        // }
+        .card-product{
+            width: 100%;
+            // margin: 0 auto;
+        }
     }
 }
 

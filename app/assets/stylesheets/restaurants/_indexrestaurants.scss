@@ -8,6 +8,12 @@
         align-items: center;
         align-content: stretch;
         flex-wrap: wrap;
+        a{
+            display: contents;
+            .card-product{
+                width: clamp(250px, 10vw, 400px);
+            }
+        }
        
     }
 
