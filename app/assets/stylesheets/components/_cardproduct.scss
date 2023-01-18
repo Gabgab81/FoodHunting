@@ -6,6 +6,12 @@
   display: flex;
   align-items: center;
   border-radius: 25px;
+  flex-grow: 1;
+
+  // max-width: 400px;
+  // min-width: 250px;
+  // width: clamp(250px, 10vw, 400px);
+  width: 90%;
 
   margin: 5px;
 
