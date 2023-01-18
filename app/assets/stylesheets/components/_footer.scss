@@ -1,5 +1,8 @@
 .footer{
     display: flex;
+    position: relative;
+    background-color: $mwhite;
+    z-index: 9999;
     justify-content: space-between;
     border-top: 2px solid rgba(5, 47, 95, 0.1);
     align-items: center;
