@@ -2,6 +2,7 @@
  <div class="showrestaurant" data-controller="defilement-img-show"
  data-defilement-img-show-nphotos-value = <%= @restaurant.photos.count %>>
   <div class="pictures">
+    
     <% if @restaurant.photos.attached? %>
         <% if @restaurant.photos.count == 1 %>
           <div class="fav">
@@ -144,6 +145,7 @@
                     <i class="fa-sharp fa-solid fa-heart"></i>
                 </div>
               <% end %>
+
             <% end %>
           </div>
 
@@ -265,16 +267,19 @@
           <p>It will close in <%= @restaurant.whenClose  %></p>
 
         <% else %>
-
-            <button title="Click to Show/Hide the schedule" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {
+            <% if true %>
+            <button title="Click to Show/Hide the schedule" type="button" onclick="if(document.getElementById('spoiler').style.display=='none') {
               document.getElementById('spoiler') .style.display='block'
               document.getElementById('spoiler') .style.animation='fade_in_show 0.5s'
               }else{
                 document.getElementById('spoiler') .style.display='none'
                 // document.getElementById('spoiler') .style.animation='fade_out_show 0.5s'
               }">
-            
+              
+                
+              
               <%schedule =  @restaurant.schedules.where(weekday: Time.now.wday).first %>
+              
               <% if !schedule.nil? %>
                 <% if schedule.am_closes_at.nil? %>
                     <p class="closed"><span>Closed</span> <%= schedule.am_opens_at.strftime("%H:%M") %> - <%= schedule.pm_closes_at.strftime("%H:%M") %></p>
@@ -287,9 +292,10 @@
               <% else %>
                 <p class="closed"><span>Closed</span></p>
               <% end %>
+              
             
             </button>
-
+            <% end %>
             <div id="spoiler" style="display:none">
             
               <% @restaurant.schedules.each do |schedule| %>
@@ -306,6 +312,7 @@
 
 
             <p>It will open in <%= @restaurant.whenOpen  %></p>
+
         <% end %>
  
         <%# <button title="Click to Show/Hide Content" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Show/Hide</button>
@@ -409,6 +416,7 @@
       
     </div>
   </div>
+
 
   <div class="comments">
     <div class="title-line">
