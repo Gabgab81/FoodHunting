@@ -18,13 +18,18 @@ export default class extends Controller {
     this.totalHeightCards = 0
     this.allCardNode.forEach((node) => this.totalHeightCards += node.offsetHeight)
     console.log("totalHzightCard: ", this.totalHeightCards)
+    console.log("Height: ", this.height)
     this.element.querySelector('.btn-top').style.display = 'none'
    
     if (this.nmealsValue == 0){
       this.element.querySelector('.menu').style.display = 'none';
     }
     else{
+      // if(this.element.offsetWidth < 1000){
+
+      // }
       if (this.totalHeightCards + 100 < this.height) {
+        console.log('Im in the if')
         this.element.querySelector('.btn-top').remove()
         this.element.querySelector('.btn-bottom').remove()
         if(this.element.offsetWidth > 1000){
@@ -32,7 +37,7 @@ export default class extends Controller {
           // this.element.querySelector('.list-menus').style.height = `${this.height - 90}px`
           this.element.querySelector('.list-menus').style.height = `fit-content`
         }
-      } else if(this.element.offsetWidth > 1000){
+      } else {
         console.log('gogogoggoo')
         this.element.querySelector('.list-menus').style.height = `${this.height - 100}px`
       }
