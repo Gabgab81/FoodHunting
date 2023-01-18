@@ -2,6 +2,11 @@
  <div class="showrestaurant" data-controller="defilement-img-show"
  data-defilement-img-show-nphotos-value = <%= @restaurant.photos.count %>>
   <div class="pictures">
+
+  <script type="text/javascript">
+    // window.onload = function() { alert('window.onload alert'); };
+    window.onunload = function(){};
+  </script>
     
     <% if @restaurant.photos.attached? %>
         <% if @restaurant.photos.count == 1 %>
