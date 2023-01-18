@@ -192,15 +192,16 @@
     .restaurant-menu{
 
         display: flex;
-        width: 80%;
+        width: 70%;
         margin: 0 auto;
 
         .info-restaurant{
 
             flex: 2;
             padding: 10px;
-            margin-left: 5vw;
-            margin-right: 30px;
+            // margin-left: 5vw;
+            // margin-right: 30px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -387,8 +388,9 @@
 
         .menu{
             flex: 1;
-            margin-right: 5vw;
-            margin-left: 30px;
+            // margin-right: 5vw;
+            // margin-left: 30px;
+            margin: 0 auto;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -462,16 +464,26 @@
 
             display: flex;
             flex-direction: column;
+            // justify-content: center;
             height: 100px;
-            // gap: 10px;
+            // gap: 5px;
             // overflow-Y: scroll;
             overflow: hidden;
             // background-color: $mwhite;
+            // margin: 0 auto;
+            width: 100%;
+            a{
+                .card-product{
+                    // margin: 0 auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
 
             .delete{
                 position: relative;
-                left: 15px;
-                top: 15px;
+                left: 25px;
+                top: 10px;
                 height: 0;
                 // width: 0;
 
@@ -544,7 +556,7 @@
 
     @media only screen and (max-width: 1600px) {
         .restaurant-menu{
-            width: auto;
+            width: 80%;
         }
 
         .comments{
