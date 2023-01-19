@@ -29,4 +29,8 @@ class PagesController < ApplicationController
     @favorites = Favorite.where(user_id: current_user).order('created_at DESC')
   end
 
+  def userProfile
+    # raise
+  end
+
 end
