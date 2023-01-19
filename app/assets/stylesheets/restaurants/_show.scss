@@ -431,6 +431,7 @@
             text-align: center;
             line-height: 0px;
             height: 0;
+            z-index: 999;
             // background-color: rgba(7, 30, 34, .1);
             cursor: pointer;
             i{
@@ -439,6 +440,8 @@
                 // color: rgba(7, 30, 34, .1);
                 border-radius: 50%;
                 animation: background-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+                
             }
             font-size: 3rem;
             animation: arrow-scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
