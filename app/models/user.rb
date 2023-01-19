@@ -9,5 +9,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  validates :nickname, presence: true
+  validates :nickname, presence: true, length: { minimum: 3 }
+  validate :password_regex
+
+  def password_regex
+    return if password.blank? || password =~ /\A(?=.*\d)(?=.*[A-Z])(?=.*\W)[^ ]{8,}\z/
+
+    errors.add :password, 'Password should have more than 7 characters including 1 uppercase letter, 1 number, 1 special character'
+  end
 end
