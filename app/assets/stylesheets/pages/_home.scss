@@ -69,14 +69,19 @@
     .commentmeal{
         display: flex;
         width: 90%;
+        margin-bottom: 20px;
+        h2{
+            text-align: center;
+            margin-top: 10px;
+        }
        
-        .commentside > h2{
-            text-align: center;
-        }
+        // .commentside > h2{
+        //     text-align: center;
+        // }
 
-        .mealside > h2{
-            text-align: center;
-        }
+        // .mealside > h2{
+        //     text-align: center;
+        // }
 
         .commentside{
             width: 60%;
@@ -90,12 +95,20 @@
 
         .mealside{
             width: 40%;
-            padding: 10px;
+            // padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: stretch;
+            // justify-content: center;
             gap: 10px;
             margin-left: 10px;
+            a{
+                .card-product{
+                    // margin: 0 auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
         }
     }
 }
