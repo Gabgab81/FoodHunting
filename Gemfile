@@ -33,6 +33,8 @@ gem 'stimulus-rails'
 gem 'devise'
 gem "pundit"
 
+gem 'net-smtp'
+
 gem "cloudinary"
 
 gem "geocoder"
