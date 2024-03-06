@@ -30,7 +30,7 @@ class IngredientsController < ApplicationController
         @ingredient.info = @product.nutriments.to_hash
         @ingredient.image = @product["image_front_small_url"]
         authorize @ingredient
-        # raise
+        raise
         if @ingredient.save
             if @meal.ingredients.count > 0
                 @meal.protein = @meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"]* ingredient.weight)/100}.round(1)

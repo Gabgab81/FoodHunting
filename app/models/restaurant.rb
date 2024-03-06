@@ -15,7 +15,8 @@ class Restaurant < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true, length: { minimum: 5 }
   validates :description, presence: true
-  validates :phone, presence: true, format: { with: /\A\d{1}-\d{3}-\d{3}-\d{4}\z/ }
+  validates :phone, presence: true
+  # format: { with: /\A\d{1}-\d{3}-\d{3}-\d{4}\z/ }
 
   def open?
     isOpen = false
