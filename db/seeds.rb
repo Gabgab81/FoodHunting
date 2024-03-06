@@ -224,6 +224,7 @@ users.each_with_index do |user, i|
       fat: 0
     )
     modelImage(mealApi["strMealThumb"], meal)
+    meal.address = restaurant.address
     meal.save!
 
     ingredientsApi.each do |ingredient|
@@ -284,16 +285,23 @@ if(true)
       end
     end
   end
-  if(false)
+  if(true)
     restaurants = Restaurant.all
     restaurants.each do |restaurant|
-      restaurant.meals do |meal|
-        meal.protein = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"]* ingredient.weight)/100}.round(1)
-        meal.carbohydrate = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}.round(1)
-        meal.fat = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}.round(1)
-        meal.save!
+      # puts restaurant.meals
+      restaurant.meals.each do |meal|
+        # meal.protein = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["proteins_100g"]* ingredient.weight)/100}.round(1)
+        # meal.carbohydrate = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["carbohydrates_100g"] * ingredient.weight)/100}.round(1)
+        # meal.fat = meal.ingredients.inject(0) {|sum, ingredient| sum + (ingredient.info["fat_100g"] * ingredient.weight)/100}.round(1)
+        # meal.save!
+        puts meal.protein
       end
     end
+    # m = Meal.first
+    # puts m.name
+    # puts m.protein
+    # puts m.ingredients.inject(0) { |sum, ing| sum + ing.info["proteins_100g"]}
+    # puts m.ingredients.inject(0) { |sum, ing| sum + (ing.info["proteins_100g"] * ing.weight)/100}
   end
 end
 
