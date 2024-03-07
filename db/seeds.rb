@@ -98,7 +98,7 @@ ingredientList = [
 "Tomate"
 ]
 
-if(false)
+if(true)
 
 puts "Cleaning database..."
 User.destroy_all
@@ -272,7 +272,7 @@ users.each_with_index do |user, i|
 end
 end
 
-if(true)
+if(false)
   puts "Testing"
   if(false)
     restaurants = Restaurant.all
