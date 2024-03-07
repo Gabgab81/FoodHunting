@@ -285,7 +285,7 @@ if(true)
       end
     end
   end
-  if(true)
+  if(false)
     restaurants = Restaurant.all
     restaurants.each do |restaurant|
       # puts restaurant.meals
@@ -297,11 +297,22 @@ if(true)
         puts meal.protein
       end
     end
-    # m = Meal.first
-    # puts m.name
-    # puts m.protein
-    # puts m.ingredients.inject(0) { |sum, ing| sum + ing.info["proteins_100g"]}
-    # puts m.ingredients.inject(0) { |sum, ing| sum + (ing.info["proteins_100g"] * ing.weight)/100}
+
+
+  end
+
+  if(true)
+    sql_query = <<~SQL
+      restaurants.name ILIKE :query
+      OR restaurants.address ILIKE :query
+      OR meals.name ILIKE :query
+      OR ingredients.name ILIKE :query
+    SQL
+    params = {"queries"=>{"query"=>"Belly", "order"=>"best", "address"=>"", "distance"=>"", "type"=>"Restaurants"}, "button"=>""}
+    r = Restaurant.order('rating DESC').joins(meals: [:ingredients]).where(sql_query, query: "%#{params["queries"]["query"]}%")
+    .near("montreal", 10).distinct
+    r.each { |resto| puts resto.name}
+    # puts params["queries"]["query"]
   end
 end
 
