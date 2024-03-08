@@ -8,6 +8,7 @@ require "openfoodfacts"
 
 # Save one image to a model
 def modelImage(url, model)
+  puts "modelImage URI.open"
   IO.copy_stream(URI.open(url), "image.jpg")
   file = File.open(Rails.root.join("image.jpg"))
   model.photo.attach(
@@ -21,6 +22,7 @@ end
 def saveModelImages(images, model)
   images.each do |imageUrl|
   # puts imageUrl
+  puts "saveModelImages URI.open"
   IO.copy_stream(URI.open(imageUrl), "image.jpg")
   file = File.open(Rails.root.join("image.jpg"))
   model.photos.attach(
@@ -33,8 +35,9 @@ end
 end
 
 def getFakeComments()
-serialized = URI.open('https://dummyjson.com/comments').read
-comments = JSON.parse(serialized)["comments"]
+  puts "getComments URI.open"
+  serialized = URI.open('https://dummyjson.com/comments').read
+  comments = JSON.parse(serialized)["comments"]
 end
 
 ingredientList = [
@@ -206,6 +209,7 @@ users.each_with_index do |user, i|
   # if(false)
   puts "Creating meals and ingredients..."
   (rand(4) + 1).times do
+    puts "Creating meals and ingredients URI.open"
     serialized = URI.open("https://www.themealdb.com/api/json/v1/1/random.php").read
     mealApi = JSON.parse(serialized)["meals"].first
     ingredientsApi = []
