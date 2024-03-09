@@ -1,18 +1,16 @@
 .card-ingredient {
-  
-  max-height: 200px;
+  max-height: 150px;
   // height: ;
   background: $mwhite;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   // align-items: stretch;
   border-radius: 25px;
   margin: 10px;
-
 }
 
-.card-ingredient .img-ingredient{
+.card-ingredient .img-ingredient {
   min-width: 140px;
   flex: 1;
 }
@@ -22,10 +20,9 @@
   width: 100%;
   border-radius: 25px 0 0 25px;
   object-fit: cover;
-
 }
 
-.card-ingredient-infos{
+.card-ingredient-infos {
   min-width: 170px;
   flex-grow: 1.5;
   // width: 40vw;
@@ -48,7 +45,7 @@
   margin-top: 8px;
 }
 
-.card-ingredient p + .bottom{
+.card-ingredient p + .bottom {
   text-align: end;
 }
 
@@ -57,23 +54,22 @@
   // width: 100%;
 }
 
-.card-ingredient .delete{
+.card-ingredient .delete {
   position: relative;
   right: 10px;
   top: 10px;
   height: 0;
   // width: 0;
-  i{
+  i {
     font-size: 20px;
     color: $mblack;
-    transition: color .2s ease-in-out, scale .2s ease-in-out;
+    transition: color 0.2s ease-in-out, scale 0.2s ease-in-out;
   }
-  
-  &:hover{
-    i{
+
+  &:hover {
+    i {
       color: $mred;
       scale: 1.2;
     }
-    
   }
 }
