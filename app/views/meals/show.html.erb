@@ -3,8 +3,8 @@
             
         <div class="img-meal">
 
-            <%= cl_image_tag @meal.photo.key, crop: :fill %>
-
+            <%= cl_image_tag @meal.photo.key, :crop => "crop" %>
+<%# , :gravity=>"auto" %>
         </div>
 
     <% else %>

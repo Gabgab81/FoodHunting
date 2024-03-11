@@ -1,327 +1,319 @@
-.show-meal{
-    // background-color: blue;
+.show-meal {
+  // background-color: blue;
 
-    // ------ img --------
+  // ------ img --------
 
-    .img-meal{
-
-        img{
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        
+  .img-meal {
+    img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      // transform: scaleX(-2);
     }
+  }
 
-    // -------- info side -------
+  // -------- info side -------
 
-    .meal-ingredient{
+  .meal-ingredient {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    // height: 600px;
 
+    .info-meal {
+      flex: 2;
+      padding: 10px;
+      // margin-left: 5vw;
+      // margin-right: 30px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      // align-items: center;
+      height: fit-content;
+
+      .name {
+        height: 60px;
         display: flex;
-        width: 70%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        h2 {
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+      .restaurant {
+        .name-rating {
+          // height: 60px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .rating-restaurant {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            border: 3px solid $mgreen;
+            background-color: $mwhite;
+            color: $mgreen;
+            padding: 5px;
+            font-size: 12px;
+            margin-right: 1vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .address-phone {
+          .open span {
+            color: $mgreen;
+          }
+
+          .closed span {
+            color: $mred;
+          }
+        }
+
+        transition: box-shadow 0.2s ease-in-out;
+        &:hover {
+          box-shadow: 0 0 15px $mred;
+        }
+      }
+
+      .setting {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+        font-size: 20px;
+        a {
+          color: $mblack;
+          transition: color 0.2s ease-in-out;
+          i {
+            transition: scale 0.2s ease-in-out;
+          }
+        }
+        a:hover {
+          color: $mred;
+          i {
+            scale: 1.2;
+          }
+        }
+      }
+
+      .description,
+      .nutriments,
+      .restaurant {
+        padding: 10px 10px 10px 30px;
+      }
+
+      .description,
+      .name,
+      .nutriments,
+      .restaurant,
+      .setting {
+        width: 100%;
+        margin: 10px 0;
+        // padding: 10px 10px 10px 30px;
+        border-radius: 25px;
+        border: 1px solid rgba(7, 30, 34, 0.3);
+        box-shadow: 0 0 2px 2px rgba(7, 30, 34, 0.2);
+      }
+    }
+
+    .ingredients {
+      // overflow-y: scroll;
+
+      flex: 1;
+      // margin-right: 5vw;
+      // margin-left: 30px;
+      margin: 0 auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .title-line {
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+        margin: 20px 0 10px 0;
+
+        .line {
+          flex-grow: 1;
+          width: 10px;
+          height: 1px;
+          border-bottom: 3px solid rgba(7, 30, 34, 0.9);
+        }
+
+        h2 {
+          flex-grow: 2;
+          text-align: center;
+        }
+      }
+
+      button {
+        all: unset;
+        // cursor: pointer;
+      }
+
+      .btn-top,
+      .btn-bottom {
         margin: 0 auto;
-        // height: 600px;
-
-
-        .info-meal{
-
-            flex: 2;
-            padding: 10px;
-            // margin-left: 5vw;
-            // margin-right: 30px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            // align-items: center;
-            height: fit-content;
-
-            .name{
-
-                height: 60px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px;
-
-                h2{
-                    text-align: center;
-                    width: 100%;
-                }
-                
-
-            }
-
-            .restaurant{
-
-                .name-rating{
-                    // height: 60px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .rating-restaurant{
-                        height: 35px;
-                        width: 35px;
-                        border-radius: 50%;
-                        border: 3px solid $mgreen;
-                        background-color: $mwhite;
-                        color: $mgreen;
-                        padding: 5px;
-                        font-size: 12px;
-                        margin-right: 1vw;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                }
-
-                .address-phone{
-
-                    
-                    .open span{
-                        color: $mgreen;
-                    }
-
-                    .closed span{
-                        color: $mred;
-                    }
-                }
-
-                transition: box-shadow .2s ease-in-out;
-                &:hover{
-                    box-shadow: 0 0 15px $mred
-                }
-            }
-
-            .setting{
-                display: flex;
-                justify-content: space-evenly;
-                padding: 10px;
-                font-size: 20px;
-                a{
-                    color: $mblack;
-                    transition: color .2s ease-in-out;
-                    i{
-                       transition: scale .2s ease-in-out;
-                    } 
-
-                }
-                a:hover{
-                    color: $mred;
-                    i{
-                        scale: 1.2;
-                    }
-                    
-                }
-            }
-
-            .description, .nutriments, .restaurant{
-                padding: 10px 10px 10px 30px;
-            }
-
-            .description, .name, .nutriments, .restaurant, .setting{
-                width: 100%;
-                margin: 10px 0;
-                // padding: 10px 10px 10px 30px;
-                border-radius: 25px;
-                border: 1px solid rgba(7, 30, 34, .3);
-                box-shadow: 0 0 2px 2px rgba(7, 30, 34, .2);
-            }
+        text-align: center;
+        line-height: 0px;
+        height: 0;
+        // background-color: rgba(7, 30, 34, .1);
+        cursor: pointer;
+        i {
+          // background-color: rgba(7, 30, 34, 0);
+          // color: rgba(247,247,249,0);
+          // color: rgba(7, 30, 34, .1);
+          border-radius: 50%;
+          animation: background-down 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+            both;
         }
+        font-size: 3rem;
+        animation: arrow-scale-down 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+          both;
 
-        .ingredients{
-
-            // overflow-y: scroll;
-
-            flex: 1;
-            // margin-right: 5vw;
-            // margin-left: 30px;
-            margin: 0 auto;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-
-            .title-line{
-
-                display: flex;
-                justify-content: stretch;
-                align-items: center;
-                margin: 20px 0 10px 0;
-
-                .line{
-                    flex-grow: 1;
-                    width: 10px;
-                    height: 1px;
-                    border-bottom: 3px solid rgba(7, 30, 34, .9);
-                }
-
-                h2{
-                    flex-grow: 2;
-                    text-align: center;
-                }
-
-            }
-
-            button{
-                all: unset;
-                // cursor: pointer;
-            }
-
-            .btn-top, .btn-bottom{
-                margin: 0 auto;
-                text-align: center;
-                line-height: 0px;
-                height: 0;
-                // background-color: rgba(7, 30, 34, .1);
-                cursor: pointer;
-                i{
-                    // background-color: rgba(7, 30, 34, 0);
-                    // color: rgba(247,247,249,0);
-                    // color: rgba(7, 30, 34, .1);
-                    border-radius: 50%;
-                    animation: background-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                }
-                font-size: 3rem;
-                animation: arrow-scale-down 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                
-                &:hover{
-                    animation: arrow-scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                    i{
-                        animation: background-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                    }
-                }
-            }
-
-            .btn-top{
-                position: relative;
-                top: 20px;
-            }
-
-            .btn-bottom{
-                position: relative;
-                bottom: 60px;
-            }
-
-            .list-ingredients{
-
-                display: flex;
-                flex-direction: column;
-                height: fit-content;
-                // gap: 10px;
-                // overflow-Y: scroll;
-                overflow: hidden;
-                // background-color: $mwhite;
-
-            }
+        &:hover {
+          animation: arrow-scale-up 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+            both;
+          i {
+            animation: background-up 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+              both;
+          }
         }
-
-    }
-
-    //   -------- Animation for btn ---------
-
-    @keyframes background-up{
-        0% {
-            background-color: $mblack;
-            // background-color: rgba(7, 30, 34, .1);
-            border: 2px solid $mblack;
-            // border: 2px solid rgba(7, 30, 34, .1);
-          }
-          50% {
-            background-color: $mwhite;
-            border: 2px solid $mwhite;
-            }
-          100% {
-            background-color: $mred;
-            border: 2px solid $mred;
-          }
-      }
-      
-      @keyframes background-down{
-        0% {
-            background-color: $mred;
-            border: 2px solid $mred;
-          }
-          50% {
-            background-color: $mwhite;
-            border: 2px solid $mwhite;
-            }
-          100% {
-            // background-color: $mblack;
-            background-color: rgba(7, 30, 34, 0.1);
-            border: 2px solid rgba(7, 30, 34, 0.2);
-          }
       }
 
-      @keyframes arrow-scale-up{
-        0% {
-                transform: scale(1);
-                color: rgba(247,247,249,0.1);
-                // color: $mwhite;
-          }
-          50% {
-                transform: scale(0.9);
-                color: $mblack;
-            }
-          100% {
-                transform: scale(1.2);
-                color: $mwhite;
-          }
-      }
-    
-      @keyframes arrow-scale-down{
-        0% {
-                transform: scale(1.2);
-                color: $mwhite;
-          }
-          50% {
-                transform: scale(0.8);
-                color: $mblack;
-            }
-          100% {
-                transform: scale(1);
-                color: rgba(247,247,249,0.5);
-                // color: $mwhite;
-          }
+      .btn-top {
+        position: relative;
+        top: 20px;
       }
 
-      // ------- For responsive -------
+      .btn-bottom {
+        position: relative;
+        bottom: 60px;
+      }
 
-    @media only screen and (max-width: 1600px) {
-        .meal-ingredient{
-            width: 80%;
-        }
+      .list-ingredients {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        // gap: 10px;
+        // overflow-Y: scroll;
+        overflow: hidden;
+        // background-color: $mwhite;
+      }
     }
+  }
 
-    @media only screen and (max-width: 1200px) {
-        .meal-ingredient > .ingredients{
-            flex: 1.5;
-        }
+  //   -------- Animation for btn ---------
+
+  @keyframes background-up {
+    0% {
+      background-color: $mblack;
+      // background-color: rgba(7, 30, 34, .1);
+      border: 2px solid $mblack;
+      // border: 2px solid rgba(7, 30, 34, .1);
     }
-
-    @media only screen and (max-width: 1000px) {
-        .meal-ingredient{
-            display: block;
-            width: 85%;
-
-            .ingredients{
-                margin: 0 auto;
-                width: 85%;
-            }
-        }
+    50% {
+      background-color: $mwhite;
+      border: 2px solid $mwhite;
     }
-
-    @media only screen and (max-width: 800px) {
-        .meal-ingredient{
-            width: 90%;
-        }
+    100% {
+      background-color: $mred;
+      border: 2px solid $mred;
     }
+  }
 
-    @media only screen and (max-width: 500px) {
-        .meal-ingredient{
-            width: 100%;
-        }
+  @keyframes background-down {
+    0% {
+      background-color: $mred;
+      border: 2px solid $mred;
     }
+    50% {
+      background-color: $mwhite;
+      border: 2px solid $mwhite;
+    }
+    100% {
+      // background-color: $mblack;
+      background-color: rgba(7, 30, 34, 0.1);
+      border: 2px solid rgba(7, 30, 34, 0.2);
+    }
+  }
 
+  @keyframes arrow-scale-up {
+    0% {
+      transform: scale(1);
+      color: rgba(247, 247, 249, 0.1);
+      // color: $mwhite;
+    }
+    50% {
+      transform: scale(0.9);
+      color: $mblack;
+    }
+    100% {
+      transform: scale(1.2);
+      color: $mwhite;
+    }
+  }
+
+  @keyframes arrow-scale-down {
+    0% {
+      transform: scale(1.2);
+      color: $mwhite;
+    }
+    50% {
+      transform: scale(0.8);
+      color: $mblack;
+    }
+    100% {
+      transform: scale(1);
+      color: rgba(247, 247, 249, 0.5);
+      // color: $mwhite;
+    }
+  }
+
+  // ------- For responsive -------
+
+  @media only screen and (max-width: 1600px) {
+    .meal-ingredient {
+      width: 80%;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .meal-ingredient > .ingredients {
+      flex: 1.5;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .meal-ingredient {
+      display: block;
+      width: 85%;
+
+      .ingredients {
+        margin: 0 auto;
+        width: 85%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .meal-ingredient {
+      width: 90%;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .meal-ingredient {
+      width: 100%;
+    }
+  }
 }
